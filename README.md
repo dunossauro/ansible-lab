@@ -27,8 +27,8 @@ paru -S vagrant        # Arch
 choco install vagrant  # Windows
 
 # Ubuntu
-curl -O https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
-sudo apt install ./vagrant_2.2.9_x86_64.deb
+curl -O https://releases.hashicorp.com/vagrant/2.3.2/vagrant_2.3.2-1_amd64.deb
+sudo apt install ./vagrant_3.2.1_x86_64.deb
 ```
 
 ### Passos para configuração
