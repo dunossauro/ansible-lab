@@ -78,24 +78,29 @@ vagrant ssh <nome_do_so> -c "ip -4 -brief address show"
 Por exemplo:
 
 ```bash
-vagrant ssh centos -c "ip -4 -brief address show"
-```
-
-Nos dará a resposta: 
-
-```
+$ vagrant ssh centos -c "ip -4 -brief address show"
 lo               UNKNOWN        127.0.0.1/8 
 eth0             UP             10.0.2.15/24 
-eth1             UP             192.168.15.78/24 
+eth1             UP             192.168.15.86/24 
+
+$ vagrant ssh ubuntu -c "ip -4 -brief address show"
+lo               UNKNOWN        127.0.0.1/8 
+enp0s3           UP             10.0.2.15/24 
+enp0s8           UP             192.168.15.85/24 
+
+$ vagrant ssh arch -c "ip -4 -brief address show"
+lo               UNKNOWN        127.0.0.1/8 
+eth0             UP             10.0.2.15/24 metric 1024 
+eth1             UP             192.168.15.83/24 metric 1024 
 ```
 
-Queremos o ip externo da máquina `192.168.15.78`. Repita esse passo para as outras vms.
+Queremos o ip externo da rede local `192.168.15.???`. Repita esse passo para as outras vms.
 
 Os meus ips foram os seguintes:
 
-- Arch: 192.168.15.79
-- Centos: 192.168.15.78
-- Ubuntu: 192.168.15.77
+- Arch: 192.168.15.83
+- Centos: 192.168.15.86
+- Ubuntu: 192.168.15.85
 
 Guarde esses ips pois vamos usar eles no ansible
 
