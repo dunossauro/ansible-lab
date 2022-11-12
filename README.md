@@ -7,6 +7,8 @@ Como não usaremos nemhuma plataforma de cloud, todo nosso ambiente será config
 ## Configurando o lab
 > Esse guia **até o momento** usa archlinux como base para os comandos, caso você use outra distribuição ou mesmo outro sistema operacional. Faça o comando de acordo com as especificações do seu sistema.
 
+### Passos para instalação
+
 > Onde houver `paru -S` troque pelo seu gerenciador de pacotes `apt`, `choco`, `dnf` e etc...
 
 - Abra seu terminal de preferência
@@ -29,6 +31,8 @@ curl -O https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
 sudo apt install ./vagrant_2.2.9_x86_64.deb
 sudo apt install ./vagrant_2.2.9_x86_64.deb
 ```
+
+### Passos para configuração
 
 - Clone o repositório do lab: `git clone git@github.com:dunossauro/ansible-lab.git`
 
