@@ -1,27 +1,42 @@
 ---
 - name: Configuração do app python
   hosts: test
-  become: yes
 
   tasks:
-    - name: install build tools
-      package:
-        name: base-devel
-        state: present
-
     - name: install pyenv
+      become: yes
+      become_method: sudo
       package:
         state: present
         name: pyenv
 
+    - name: config pyenv
+      blockinfile:
+        dest: ~/.bashrc
+        block: |-
+          echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+          echo 'eval "$(pyenv init -)"' >>~/.bashrc
+          echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+          echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+
+    - name: install pipx
+      become: yes
+      become_method: sudo
+      package:
+        state: present
+        name: python-pipx
+
     - name: install python3.10
-      shell: pyenv install 3.10:latest
+      shell: pyenv install -s 3.10:latest
 
     - name: install python3.11
-      shell: pyenv install 3.11:latest
+      shell: pyenv install -s 3.11:latest
 
-    - name: set 3.11 global
-      shell: pyenv global 3.11:latest
+    - name: set pyenv
+      shell: pyenv global 3.11
 
-    - name: Install pipx
-      shell: echo python --version && pip install pipx
+    - name: install poetry
+      shell: pipx install poetry
+
+    - name: install httpie
+      shell: pipx install httpie

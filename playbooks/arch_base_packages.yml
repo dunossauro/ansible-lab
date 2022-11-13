@@ -1,0 +1,15 @@
+---
+- name: Pacotes de base
+  hosts: test
+  become: yes
+
+  tasks:
+    - name: install build tools
+      package:
+        name: base-devel
+        state: present
+
+    - name: install git
+      package:
+        name: git
+        state: present
