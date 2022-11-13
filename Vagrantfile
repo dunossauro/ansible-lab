@@ -2,6 +2,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "arch" do |arch|
     arch.vm.box = "archlinux/archlinux"
+    arch.disksize.size = "30GB"
     arch.vm.network "public_network",
                     use_dhcp_assigned_default_route: true
                     # bridge: "wlp3s0"

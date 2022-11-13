@@ -31,6 +31,12 @@ curl -O https://releases.hashicorp.com/vagrant/2.3.2/vagrant_2.3.2-1_amd64.deb
 sudo apt install ./vagrant_3.2.1_x86_64.deb
 ```
 
+- Instale o plugin para alterar o tamanho dos discos no vagrant
+
+```bash
+vagrant plugin install vagrant-disksize
+```
+
 ### Passos para configuração
 
 - Clone o repositório do lab: `git clone git@github.com:dunossauro/ansible-lab.git`
