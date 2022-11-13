@@ -37,7 +37,33 @@ sudo apt install ./vagrant_3.2.1_x86_64.deb
 
 - Navegue até o diretório do lab: `cd ansible-lab`
 
+#### Linux
 - Inicie as máquinas com vagrant: `vagrant up`
+
+#### Windows
+
+No diretório existem dois arquivos de configuração do vagrant. O padrão `Vagrantfile` para ser executado no linux e um específico para windows `Vagrantfile.windows`.
+
+Para subir no windows você deve configurar a variável de ambiente para subir o ambiente windows.
+
+Caso esteja usando o cmd:
+
+```
+set VAGRANT_VAGRANTFILE=Vagrantfile.windows
+```
+
+Caso esteja usando o powershell:
+
+```
+Set-Variable -Name VAGRANT_VAGRANTFILE -Value "Vagrantfile.windows"
+```
+
+Agora você pode iniciar o vagrant:
+
+```
+vagrant up
+```
+
 
 Com isso as vms serão baixadas e configuradas. (Esse passo pode demorar bastante).
 

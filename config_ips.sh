@@ -34,5 +34,3 @@ echo "[linux]"
 echo "$centos_ip ansible_user=vagrant"
 echo "$ubuntu_ip ansible_user=vagrant"
 echo "$arch_ip ansible_user=vagrant"
-
-
