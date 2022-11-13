@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "arch" do |arch|
     arch.vm.box = "archlinux/archlinux"
     arch.vm.network "public_network",
-                    use_dhcp_assigned_default_route: true,
+                    use_dhcp_assigned_default_route: true
                     # bridge: "wlp3s0"
 
     arch.vm.provider "virtualbox" do |vb|
@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "ubuntu" do |ubuntu|
     ubuntu.vm.box = "ubuntu/focal64"
     ubuntu.vm.network "public_network",
-                      use_dhcp_assigned_default_route: true,
+                      use_dhcp_assigned_default_route: true
                       # bridge: "wlp3s0"
 
     ubuntu.vm.provider "virtualbox" do |vb|
@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "centos" do |centos|
     centos.vm.box = "centos/stream8"
     centos.vm.network "public_network",
-                      use_dhcp_assigned_default_route: true,
+                      use_dhcp_assigned_default_route: true
                       # bridge: "wlp3s0"
 
     centos.vm.provider "virtualbox" do |vb|
