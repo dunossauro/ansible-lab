@@ -1,0 +1,15 @@
+---
+- name: Instalação do nginx
+  hosts: test
+  become: yes
+
+  tasks:
+    - name: Instalação nginx
+      package:
+        state: present
+        name: nginx
+
+    - name: Configuração nginx
+      systemd:
+        state: started
+        name: nginx
