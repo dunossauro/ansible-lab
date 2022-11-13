@@ -247,7 +247,7 @@ Para que o ansible possa acessar de forma plena as máquinas virtuais, é sempre
     <SO>.vm.provision "shell", inline: <<-SHELL
       sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
       systemctl restart sshd
-	SHELL
+    SHELL
 ```
 
 Assim, garantirmos que o ssh está devidamente configurado. Para executar o provisionamento novamente:

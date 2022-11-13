@@ -1,5 +1,18 @@
 Vagrant.configure("2") do |config|
 
+  config.vm.define "ansible_main" do |main|
+
+    main.vm.box = "archlinux/archlinux"
+    main.vm.network "public_network",
+      use_dhcp_assigned_default_route: true
+
+    main.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.name = "ansible_main"
+    end
+
+  end
+
   config.vm.define "arch" do |arch|
     arch.vm.box = "archlinux/archlinux"
     arch.disksize.size = "30GB"
