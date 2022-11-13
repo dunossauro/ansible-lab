@@ -35,12 +35,10 @@ sudo apt-get install virtualbox   # Ubuntu
 
 - Instale o Vagrant:
 ```
-paru -S vagrant        # Arch
-choco install vagrant  # Windows
+paru -S vagrant           # Arch
+choco install vagrant     # Windows
+sudo apt install vagrant  # Ubuntu
 
-# Ubuntu
-curl -O https://releases.hashicorp.com/vagrant/2.3.2/vagrant_2.3.2-1_amd64.deb
-sudo apt install ./vagrant_3.2.1_x86_64.deb
 ```
 
 ## Básico necessário sobre Vagrant
