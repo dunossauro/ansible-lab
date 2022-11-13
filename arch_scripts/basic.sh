@@ -5,6 +5,9 @@ echo "* Get DHCP ip"
 arch_ip=$(vagrant ssh arch -c "ip -4 -brief address show eth1" | awk '{print $3}'| cut -d'/' -f 1)
 echo "** vm IP: $arch_ip"
 
+echo "* Limpando know hosts"
+rm -rf ~/.ssh/known_hosts
+
 echo "* Put IP on ansible/hosts"
 printf "[test]\n$arch_ip ansible_user=vagrant" > /etc/ansible/hosts
 
