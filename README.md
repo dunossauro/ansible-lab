@@ -8,8 +8,12 @@ Para não depender de serviços externos, vamos usar máquinas virtuais com [vir
 
 ## Sumário
 
-- [Configurando seu laboratório](https://github.com/dunossauro/ansible-lab#configurando-seu-laborat%C3%B3rio)
+- [Configurando seu laboratório](#configurando-seu-laborat%C3%B3rio)
+- [Básico necessário sobre Vagrant](#b%C3%A1sico-necess%C3%A1rio-sobre-vagrant)
+  - [Configurando duas máquinas virtuais](#configurando-duas-máquinas-virtuais)
+  - [Configurações adicionais do vagrant](#configurações-adicionais-no-vagrant)
 
+---
 
 ## Configurando seu laboratório
 
