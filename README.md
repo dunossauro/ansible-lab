@@ -35,12 +35,6 @@ curl -O https://releases.hashicorp.com/vagrant/2.3.2/vagrant_2.3.2-1_amd64.deb
 sudo apt install ./vagrant_3.2.1_x86_64.deb
 ```
 
-- Instale o plugin para alterar o tamanho dos discos no vagrant
-
-```bash
-vagrant plugin install vagrant-disksize
-```
-
 ### Básico necessário sobre Vagrant
 
 Vagrant é uma ferramenta para provisionamento de máquinas virtuais. Dizendo de forma simples, ele cria e configura máquinas virtuais usando um arquivo de configuração chamado `Vagrantfile`. Nesse arquivo podemos descrever como nossas vms serão configuras.
@@ -60,7 +54,134 @@ Se tivermos esse arquivo no nosso diretório, podemos executar o vagrant:
 vagrant up
 ```
 
-E ele criará uma máquina virtual com archlinux no nosso virtualbox
+E ele criará uma máquina virtual com archlinux no nosso virtualbox.
+
+OBS: Esse comando pode demorar um pouco pois ele vai baixar um hd virtual do archlinux e instalar no seu virtualbox.
+
+#### Configurando duas máquinas virtuais
+
+O ansible só oferece suporte para ser executado no linux. Ele pode até configurar máquinas windows, porém só pode ser disparado por uma máquina linux. Para evitar sujar seu ambiente ou mesmo caso você use windows como seu sistema operacional principal. Vamos configurar duas máquinas virtuais com linux.
+
+Para isso, só precisamos alterar nosso `Vagrantfile`:
+
+```ruby
+Vagrant.configure("2") do |config|
+
+  config.vm.define "arch" do |arch|
+    arch.vm.box = "archlinux/archlinux"
+  end
+
+  config.vm.define "ubuntu" do |ubuntu|
+    ubuntu.vm.box = "ubuntu/focal64"
+  end
+
+end
+```
+
+Com isso, agora temos uma vm com ubuntu e outra com archlinux.
+
+Para dar start nas vms agora podemos fazer de duas formas. Subir uma só ou as duas
+
+Para subir as duas, podemos usar `vagrant up` como fizemos antes.
+
+Caso queira subir só o ubuntu `vagrant up ubuntu` ou para subir somente o arch `vagrant up arch`.
+
+#### Configurações adicionais no Vagrant
+
+Algumas configurações adicionais para simplificar a criação das nossas máquinas virtuais.
+
+#### IP Local
+Se quisermos conseguir acessar as vms de fora do ambiente precisamos dar um endereço para elas usando nossa rede local, pelo protocolo DHCP. Podemos fazer isso alterando o `Vagrantfile`:
+
+```ruby
+Vagrant.configure("2") do |config|
+
+  config.vm.define "arch" do |arch|
+    arch.vm.box = "archlinux/archlinux"
+	arch.vm.network "public_network",
+                	use_dhcp_assigned_default_route: true
+  end
+
+  config.vm.define "ubuntu" do |ubuntu|
+    ubuntu.vm.box = "ubuntu/focal64"
+	ubuntu.vm.network "public_network",
+                      use_dhcp_assigned_default_route: true
+  end
+
+end
+```
+
+Isso criará uma nova placa de rede na vm e permitirá o acesso via ssh dá nossa máquina local.
+
+Para que essas ações passem a valer nas máquinas, precisamos pedir ao vagrant que refaça a configuração delas.
+
+```bash
+vagrant reload
+```
+
+> Quando executar esse passo, caso você tenha mais de uma placa de rede, por exemplo um notebook, ele vai perguntar em qual placa você quer que o dhcp seja usado. Escolha a sua placa conectada a internet.
+
+
+#### Configurações de memória e HD das vms
+
+Caso tenha alguns problemas relativos a uso de memória ou disco, essas configurações podem te ajudar.
+
+#### Memória RAM
+Caso você tenha um hardware mais modesto e deseja que as vms usem menos memória. ou que sabe tenha mais hardware e deseja que sua vm tenha mais memória. Você pode alterar a quantidade da vm no `Vagrantfile`:
+
+```ruby
+Vagrant.configure("2") do |config|
+
+  config.vm.define "arch" do |arch|
+    arch.vm.box = "archlinux/archlinux"
+	arch.vm.network "public_network",
+                	use_dhcp_assigned_default_route: true
+
+    arch.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+    end
+
+  end
+
+  config.vm.define "ubuntu" do |ubuntu|
+    ubuntu.vm.box = "ubuntu/focal64"
+	ubuntu.vm.network "public_network",
+                      use_dhcp_assigned_default_route: true
+
+    ubuntu.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+    end
+
+  end
+
+end
+```
+
+Nesse caso, todas as máquinas agora tem 1GB de memória. Você pode alterar para suas necessidades.
+
+Para aplicar, usamos novamente o comando `vagrant reload`
+
+#### Alterando o tamanho dos HDs
+
+Caso o disco esteja menor do que você precisa e não consiga performar algumas ações por falta de espaço no disco, você pode instalar o plugin `vagrant-disksize`. Para que ele faça a modificação no tamanho do disco:
+
+```bash
+vagrant plugin install vagrant-disksize
+```
+
+Agora você pode alterar o tamanho do disco da vm no `Vagrantfile`:
+
+```ruby
+Vagrant.configure("2") do |config|
+
+  config.vm.define "arch" do |arch|
+    arch.vm.box = "archlinux/archlinux"
+	arch.disksize.size = "30GB"  # Linha que muda o tamanho do disco, só precisa dela
+
+# O resto do arquivo foi omitido
+```
+
+Para aplicar, usamos novamente o comando `vagrant reload`
 
 ### Configuração do nosso laboratório
 
