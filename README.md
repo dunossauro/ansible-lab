@@ -1,15 +1,19 @@
 # Laboratório para Live de Python sobre Ansible
 
-Repositório com os passos e arquivos que você deve seguir para configurar o seu ambiente.
+O objetivo desse repositório é ajudar você a construir um laboratório para aprender Ansible. Aqui você vai encontrar dicas e passos para configurar suas máquinas virtuais para construir seu ambiente.
 
-Como não usaremos nemhuma plataforma de cloud, todo nosso ambiente será configurado localmente. Para isso usaremos o virtualbox e o vagrant.
+A minha ideia principal com essa live é não depender de nenhum serviço de nuvem. Nem todas as pessoas podem pagar ou tem cartão de crédito para poder inserir mesmo nos planos gratuitos.
 
-## Configurando o lab
-> Esse guia **até o momento** usa archlinux como base para os comandos, caso você use outra distribuição ou mesmo outro sistema operacional. Faça o comando de acordo com as especificações do seu sistema.
+Para não depender de serviços externos, vamos usar máquinas virtuais com [virtualbox](https://www.virtualbox.org/) e vamos configurá-las usando [Vagrant](https://www.vagrantup.com/).
+
+
+## Configurando seu laboratório
+
+Ansiedade já bateu, né? Vamos construindo uma passinho de cada vez.
 
 ### Passos para instalação
 
-> Onde houver `paru -S` troque pelo seu gerenciador de pacotes `apt`, `choco`, `dnf` e etc...
+> Caso você use o windows, as instalações podem ser feitas via [chocolatey](https://chocolatey.org/install#individual)
 
 - Abra seu terminal de preferência
 
@@ -37,16 +41,40 @@ sudo apt install ./vagrant_3.2.1_x86_64.deb
 vagrant plugin install vagrant-disksize
 ```
 
-### Passos para configuração
+### Básico necessário sobre Vagrant
+
+Vagrant é uma ferramenta para provisionamento de máquinas virtuais. Dizendo de forma simples, ele cria e configura máquinas virtuais usando um arquivo de configuração chamado `Vagrantfile`. Nesse arquivo podemos descrever como nossas vms serão configuras.
+
+Exemplo de um arquivo do Vagrant:
+
+```ruby
+# nome do arquivo: Vagrantifle
+Vagrant.configure("2") do |config|
+  config.vm.box = "archlinux/archlinux"
+end
+```
+
+Se tivermos esse arquivo no nosso diretório, podemos executar o vagrant:
+
+```bash
+vagrant up
+```
+
+E ele criará uma máquina virtual com archlinux no nosso virtualbox
+
+### Configuração do nosso laboratório
+
+#### Faça o clone desse repositório
 
 - Clone o repositório do lab: `git clone git@github.com:dunossauro/ansible-lab.git`
 
 - Navegue até o diretório do lab: `cd ansible-lab`
 
-#### Linux
+
+##### Linux
 - Inicie as máquinas com vagrant: `vagrant up`
 
-#### Windows
+##### Windows
 
 No diretório existem dois arquivos de configuração do vagrant. O padrão `Vagrantfile` para ser executado no linux e um específico para windows `Vagrantfile.windows`.
 
@@ -135,6 +163,7 @@ Os meus ips foram os seguintes:
 - Ubuntu: 192.168.15.85
 
 Guarde esses ips pois vamos usar eles no ansible
+
 
 ### Informações importantes
 
