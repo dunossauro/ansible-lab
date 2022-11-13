@@ -96,7 +96,7 @@ Caso queira subir só o ubuntu `vagrant up ubuntu` ou para subir somente o arch 
 
 Algumas configurações adicionais para simplificar a criação das nossas máquinas virtuais.
 
-### IP Local
+#### IP Local
 Se quisermos conseguir acessar as vms de fora do ambiente precisamos dar um endereço para elas usando nossa rede local, pelo protocolo DHCP. Podemos fazer isso alterando o `Vagrantfile`:
 
 ```ruby
@@ -188,6 +188,73 @@ Vagrant.configure("2") do |config|
 ```
 
 Para aplicar, usamos novamente o comando `vagrant reload`
+
+#### Dando start nos sistemas atualizados
+
+Um passo importante, para criarmos nosso ambiente é que ele já comece atualizado. Para não perdemos tempo atualizando o sistema logo de início. Para isso só temos que alterar no `Vagrantfile` para executar uma ação de provisionamento no shell:
+
+```ruby
+    <SO>.vm.provision "shell", inline: <<-SHELL
+	  <NOSSOS COMANDOS>
+    SHELL
+```
+
+Os comandos variam de sistema para sistema. O Archlinux usa o `pacman` como gerenciador de pacote, os sistemas baseados em Debian o `apt`, os sistemas da família red hat usam `dnf`. Então, lembre-se de usar o comando certo para atualizar. Um exemplo do nosso `Vagrantfile`:
+
+```ruby
+Vagrant.configure("2") do |config|
+
+  config.vm.define "arch" do |arch|
+    arch.vm.box = "archlinux/archlinux"
+    arch.disksize.size = "30GB"
+    arch.vm.network "public_network",
+                    use_dhcp_assigned_default_route: true
+
+    arch.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+    end
+
+    arch.vm.provision "shell", inline: <<-SHELL
+      pacman -Syu --noconfirm
+    SHELL
+  end
+
+  config.vm.define "ubuntu" do |ubuntu|
+    ubuntu.vm.box = "ubuntu/focal64"
+    ubuntu.vm.network "public_network",
+                      use_dhcp_assigned_default_route: true
+
+    ubuntu.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+    end
+
+    ubuntu.vm.provision "shell", inline: <<-SHELL
+      apt-get update
+      apt-get upgrade -y
+    SHELL
+  end
+
+end
+```
+
+Para que essas ações sejam performadas. Executamos `vagrant provision`
+
+#### Configurações de SSH
+
+Para que o ansible possa acessar de forma plena as máquinas virtuais, é sempre bom garantir que as máquinas virtuais estejam com o serviço de ssh configurado. Então, podemos adicionar essa configuração na fase de provisionamento do `Vagrantfile`:
+
+```ruby
+    <SO>.vm.provision "shell", inline: <<-SHELL
+      sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+      systemctl restart sshd
+	SHELL
+```
+
+Assim, garantirmos que o ssh está devidamente configurado. Para executar o provisionamento novamente:
+
+```bash
+vagrant provision
+```
 
 ## Configuração do nosso laboratório
 
