@@ -6,6 +6,10 @@ A minha ideia principal com essa live é não depender de nenhum serviço de nuv
 
 Para não depender de serviços externos, vamos usar máquinas virtuais com [virtualbox](https://www.virtualbox.org/) e vamos configurá-las usando [Vagrant](https://www.vagrantup.com/).
 
+## Sumário
+
+- [Configurando seu laboratório](https://github.com/dunossauro/ansible-lab#configurando-seu-laborat%C3%B3rio)
+
 
 ## Configurando seu laboratório
 
@@ -35,7 +39,7 @@ curl -O https://releases.hashicorp.com/vagrant/2.3.2/vagrant_2.3.2-1_amd64.deb
 sudo apt install ./vagrant_3.2.1_x86_64.deb
 ```
 
-### Básico necessário sobre Vagrant
+## Básico necessário sobre Vagrant
 
 Vagrant é uma ferramenta para provisionamento de máquinas virtuais. Dizendo de forma simples, ele cria e configura máquinas virtuais usando um arquivo de configuração chamado `Vagrantfile`. Nesse arquivo podemos descrever como nossas vms serão configuras.
 
@@ -58,7 +62,7 @@ E ele criará uma máquina virtual com archlinux no nosso virtualbox.
 
 OBS: Esse comando pode demorar um pouco pois ele vai baixar um hd virtual do archlinux e instalar no seu virtualbox.
 
-#### Configurando duas máquinas virtuais
+### Configurando duas máquinas virtuais
 
 O ansible só oferece suporte para ser executado no linux. Ele pode até configurar máquinas windows, porém só pode ser disparado por uma máquina linux. Para evitar sujar seu ambiente ou mesmo caso você use windows como seu sistema operacional principal. Vamos configurar duas máquinas virtuais com linux.
 
@@ -86,11 +90,11 @@ Para subir as duas, podemos usar `vagrant up` como fizemos antes.
 
 Caso queira subir só o ubuntu `vagrant up ubuntu` ou para subir somente o arch `vagrant up arch`.
 
-#### Configurações adicionais no Vagrant
+### Configurações adicionais no Vagrant
 
 Algumas configurações adicionais para simplificar a criação das nossas máquinas virtuais.
 
-#### IP Local
+### IP Local
 Se quisermos conseguir acessar as vms de fora do ambiente precisamos dar um endereço para elas usando nossa rede local, pelo protocolo DHCP. Podemos fazer isso alterando o `Vagrantfile`:
 
 ```ruby
@@ -183,7 +187,7 @@ Vagrant.configure("2") do |config|
 
 Para aplicar, usamos novamente o comando `vagrant reload`
 
-### Configuração do nosso laboratório
+## Configuração do nosso laboratório
 
 #### Faça o clone desse repositório
 
