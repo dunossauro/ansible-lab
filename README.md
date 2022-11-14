@@ -32,6 +32,10 @@ paru -S virtualbox                # Arch
 choco install virtualbox          # Windows
 sudo apt-get install virtualbox   # Ubuntu
 ```
+- Usuários do Fedora Linux, recomendo a instalação do <a href="https://virt-manager.org/">Virtual Machine Manager</a>, que tem funcionamento semelhante ao virtualbox
+```
+sudo yum install virt-manager    # Fedora
+```
 
 - Instale o Vagrant:
 ```
