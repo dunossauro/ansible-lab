@@ -172,8 +172,67 @@ Como eu escolhi que a máquina `main` fosse um archlinux, vamos seguir a configu
 sudo pacman -Syu  # Atualiza o sistema
 ```
 
+Caso a senha senha perguntada. A senha padrão criada pelas máquinas virtuais do vagrant é `vagrant`.
+
 Agora podemos rodar o comando para instalar o ansible:
 
 ```bash
 sudo pacman -S ansible
+```
+
+Se tudo ocorrer como o esperado, podemos perguntar a versão do ansible ao sistema:
+
+```bash
+[vagrant@archlinux ~]$ ansible --version
+ansible [core 2.14.0]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/vagrant/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3.10/site-packages/ansible
+  ansible collection location = /home/vagrant/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.10.8 (main, Nov  1 2022, 14:18:21) [GCC 12.2.0] (/usr/bin/python)
+  jinja version = 3.1.2
+  libyaml = True
+```
+
+Ele nos disse que está na versão `3.10.8`
+
+Recomendo fortemente que instale um editor de textos. Para facilitar a manutenção do sistema. Você pode usar o que quiser, porém, usarei o `nano` nesse tutorial. E para começarmos com pé direito no ansible, vamos fazer essa instalação usando-o e já partirmos para o nosso primeiro comando:
+
+```bash
+ansible localhost -a "sudo pacman -S nano --noconfirm"
+```
+
+E iremos receber esse resultado:
+
+```bash
+[WARNING]: No inventory was parsed, only implicit localhost is available
+localhost | CHANGED | rc=0 >>
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) nano-6.4-1
+
+Total Installed Size:  2.49 MiB
+
+:: Proceed with installation? [Y/n] 
+checking keyring...
+checking package integrity...
+loading package files...
+checking for file conflicts...
+checking available disk space...
+:: Processing package changes...
+installing nano...
+:: Running post-transaction hooks...
+(1/1) Arming ConditionNeedsUpdate...
+```
+
+O que significa que conseguimos fazer uma instalação na máquina local usando ansible. Isso é de mais.
+
+### Arquivo de inventário
+
+Por padrão o arquivo de inventário das máquinas ficam no `/etc/ansible/hosts`. Vamos criar esse arquivo agora.
+
+```bash
+sudo nano /etc/ansible/hosts
 ```
