@@ -150,3 +150,30 @@ vagrant ssh main  # Acessar o console da máquina controladora via ssh
 E isso deve retornar o console dá maquina controladora no usuário `vagrant`:
 
 ![](./images/console.png)
+
+O ansible tem seus pacotes nos repositórios de quase todas as distribuições linux. Então você pode instalar no seu sistema como quiser.
+
+> Caso tenha dúvidas, o [link da documentação](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+
+Formas de instalar em diversos sistemas.
+
+```bash
+sudo pacman -S ansible     # Arch
+sudo apt install ansible   # Ubuntu
+sudo dnf ansible           # Familia Redhat
+```
+
+O ansible também pode ser instalado via `pip`, porém a instalação é bastante trabalhosa.
+
+
+Como eu escolhi que a máquina `main` fosse um archlinux, vamos seguir a configuração com ele. O primeiro passo que devemos fazer é atualizar a máquina para garantir que tudo funcione como o esperado:
+
+```bash
+sudo pacman -Syu  # Atualiza o sistema
+```
+
+Agora podemos rodar o comando para instalar o ansible:
+
+```bash
+sudo pacman -S ansible
+```
