@@ -9,7 +9,7 @@ Para não depender de serviços externos, vamos usar máquinas virtuais com [vir
 ## Sumário
 
 - [01 - Configuração do ambiente](#configuração-do-ambiente)
-- [02 - O básico necessário sobre Vagrant](#o-básico_necessário-sobre-vagrant)
+- [02 - O básico necessário sobre Vagrant](#básico-necessário-sobre-vagrant)
 - [03 - Configuração do ansible](#configuração-do-ansible)
 - [04 - Ansible básico](#ansible-básico)
 
