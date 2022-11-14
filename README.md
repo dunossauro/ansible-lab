@@ -14,6 +14,7 @@ Para não depender de serviços externos, vamos usar máquinas virtuais com [vir
 - [Configurando mais de uma máquina virtual](#configurando-mais-de-uma-máquina-virtual)
 - [Ansible](#ansible)
   - [Instalação do Ansible](#instalação-do-ansible)
+  - [Instalação de um editor de textos](#instalação-de-um-editor-de-textos)
 
 ## Configuração do ambiente
 
@@ -197,6 +198,8 @@ ansible [core 2.14.0]
 
 Ele nos disse que está na versão `3.10.8`
 
+### Instalação de um editor de textos
+
 Recomendo fortemente que instale um editor de textos. Para facilitar a manutenção do sistema. Você pode usar o que quiser, porém, usarei o `nano` nesse tutorial. E para começarmos com pé direito no ansible, vamos fazer essa instalação usando-o e já partirmos para o nosso primeiro comando:
 
 ```bash
@@ -228,6 +231,24 @@ installing nano...
 ```
 
 O que significa que conseguimos fazer uma instalação na máquina local usando ansible. Isso é de mais.
+
+#### Entendendo esse comando
+
+Precisamos entender o básico do comando que executamos com ansible agora:
+
+```bash
+ansible localhost -a "sudo pacman -S nano --noconfirm"
+```
+
+Podemos dividi-lo em quatro partes:
+
+- ansible: chama o ansible
+- localhost: diz que a ação será executada no localhost
+- -a: Argumentos que passaremos para o comando
+- "sudo pacman -S nano --noconfirm": Os argumentos do comando
+
+Quando só dizemos o nome do host `localhost` e colocamos os argumentos `-a` significa que ansible executará os argumentos como um comando de shell. Nesse caso `"sudo pacman -S nano --noconfirm"` é um comando de shell que serve para instalar o `nano`.
+
 
 ### Arquivo de inventário
 
