@@ -6,6 +6,8 @@ A minha ideia principal com essa live é não depender de nenhum serviço de nuv
 
 Para não depender de serviços externos, vamos usar máquinas virtuais com [virtualbox](https://www.virtualbox.org/) e vamos configurá-las usando [Vagrant](https://www.vagrantup.com/).
 
+> Para melhor leitura acesse: https://ansible.dunossauro.live/
+
 ## Sumário
 
 - [01 - Configuração do ambiente](#configuração-do-ambiente)
