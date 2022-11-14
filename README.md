@@ -15,6 +15,7 @@ Para não depender de serviços externos, vamos usar máquinas virtuais com [vir
 - [Ansible](#ansible)
   - [Instalação do Ansible](#instalação-do-ansible)
   - [Instalação de um editor de textos](#instalação-de-um-editor-de-textos)
+  - [Arquivo de inventário](#arquivo-de-inventário)
 
 ## Configuração do ambiente
 
@@ -257,3 +258,27 @@ Por padrão o arquivo de inventário das máquinas ficam no `/etc/ansible/hosts`
 ```bash
 sudo nano /etc/ansible/hosts
 ```
+É nesse arquivo que colocamos os endereços dos nós que serão controlados pelo ansible. O arquivo tem o seguinte formato:
+
+```txt
+[<nome_do_grupo>]
+<endereço_da_maquina>  <opções>
+```
+
+Por exemplo, vamos cadastrar nossa outra vm `arch` que será controlado pelo `main`. Para isso, precisamos iniciar essa máquina virtual. Antes disso, temos que sair do ssh em `main`:
+
+```bash
+exit
+
+logout
+```
+
+Agora voltamos a maquina principal. A máquina onde as máquinas virtuais foram instaladas. Para super o `arch`:
+
+```bash
+vagrant up arch
+```
+
+Com isso, agora devemos ter duas máquinas no nosso virtual box:
+
+![](./images/virtualbox_03.png)
