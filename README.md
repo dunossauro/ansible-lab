@@ -12,7 +12,8 @@ Para não depender de serviços externos, vamos usar máquinas virtuais com [vir
 - [Criação da máquina virtual](#criação-da-máquina-virtual)
 - [Destruindo a máquina criada](#destruindo-a-máquina-criada)
 - [Configurando mais de uma máquina virtual](#configurando-mais-de-uma-máquina-virtual)
-- [Instalação do Ansible](#instalação-do-ansible)
+- [Ansible](#ansible)
+  - [Instalação do Ansible](#instalação-do-ansible)
 
 ## Configuração do ambiente
 
@@ -135,4 +136,17 @@ vagrant up arch   # Somente a máquina arch
 vagrant up main   # Somente a máquina main (vamos escolher essa opção)
 ```
 
-## Instalação do Ansible
+## Ansible
+
+### Instalação do ansible
+
+Agora que temos duas máquinas virtuais criadas. Podemos começar a instalação do ansible. A primeira coisa que devemos fazer é acessar a máquina controladora. Para isso podemos usar o `vagrant` para nos ajudar:
+
+```bash
+vagrant up main   # Iniciar a máquina controladora
+vagrant ssh main  # Acessar o console da máquina controladora via ssh
+```
+
+E isso deve retornar o console dá maquina controladora no usuário `vagrant`:
+
+![](console.png)
