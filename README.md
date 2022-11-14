@@ -149,4 +149,4 @@ vagrant ssh main  # Acessar o console da máquina controladora via ssh
 
 E isso deve retornar o console dá maquina controladora no usuário `vagrant`:
 
-![](console.png)
+![](./images/console.png)
