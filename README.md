@@ -8,10 +8,11 @@ Para não depender de serviços externos, vamos usar máquinas virtuais com [vir
 
 ## Sumário
 
-- [Configuração do ambiente]()
-- [Criação da máquina virtual]()
-- [Configurando mais de uma máquina virtual]()
-- [Instalação do Ansible]()
+- [Configuração do ambiente](#configuração-do-ambiente)
+- [Criação da máquina virtual](#criação-da-máquina-virtual)
+- [Destruindo a máquina criada](#destruindo-a-máquina-criada)
+- [Configurando mais de uma máquina virtual](#configurando-mais-de-uma-máquina-virtual)
+- [Instalação do Ansible](#instalação-do-ansible)
 
 ## Configuração do ambiente
 
