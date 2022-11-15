@@ -2,14 +2,17 @@ site_name: Anbsible lab
 repo_url: https://github.com/dunossauro/ansible-lab
 repo_name: dunossauro/curso-python-typing
 docs_dir: docs
+edit_uri: tree/main/docs
+
 theme:
   name: material
   language: pt
+  logo: images/ansible_logo.png
+  favicon: images/ansible_logo.png
   features:
     - content.tabs.link
   icon:
     repo: fontawesome/brands/git-alt
-
 
 extra_css:
   - stylesheets/extra.css

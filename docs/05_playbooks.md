@@ -185,6 +185,6 @@ localhost  : ok=5  {==changed=2==}  unreachable=0  failed=0  skipped=0  rescued=
 ```
 O status `changed` apareceu. Significa que o resultado desse comando foi diferente da primeira vez que foi executado. O que quer dizer que alguma coisa mudou desde a ultima execução.
 
-Provavelmente a resposta do ansible foi diferente pq o clone não foi feito, o diretório já existia e o move também já tinha sido feito antes.
+Provavelmente a resposta do ansible foi diferente pois o clone não foi feito, o diretório já existia e o move também já tinha sido feito antes.
 
 ## Condicionais
