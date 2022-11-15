@@ -3,8 +3,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "ansible_main" do |main|
 
     main.vm.box = "archlinux/archlinux"
-    main.vm.network "public_network",
-      use_dhcp_assigned_default_route: true
+    main.vm.network "public_network", use_dhcp_assigned_default_route: true#, bridge: "wlp2s0"
 
     main.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
@@ -16,9 +15,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "arch" do |arch|
     arch.vm.box = "archlinux/archlinux"
     arch.disksize.size = "30GB"
-    arch.vm.network "public_network",
-                    use_dhcp_assigned_default_route: true
-                    # bridge: "wlp3s0"
+    arch.vm.network "public_network", use_dhcp_assigned_default_route: true#, bridge: "wlp2s0"
 
     arch.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
@@ -33,9 +30,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "ubuntu" do |ubuntu|
     ubuntu.vm.box = "ubuntu/focal64"
-    ubuntu.vm.network "public_network",
-                      use_dhcp_assigned_default_route: true
-                      # bridge: "wlp3s0"
+    ubuntu.vm.network "public_network", use_dhcp_assigned_default_route: true#, bridge: "wlp2s0"
 
     ubuntu.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
@@ -52,9 +47,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "centos" do |centos|
     centos.vm.box = "centos/stream8"
-    centos.vm.network "public_network",
-                      use_dhcp_assigned_default_route: true
-                      # bridge: "wlp3s0"
+    centos.vm.network "public_network", use_dhcp_assigned_default_route: true#, bridge: "wlp2s0"
 
     centos.vm.provider "virtualbox" do |vb|
        vb.memory = "1024"

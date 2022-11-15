@@ -1,0 +1,14 @@
+---
+- name: Instalar nginx
+  become: yes
+  hosts: linux
+  gather_facts: true
+
+  tasks:
+    - name: Install and start NGINX
+      become: true
+      import_tasks: tasks/nginx.yml
+
+    - name: Dev env
+      become: true
+      import_tasks: tasks/dev.yml

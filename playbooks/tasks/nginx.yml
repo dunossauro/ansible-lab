@@ -1,0 +1,9 @@
+- name: install
+  package:
+    state: present
+    name: nginx
+
+- name: start
+  systemd:
+    name: nginx
+    state: started
