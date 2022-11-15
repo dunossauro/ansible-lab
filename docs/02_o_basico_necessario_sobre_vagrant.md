@@ -102,19 +102,19 @@ Vagrant.configure("2") do |config|
     main.vm.box = "archlinux/archlinux"
   end
 
-  config.vm.define "arch" do |arch|
-    arch.vm.box = "archlinux/archlinux"
+  config.vm.define "ubuntu" do |ubuntu|
+    ubuntu.vm.box = "ubuntu/focal64"
   end
 
 end
 ```
 
-Agora temos duas máquinas virtuais. Ambas configuradas com archlinux. Porém cada uma tem uma função diferente na nossa rede.
+Agora temos duas máquinas virtuais. Uma configurada com Archlinux e uma com Ubuntu Linux. Porém cada uma tem uma função diferente na nossa rede.
 
 O vagrant pode subir uma única vm ou as duas de uma vez:
 
 ```bash hl_lines="3"
-vagrant up        # Inicia as duas vms
-vagrant up arch   # Somente a máquina arch
-vagrant up main   # Somente a máquina main (vamos escolher essa opção)
+vagrant up          # Inicia as duas vms
+vagrant up ubuntu   # Somente a máquina ubuntu
+vagrant up main     # Somente a máquina main (vamos escolher essa opção)
 ```

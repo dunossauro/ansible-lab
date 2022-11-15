@@ -3,7 +3,11 @@
 [Ansible](https://www.ansible.com/) é um grupo de ferramentas de código aberto construídas em python. O objetivo do Ansible é automatizar tarefas de diversas naturezas. Foi originalmente escrito por Michael DeHaan em 2012 e foi comprado pela Red Hat em 2015.
 
 !!! tipo "curiosidade"
-	A palavra Ansible foi cunhada por `Ursula K. Le Guin` no livro `O mundo de rocannon`
+	A palavra Ansible foi cunhada por `Ursula K. Le Guin` no livro `O mundo de Rocannon`
+	
+	![](./images/ursula.jpg){ width="100" }
+	
+	No livro existem diversos mundos e viajantes navegam na velocidade da luz. Ansible é um dispositivo que de comunicação de comunicação instantânea pelo universo.
 
 ## Automações
 
@@ -50,7 +54,7 @@ vagrant ssh main  # Acessar o console da máquina controladora via ssh
 
 E isso deve retornar o console dá maquina controladora no usuário `vagrant`:
 
-![](./images/console.png)
+![](./images/console.png){ width="500" }
 
 O ansible tem seus pacotes nos repositórios de quase todas as distribuições linux. Então você pode instalar no seu sistema como quiser.
 
@@ -100,11 +104,11 @@ Ele nos disse que está na versão `3.10.8`
 
 ## Um pouco de ansible na prática
 
-O ansible foi pensado para que pudéssemos automatizar uma tarefa de qualquer natureza. para isso basta ter o ansible instalado na sua máquina e chamá-lo via linha de comando.
+O ansible foi pensado para que pudéssemos automatizar uma tarefa de qualquer natureza. Para isso basta ter o ansible instalado na sua máquina e chamá-lo via linha de comando.
 
 ### Instalação de um pacote
 
-Por exemplo, vamos supor que no nosso ambiente é imprescindível que o editor de texto [GNU/Emacs](https://www.gnu.org/software/emacs/) (para mim costuma ser). Então podemos usar o ansible para instalar o Emacs no nosso computador pessoal:
+Por exemplo, vamos supor que no nosso ambiente é imprescindível que o editor de texto [GNU/Emacs](https://www.gnu.org/software/emacs/) esteja instalado (para mim costuma ser). Então podemos usar o ansible para instalar o Emacs no nosso computador pessoal:
 
 
 ```bash title="$ Execução no terminal"
@@ -118,10 +122,10 @@ Com esse simples comando, temos o GNU/Emacs instalado nesse computador. Mas, o q
 | ansible              | Invoca o ansible                                  |
 | localhost            | Diz qual máquina será afetada pelo comando        |
 | -m                   | Diz que vamos chamar um módulo                    |
-| package              | `package` é o nome do módulo que vamos chamar     |
-| -a                   | Indica que vamos passar argumentos para o módulo  |
-| "name=emacs state=present"  | Argumentos do módulo                       |
-| -b                   | Diz ao Ansible que é para chamar o usuário `root` |
+| package                     | `package` é o nome do módulo que vamos chamar     |
+| -a                          | Indica que vamos passar argumentos para o módulo  |
+| "name=emacs state=present"  | Argumentos do módulo                                    |
+| -b                          | Diz ao Ansible que o comando será executado como `root` |
 
 O módulo [package](https://docs.ansible.com/ansible/2.9/modules/package_module.html#package-module) é um dos muitos módulos ofertados pelo Ansible. Você pode ver uma lista completa aqui nesse [link](https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html). O que dissemos porém é: "Modulo `package` garanta que o pacote `emacs` esteja `presente` no sistema em que for executado".
 
@@ -131,10 +135,10 @@ Podemos checar no terminal:
 emacs
 ```
 
-![](./images/emacs_00.png)
+![](./images/emacs_00.png){ width="500" }
 
 !!! error "Caso tenha ficado preso"
-	Para sair do emacs tecle Alt+x e em seguida digite kill-emacs e você terá saído do emacs :heart:
+	Para sair do emacs tecle Alt+x e em seguida digite `kill-emacs` e você terá saído do emacs :heart:
 
 ### Configuração do pacote
 
@@ -199,7 +203,7 @@ emacs
 
 E temos o emacs com as minhas configurações:
 
-![](./images/emacs_01.png)
+![](./images/emacs_01.png){ width="500" }
 
 !!! error "Caso tenha ficado preso OUTRA VEZ"
-	Para sair do emacs tecle Alt+x e em seguida digite kill-emacs e você terá saído do emacs :heart:
+	Para sair do emacs tecle Alt+x e em seguida digite `kill-emacs` e você terá saído do emacs :heart:

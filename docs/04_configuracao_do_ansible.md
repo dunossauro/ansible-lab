@@ -1,6 +1,16 @@
-# Entendo a estrutura do ansible
+# Entendendo a estrutura do ansible
 
-TODO: Criar uma intro bonita e explicar diversas coisas legais
+Embora até o momento executamos o ansible somente em uma máquina local. E confesso que já pode ser bastante útil para padronizar suas configurações após uma formatação, por exemplo. O Ansible brilha quando estamos falando de rede.
+
+## Arquitetura de uso do ansible
+
+O Ansible distingue as máquinas em duas categorias. O nó de controle, onde o ansible está instalado e os nós controlados. Que máquinas em que o ansible pode se comunicar via SSH e executar os comandos:
+
+![](./images/ansible_arch.png){: .center .shadow-png}
+
+Dessa forma podemos partir do nó de {==Controle==} e enviar rotinas de automação para todos os nós {==Controlados==}.
+
+Para isso o ansible conta com um arquivo de inventário. Um lugar onde todas as máquinas que serão controladas pelo controlador devem ser registradas.
 
 ### Arquivo de inventário
 
