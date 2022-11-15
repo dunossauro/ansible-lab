@@ -1,15 +1,17 @@
 ---
 - name: Instalação do nginx
-  hosts: test
-  become: yes
+  hosts: linux   # Grupo de hosts do inventário
+  become: yes    # Diz que vai escalonar privilégios. Equivalente ao {==-b==)
 
-  tasks:
-    - name: Instalação nginx
-      package:
+  tasks:  # Descrição das tarefas que serão executadas
+
+    - name: Instalação do nginx  # Nome da tarefa
+      package:                   # Nome do módulo
+        # Argumentos do módulo
         state: present
         name: nginx
 
-    - name: Configuração nginx
+    - name: Inicialização do nginx
       systemd:
         state: started
         name: nginx
