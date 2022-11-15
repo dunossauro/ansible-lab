@@ -274,9 +274,101 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Ansible básico
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Ansible básico
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#automacoes" class="md-nav__link">
+    Automações
+  </a>
+  
+    <nav class="md-nav" aria-label="Automações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provisionamento" class="md-nav__link">
+    Provisionamento
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerenciamento-de-configuracao" class="md-nav__link">
+    Gerenciamento de configuração
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implantacao-de-aplicativos" class="md-nav__link">
+    Implantação de aplicativos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#um-exemplo" class="md-nav__link">
+    Um exemplo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#um-pouco-de-ansible-na-pratica" class="md-nav__link">
+    Um pouco de ansible na prática
+  </a>
+  
+    <nav class="md-nav" aria-label="Um pouco de ansible na prática">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacao-de-um-pacote" class="md-nav__link">
+    Instalação de um pacote
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-do-pacote" class="md-nav__link">
+    Configuração do pacote
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -302,6 +394,82 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#automacoes" class="md-nav__link">
+    Automações
+  </a>
+  
+    <nav class="md-nav" aria-label="Automações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provisionamento" class="md-nav__link">
+    Provisionamento
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerenciamento-de-configuracao" class="md-nav__link">
+    Gerenciamento de configuração
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implantacao-de-aplicativos" class="md-nav__link">
+    Implantação de aplicativos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#um-exemplo" class="md-nav__link">
+    Um exemplo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#um-pouco-de-ansible-na-pratica" class="md-nav__link">
+    Um pouco de ansible na prática
+  </a>
+  
+    <nav class="md-nav" aria-label="Um pouco de ansible na prática">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacao-de-um-pacote" class="md-nav__link">
+    Instalação de um pacote
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuracao-do-pacote" class="md-nav__link">
+    Configuração do pacote
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -321,6 +489,129 @@
 
 
 <h1 id="ansible-basico">Ansible básico</h1>
+<p><a href="https://www.ansible.com/">Ansible</a> é um grupo de ferramentas de código aberto construídas em python. O objetivo do Ansible é automatizar tarefas de diversas naturezas. Foi originalmente escrito por Michael DeHaan em 2012 e foi comprado pela Red Hat em 2015.</p>
+<div class="admonition tipo">
+<p class="admonition-title">curiosidade</p>
+<p>A palavra Ansible foi cunhada por <code>Ursula K. Le Guin</code> no livro <code>O mundo de rocannon</code></p>
+</div>
+<h2 id="automacoes">Automações</h2>
+<p>Quando falamos sobre Ansible, estamos falando sobre qualquer tipo de automação em máquinas. Alguns exemplos comuns são:</p>
+<ul>
+<li>Provisionamento de ambientes</li>
+<li>Gerenciamento de configuração</li>
+<li>Implantação de aplicativos</li>
+</ul>
+<p>Entre outras coisas que podemos fazer com o ferramental</p>
+<h3 id="provisionamento">Provisionamento</h3>
+<p>Provisionamento é o processo de preparar um dispositivo para que ele possa entrar em produção. Não só exatamente a respeito do hardware, mas a preparação do sistema operacional a escolha dos aplicativos instalados e etc...</p>
+<p>Vimos nesse pequeno tutorial outra ferramenta de provisionamento, o Vagrant, que consegue montar a máquina virtual, fornecer a instalação do sistema operacional. A parte que envolve o ansible é mais referente a configuração dos pacotes instalados, a instalação dos softwares necessários para colocar uma máquina, geralmente um servidor, em funcionamento.</p>
+<h3 id="gerenciamento-de-configuracao">Gerenciamento de configuração</h3>
+<p>O gerenciamento de configuração é uma das partes do provisionamento, porém com foco e configurar as aplicações instaladas no sistema operacional para que ele se comporte como esperado em produção.</p>
+<h3 id="implantacao-de-aplicativos">Implantação de aplicativos</h3>
+<p>Após toda a fase de instalação e configuração do ambiente e do sistema operacional, podemos colocar nossos aplicativos para serem executados nessas máquinas.</p>
+<h3 id="um-exemplo">Um exemplo</h3>
+<p>Vamos pensar que fizemos uma aplicação web com Python. Para que essa aplicação seja usada em um servidor o servidor tem que atender diversos requisitos para executar a nossa aplicação. Independentemente da opção que você escolha para fazer o deploy dela.</p>
+<p>De forma simples, temos que instalar o python na versão correta, fazer a instalação das bibliotecas necessárias, configurar um banco de dados. Fazer com que a aplicação e o banco de dados conversem.</p>
+<p>Para que isso ocorra na nuvem, por exemplo, alguém deve ter provisionado um sistema base, como um <a href="https://ubuntu.com/">ubuntu linux</a>, geralmente usando algum sistema de virtualização. Como fizemos aqui com VirtualBox, porém em uma escala muito maior. Essa máquina tem que ter ao menos um serviço de <a href="https://pt.wikipedia.org/wiki/Secure_Shell">SSH</a> configurado para que possamos acessar esse computador do conforto da nossa casa.</p>
+<p>É nesse contexto que o Ansible entra. Pegamos um sistema operacional limpo e iniciamos as nossas configurações e instalações para que nossa aplicação possa ser executada nesse servidor.</p>
+<h2 id="um-pouco-de-ansible-na-pratica">Um pouco de ansible na prática</h2>
+<p>O ansible foi pensado para que pudéssemos automatizar uma tarefa de qualquer natureza. para isso basta ter o ansible instalado na sua máquina e chamá-lo via linha de comando.</p>
+<h3 id="instalacao-de-um-pacote">Instalação de um pacote</h3>
+<p>Por exemplo, vamos supor que no nosso ambiente é imprescindível que o editor de texto <a href="https://www.gnu.org/software/emacs/">GNU/Emacs</a> (para mim costuma ser). Então podemos usar o ansible para instalar o Emacs no nosso computador pessoal:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ansible localhost -m package -a <span class="s2">&quot;name=emacs state=present&quot;</span> -b
+</code></pre></div>
+<p>Com esse simples comando, temos o GNU/Emacs instalado nesse computador. Mas, o que realmente aconteceu aqui?</p>
+<table>
+<thead>
+<tr>
+<th>Fragmento do comando</th>
+<th>O que faz?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ansible</td>
+<td>Invoca o ansible</td>
+</tr>
+<tr>
+<td>localhost</td>
+<td>Diz qual máquina será afetada pelo comando</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>Diz que vamos chamar um módulo</td>
+</tr>
+<tr>
+<td>package</td>
+<td><code>package</code> é o nome do módulo que vamos chamar</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>Indica que vamos passar argumentos para o módulo</td>
+</tr>
+<tr>
+<td>"name=emacs state=present"</td>
+<td>Argumentos do módulo</td>
+</tr>
+<tr>
+<td>-b</td>
+<td>Diz ao Ansible que é para chamar o usuário <code>root</code></td>
+</tr>
+</tbody>
+</table>
+<p>O módulo <a href="https://docs.ansible.com/ansible/2.9/modules/package_module.html#package-module">package</a> é um dos muitos módulos ofertados pelo Ansible. Você pode ver uma lista completa aqui nesse <a href="https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html">link</a>. O que dissemos porém é: "Modulo <code>package</code> garanta que o pacote <code>emacs</code> esteja <code>presente</code> no sistema em que for executado".</p>
+<p>Podemos checar no terminal:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>emacs
+</code></pre></div>
+<p><img alt="" src="../images/emacs_00.png" /></p>
+<div class="admonition error">
+<p class="admonition-title">Caso tenha ficado preso</p>
+<p>Para sair do emacs tecle Alt+x e em seguida digite kill-emacs e você terá saído do emacs <img alt="❤" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2764.svg" title=":heart:" /></p>
+</div>
+<h3 id="configuracao-do-pacote">Configuração do pacote</h3>
+<p>Embora o GNU/Emacs esteja instalado no meu sistema. Ele ainda não foi configurado da maneira que eu gostaria. Não tem as minhas cores, os meus atalhos e para isso precisamos baixar meu arquivo de configuração que está no <a href="https://github.com/dunossauro/dotfiles">github.com/dunossauro/dotfiles</a>.</p>
+<p>Para isso, podemos contar com outro módulo disponível no Ansible, o <a href="https://docs.ansible.com/ansible/2.9/modules/git_module.html#git-module">git</a>. Então, vamos baixar as minhas configurações:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ansible localhost -m git <span class="se">\</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    -a <span class="s2">&quot;repo=https://github.com/dunossauro/dotfiles.git dest=config_files&quot;</span>
+</code></pre></div>
+<p>E com isso, obtivemos um erro:</p>
+<div class="highlight"><span class="filename">Resposta do terminal</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>localhost <span class="p">|</span> FAILED! <span class="o">=</span>&gt; <span class="o">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="s2">&quot;changed&quot;</span>: false,
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="s2">&quot;msg&quot;</span>: <span class="s2">&quot;Failed to find required executable \&quot;git\&quot; in paths: /usr/local/sbin:/usr/local/bin:/usr/bin:/sbin:/usr/sbin&quot;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="o">}</span>
+</code></pre></div>
+<p>O ansible não conseguiu achar o <code>git</code> no nosso sistema, ele precisa ser instalado. Como já conhecemos o módulo package, será fácil. Só dizer ao módulo <code>package</code> que <code>git</code> deve estar <code>present</code>:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ansible localhost -m package -a <span class="s2">&quot;name=git state=present&quot;</span> -b
+</code></pre></div>
+<p>Após instalar o git, podemos testar nosso módulo de git outra vez:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ansible localhost -m git <span class="se">\</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    -a <span class="s2">&quot;repo=https://github.com/dunossauro/dotfiles.git dest=config_files&quot;</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Resposta do terminal</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>localhost <span class="p">|</span> <span class="nv">CHANGED</span> <span class="o">=</span>&gt; <span class="o">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="s2">&quot;after&quot;</span>: <span class="s2">&quot;8ff42a43ede85403b6b85c0bab9a1a4fe0d73544&quot;</span>,
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="s2">&quot;before&quot;</span>: null,
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="s2">&quot;changed&quot;</span>: <span class="nb">true</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="o">}</span>
+</code></pre></div>
+<p><code>CHANGED</code>, significa que uma ação foi executada e agora temos os arquivos no nosso computador na pasta <code>dest</code> que passamos como argumento.</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ls config_files/.emacs.d
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>init.el
+</code></pre></div>
+<p>Agora só falta colocar a nossa configuração no lugar certo. O diretório <code>~/.emacs.d/</code>. Para isso podemos contar com outro módulo do <a href="https://docs.ansible.com/ansible/2.9/modules/copy_module.html#copy-module">copy</a>:</p>
+<p><div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ansible localhost -m copy -a <span class="s2">&quot;dest=&#39;/home/vagrant/&#39; src=&#39;/home/vagrant/config_files/.emacs.d&#39;&quot;</span>
+</code></pre></div>
+Após isso, podemos abrir o emacs novamente:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>emacs
+</code></pre></div>
+<blockquote>
+<p>Pode demorar um pouco para as configurações serem baixadas e instaladas da internet.</p>
+</blockquote>
+<p>E temos o emacs com as minhas configurações:</p>
+<p><img alt="" src="../images/emacs_01.png" /></p>
+<div class="admonition error">
+<p class="admonition-title">Caso tenha ficado preso OUTRA VEZ</p>
+<p>Para sair do emacs tecle Alt+x e em seguida digite kill-emacs e você terá saído do emacs <img alt="❤" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2764.svg" title=":heart:" /></p>
+</div>
 
 
 
