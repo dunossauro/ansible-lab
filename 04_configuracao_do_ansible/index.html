@@ -334,10 +334,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#repetindo-o-processo-para-mais-uma-maquina" class="md-nav__link">
+    Repetindo o processo para mais uma máquina
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalando-um-pacote-em-dois-nos-ao-mesmo-tempo" class="md-nav__link">
+    Instalando um pacote em dois nós ao mesmo tempo
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_playbooks/" class="md-nav__link">
+        Playbooks
+      </a>
     </li>
   
 
@@ -402,6 +431,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#repetindo-o-processo-para-mais-uma-maquina" class="md-nav__link">
+    Repetindo o processo para mais uma máquina
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalando-um-pacote-em-dois-nos-ao-mesmo-tempo" class="md-nav__link">
+    Instalando um pacote em dois nós ao mesmo tempo
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -431,24 +474,26 @@
 <p>Para isso o ansible conta com um arquivo de inventário. Um lugar onde todas as máquinas que serão controladas pelo controlador devem ser registradas.</p>
 <h3 id="arquivo-de-inventario">Arquivo de inventário</h3>
 <p>Por padrão o arquivo de inventário das máquinas ficam no <code>/etc/ansible/hosts</code>. Vamos criar esse arquivo agora.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo nano /etc/ansible/hosts
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># instalação do Nano, não vou obrigar ninguém a usar o Emacs ;)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ansible localhost -m package -a <span class="s2">&quot;name=emacs state=present&quot;</span> -b
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>sudo nano /etc/ansible/hosts
 </code></pre></div>
-É nesse arquivo que colocamos os endereços dos nós que serão controlados pelo ansible. O arquivo tem o seguinte formato:</p>
+<p>É nesse arquivo que colocamos os endereços dos nós que serão controlados pelo ansible. O arquivo tem o seguinte formato:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[&lt;nome_do_grupo&gt;]
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>&lt;endereço_da_maquina&gt;  &lt;opções&gt;
 </code></pre></div>
 <p>Por exemplo, vamos cadastrar nossa outra vm <code>arch</code> que será controlado pelo <code>main</code>. Para isso, precisamos iniciar essa máquina virtual. Antes disso, temos que sair do ssh em <code>main</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">exit</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">logout</span>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">exit</span>
 </code></pre></div>
-<p>Agora voltamos a maquina principal. A máquina onde as máquinas virtuais foram instaladas. Para super o <code>arch</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>vagrant up arch
+<p>Agora voltamos a maquina principal. A máquina onde as máquinas virtuais foram instaladas. Vamos iniciar nossa outra máquina. O <code>ubuntu</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>vagrant up ubuntu
 </code></pre></div>
 <p>Com isso, agora devemos ter duas máquinas no nosso virtual box:</p>
+<p>[AA] - Mudar essa imagem</p>
 <p><img alt="" src="../images/virtualbox_03.png" /></p>
-<p>Com nossa vm já de pé, podemos enviar um comando para o vagrant nos dizer o endereço ip da máquina <code>arch</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>vagrant ssh arch -c <span class="s2">&quot;ip addr&quot;</span>
+<p>Com nossa vm já de pé, podemos enviar um comando para o vagrant nos dizer o endereço ip da máquina <code>ubuntu</code>:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>vagrant ssh ubuntu -c <span class="s2">&quot;ip addr&quot;</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="m">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    link/loopback <span class="m">00</span>:00:00:00:00:00 brd <span class="m">00</span>:00:00:00:00:00
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    inet <span class="m">127</span>.0.0.1/8 scope host lo
@@ -458,23 +503,24 @@
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="m">2</span>: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc fq_codel state UP group default qlen <span class="m">1000</span>
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    link/ether <span class="m">08</span>:00:27:fa:60:9b brd ff:ff:ff:ff:ff:ff
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    altname enp0s3
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    inet <span class="m">10</span>.0.2.15/24 metric <span class="m">1024</span> brd <span class="m">10</span>.0.2.255 scope global dynamic eth0
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    inet <mark class="critic">10.0.2.15</mark>/24 metric <span class="m">1024</span> brd <span class="m">10</span>.0.2.255 scope global dynamic eth0
 <a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>       valid_lft 86241sec preferred_lft 86241sec
 <a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    inet6 fe80::a00:27ff:fefa:609b/64 scope link 
 <a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>       valid_lft forever preferred_lft forever
 </code></pre></div>
-<p>Podemos ver que o IP associado a <code>arch</code> é <code>10.0.2.15</code>. Que é o endereço que colocaremos no nosso inventário.</p>
+<p>Podemos ver que o IP associado a <code>ubuntu</code> é <code>10.0.2.15</code>. Que é o endereço que colocaremos no nosso inventário.</p>
 <p>Agora vamos voltar a nossa máquina <code>main</code> via ssh:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>vagrant ssh main
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>vagrant ssh main
 </code></pre></div>
 <p>E vamos alterar nosso arquivo <code>/etc/ansible/hosts</code> dessa forma e com o comando <code>sudo nano /etc/ansible/hosts</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[arch]
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>10.0.2.15
-</code></pre></div>
-<p>Dessa forma dissemos ao ansible que existe um grupo chamado <code>arch</code>, uma dessas máquinas tem o ip <code>10.0.2.15</code>. Assim, podemos enviar comandos para o grupo <code>arch</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">/etc/ansible/hosts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>[ubuntu]
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>10.0.2.15
+</code></pre></div></td></tr></table></div>
+<p>Dessa forma dissemos ao ansible que existe um grupo chamado <code>ubuntu</code>, uma dessas máquinas tem o ip <code>10.0.2.15</code>. Assim, podemos enviar comandos para o grupo <code>ubuntu</code>.</p>
 <h3 id="primeiro-comando-remoto">Primeiro comando remoto</h3>
-<p>E podemos checar enviando um <code>ping</code> para a vm <code>arch</code> usando o seguinte comando <code>ansible arch -m ping</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ansible arch -m ping
+<p>E podemos checar enviando um <code>ping</code> para a vm <code>ubuntu</code> usando o seguinte comando <code>ansible ubuntu -m ping</code>:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ansible ubuntu -m ping
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>The authenticity of host <span class="s1">&#39;10.0.2.15 (10.0.2.15)&#39;</span> can<span class="s1">&#39;t be established.</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s1">ED25519 key fingerprint is SHA256:FyOy2yTlOHSLJXVF+lmYjPywdfmQprApMWrsQ7KxUlI.</span>
@@ -487,14 +533,14 @@
 <a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="s2">    &quot;</span>unreachable<span class="s2">&quot;: true</span>
 <a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="s2">}</span>
 </code></pre></div>
-<p>Um erro ocorreu por conta da segurança. O SSH da vm <code>arch</code> não permitiu que o ansible fizesse a conexão. Para isso precisamos trocar chaves entre os hosts para que aconteça de maneira segura.</p>
+<p>Um erro ocorreu por conta da segurança. O SSH da vm <code>ubuntu</code> não permitiu que o ansible fizesse a conexão. Para isso precisamos trocar chaves entre os hosts para que aconteça de maneira segura.</p>
 <h2 id="troca-de-chaves-ssh">Troca de chaves SSH</h2>
 <p>Vamos voltar ao shell e digitar os seguintes comandos:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ssh-keygen  <span class="c1"># para gerar uma chave ssh para nossa vm `main`</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ssh-copy-id vagrant@10.0.2.15  <span class="c1"># Para copiar a chave de `main` para `arch`</span>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ssh-keygen  <span class="c1"># para gerar uma chave ssh para nossa vm `main`</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ssh-copy-id vagrant@10.0.2.15  <span class="c1"># Para copiar a chave de `main` para `ubuntu`</span>
 </code></pre></div>
 <p>Se executarmos o ping novamente obteremos sucesso:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ansible arch -m ping
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ansible arch -m ping
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="m">10</span>.0.2.15 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="s2">&quot;ansible_facts&quot;</span>: <span class="o">{</span>
@@ -504,13 +550,123 @@
 <a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="s2">&quot;ping&quot;</span>: <span class="s2">&quot;pong&quot;</span>
 <a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="o">}</span>
 </code></pre></div>
-<p>Isso significa que a comunicação com os dois nós está acontecendo de maneira correta. Mas, faltou entender o que o comando <code>ansible arch -m ping</code> significa:</p>
+<p>Isso significa que a comunicação com os dois nós está acontecendo de maneira correta. Mas, faltou entender o que o comando <code>ansible ubuntu -m ping</code> significa:</p>
 <ul>
 <li>ansible: Chama o ansible</li>
-<li>arch: O nome do grupo do inventário</li>
+<li>ubuntu: O nome do grupo do inventário</li>
 <li>-m: Significa que vamos chamar um módulo</li>
 <li>ping: Módulo para checar se o grupo está respondendo</li>
 </ul>
+<h2 id="repetindo-o-processo-para-mais-uma-maquina">Repetindo o processo para mais uma máquina</h2>
+<p>Agora que já entendemos o que temos que fazer. Podemos adicionar mais uma máquina virtual ao nosso ambiente. Vamos criar mais um <code>arch</code> para que seja controlado pelo ansible:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Vagrantfile</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;main&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">main</span><span class="o">|</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>    <span class="n">main</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;archlinux/archlinux&quot;</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>  <span class="k">end</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;ubuntu&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">ubuntu</span><span class="o">|</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a>    <span class="n">ubuntu</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;ubuntu/focal64&quot;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a>  <span class="k">end</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a>
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;arch&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">arch</span><span class="o">|</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12"></a>    <span class="n">main</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;archlinux/archlinux&quot;</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13"></a>  <span class="k">end</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14"></a>
+<a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="k">end</span>
+</code></pre></div></td></tr></table></div>
+<p>Agora podemos dar <code>up</code> nessa nova máquina:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">exit</span>  <span class="c1"># caso esteja no conectado no main</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>vagrant up arch
+</code></pre></div>
+<p>Pegamos o endereço de ip:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>vagrant ssh arch -c <span class="s2">&quot;ip addr&quot;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="m">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    link/loopback <span class="m">00</span>:00:00:00:00:00 brd <span class="m">00</span>:00:00:00:00:00
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    inet <span class="m">127</span>.0.0.1/8 scope host lo
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>       valid_lft forever preferred_lft forever
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    inet6 ::1/128 scope host 
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>       valid_lft forever preferred_lft forever
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="m">2</span>: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc fq_codel state UP group default qlen <span class="m">1000</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    link/ether <span class="m">08</span>:00:27:fa:60:9b brd ff:ff:ff:ff:ff:ff
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    altname enp0s3
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    inet <mark class="critic">10.0.2.16</mark>/24 metric <span class="m">1024</span> brd <span class="m">10</span>.0.2.255 scope global dynamic eth0
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>       valid_lft 86241sec preferred_lft 86241sec
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>    inet6 fe80::a00:27ff:fefa:609b/64 scope link 
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>       valid_lft forever preferred_lft forever
+</code></pre></div>
+<p>Adicionamos esse ip no inventário da máquina controladora:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">/etc/ansible/hosts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>[ubuntu]
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>10.0.2.15
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="hll">[arch]
+</span><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="hll">10.0.2.16
+</span></code></pre></div></td></tr></table></div>
+<p>Fazemos a troca de chaves SSH, para que o Controlador se comunique de forma segura com o <code>arch</code>:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ssh-copy-id vagrant@10.0.2.16  <span class="c1"># Para copiar a chave de `main` para `arch`</span>
+</code></pre></div>
+<p>Com isso temos dois grupos no nó de controle. O <code>ubuntu</code> e o <code>arch</code>. Podemos criar um grupo novo também para juntar todos os linux e disparar comandos que funcionem nas duas máquinas ao mesmo tempo:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">/etc/ansible/hosts</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span>
+<span class="normal"><a href="#__codelineno-15-7">7</a></span>
+<span class="normal"><a href="#__codelineno-15-8">8</a></span>
+<span class="normal"><a href="#__codelineno-15-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a>[ubuntu]
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a>10.0.2.15
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a>[arch]
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>10.0.2.16
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a>
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="hll">[linux]
+</span><a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="hll">10.0.2.15
+</span><a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="hll">10.0.2.16
+</span></code></pre></div></td></tr></table></div>
+<p>Dessa forma, podemos chamar o módulo <code>ping</code> para todos os nós em um grupo só:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ansible linux -m ping
+</code></pre></div>
+<p>Caso tudo esteja configurado corretamente. Iremos obter sucesso em ambos os pings. O que significa que o comando foi executado com sucesso nas duas máquinas.</p>
+<h2 id="instalando-um-pacote-em-dois-nos-ao-mesmo-tempo">Instalando um pacote em dois nós ao mesmo tempo</h2>
+<p>Vamos iniciar uma configuração simples e que já rodamos no nó controlador. Meu objetivo, porém, é mostrar a vocês o poder do ansible de forma simples:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ansible linux -m package -a <span class="s2">&quot;name=nginx state=present&quot;</span> -b
+</code></pre></div>
+<p>Dessa forma acabamos de instalar o servidor web <a href="https://nginx.org/">Nginx</a> nas nossas duas máquinas virtuais ao mesmo tempo. Uma coisa importante de notar e que diferencia de uma forma simplória de instalação. É que não foi preciso dizer nem ao menos qual o gerenciador de pacotes que é usado em cada distribuição. O módulo <code>package</code> entende isso por padrão e usa o gerenciador da distribuição por baixo dos panos.</p>
+<p>Com isso, podemos conhecer outro módulo. O módulo do <a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/systemd_module.html">systemd</a> e com ele podemos dizer que queremos dar start no processo do Nginx:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ansible linux -m systemd -a <span class="s2">&quot;name=nginx state=started&quot;</span> -b
+</code></pre></div>
+<p>E volá, instalamos o Nginx em duas máquinas e subimos o server somente usando comandos simples e sem a preocupação de ter de entender coisas específicas de sistema.</p>
+<p>Vamos ver se o serviço subiu da forma correta? Para isso vou me aproveitar do ansible para instalar o httpie no sistema para fazer essa requisição no nó controlador. Porém não quero fazer essa instalação sujando o ambiente. Então, vamos instalar o <code>pipx</code></p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ansible localhost -m package -a <span class="s2">&quot;name=python-pipx state=present&quot;</span> -b
+</code></pre></div>
+<p>Agora com o <code>pipx</code> instalado, podemos usar ele via módulo <code>shell</code> para instalar o httpie:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ansible localhost -m shell -a <span class="s2">&quot;pipx install httpie&quot;</span>
+</code></pre></div>
+<p>E agora, finalmente, podemos checar se ambos os serviços foram startados corretamente pelo ansible:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>http <span class="m">10</span>.0.2.15
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>http <span class="m">10</span>.0.2.16
+</code></pre></div>
+<p>Embora tudo tenha sido executado de forma incrível. Ainda considero chato de mais ficar chamando o ansible no terminal o tempo todo. Então, precisamos de uma forma de melhorar isso.</p>
 
 
 
@@ -547,6 +703,21 @@
           </div>
         </a>
       
+      
+        
+        <a href="../05_playbooks/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Playbooks" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              Playbooks
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
