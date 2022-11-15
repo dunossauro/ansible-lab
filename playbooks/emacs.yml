@@ -1,0 +1,29 @@
+---
+- name: Instalação e configuração do emacs
+  hosts: localhost  # Aqui mudamos para o localhost
+
+  tasks:
+    - name: Instalação do emacs
+
+      become: yes  # Diferente da outra config, somente esse passo será como root
+
+      package:
+        state: present
+        name: emacs
+
+    - name: Instalação do git
+      become: yes
+      package:
+        name: git
+        state: present
+
+    - name: Clone do nosso repositório
+      git:
+        repo: https://github.com/dunossauro/dotfiles.git
+        dest: config_files
+
+    - name: Movendo os arquivos de configuração do emacs
+      copy:
+        dest: /home/vagrant/
+        src: /home/vagrant/config_files/.emacs.d
+
