@@ -13,7 +13,7 @@
     
     
       
-        <title>Configuração do ansible - Anbsible lab</title>
+        <title>Entendo a estrutura do ansible - Anbsible lab</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuracao-do-ansible" class="md-skip">
+        <a href="#entendo-a-estrutura-do-ansible" class="md-skip">
           Ir para o conteúdo
         </a>
       
@@ -95,7 +95,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configuração do ansible
+              Entendo a estrutura do ansible
             
           </span>
         </div>
@@ -248,6 +248,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../03_ansible_basico/" class="md-nav__link">
+        Ansible básico
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -260,12 +275,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Configuração do ansible
+          Entendo a estrutura do ansible
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Configuração do ansible
+        Entendo a estrutura do ansible
       </a>
       
         
@@ -282,33 +297,6 @@
       Índice
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#instalacao-do-ansible" class="md-nav__link">
-    Instalação do ansible
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#instalacao-de-um-editor-de-textos" class="md-nav__link">
-    Instalação de um editor de textos
-  </a>
-  
-    <nav class="md-nav" aria-label="Instalação de um editor de textos">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#entendendo-esse-comando" class="md-nav__link">
-    Entendendo esse comando
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#arquivo-de-inventario" class="md-nav__link">
@@ -339,21 +327,6 @@
   
 
     
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../04_ansible_basico/" class="md-nav__link">
-        Ansible básico
-      </a>
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -379,33 +352,6 @@
       Índice
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#instalacao-do-ansible" class="md-nav__link">
-    Instalação do ansible
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#instalacao-de-um-editor-de-textos" class="md-nav__link">
-    Instalação de um editor de textos
-  </a>
-  
-    <nav class="md-nav" aria-label="Instalação de um editor de textos">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#entendendo-esse-comando" class="md-nav__link">
-    Entendendo esse comando
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#arquivo-de-inventario" class="md-nav__link">
@@ -442,162 +388,88 @@
                 
                   
 
-  <a href="https://github.com/dunossauro/ansible-lab/edit/master/docs/03_configuracao_do_ansible.md" title="Editar esta página" class="md-content__button md-icon">
+  <a href="https://github.com/dunossauro/ansible-lab/edit/master/docs/04_configuracao_do_ansible.md" title="Editar esta página" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="configuracao-do-ansible">Configuração do ansible</h1>
-<h3 id="instalacao-do-ansible">Instalação do ansible</h3>
-<p>Agora que temos duas máquinas virtuais criadas. Podemos começar a instalação do ansible. A primeira coisa que devemos fazer é acessar a máquina controladora. Para isso podemos usar o <code>vagrant</code> para nos ajudar:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>vagrant up main   <span class="c1"># Iniciar a máquina controladora</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>vagrant ssh main  <span class="c1"># Acessar o console da máquina controladora via ssh</span>
-</code></pre></div>
-<p>E isso deve retornar o console dá maquina controladora no usuário <code>vagrant</code>:</p>
-<p><img alt="" src="../images/console.png" /></p>
-<p>O ansible tem seus pacotes nos repositórios de quase todas as distribuições linux. Então você pode instalar no seu sistema como quiser.</p>
-<blockquote>
-<p>Caso tenha dúvidas, o <a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">link da documentação</a></p>
-</blockquote>
-<p>Formas de instalar em diversos sistemas.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo pacman -S ansible     <span class="c1"># Arch</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo apt install ansible   <span class="c1"># Ubuntu</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo dnf ansible           <span class="c1"># Familia Redhat</span>
-</code></pre></div>
-<p>O ansible também pode ser instalado via <code>pip</code>, porém a instalação é bastante trabalhosa.</p>
-<p>Como eu escolhi que a máquina <code>main</code> fosse um archlinux, vamos seguir a configuração com ele. O primeiro passo que devemos fazer é atualizar a máquina para garantir que tudo funcione como o esperado:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo pacman -Syu  <span class="c1"># Atualiza o sistema</span>
-</code></pre></div>
-<p>Caso a senha senha perguntada. A senha padrão criada pelas máquinas virtuais do vagrant é <code>vagrant</code>.</p>
-<p>Agora podemos rodar o comando para instalar o ansible:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo pacman -S ansible
-</code></pre></div>
-<p>Se tudo ocorrer como o esperado, podemos perguntar a versão do ansible ao sistema:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>vagrant@archlinux ~<span class="o">]</span>$ ansible --version
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ansible <span class="o">[</span>core <span class="m">2</span>.14.0<span class="o">]</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  config <span class="nv">file</span> <span class="o">=</span> /etc/ansible/ansible.cfg
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  configured module search <span class="nv">path</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;/home/vagrant/.ansible/plugins/modules&#39;</span>, <span class="s1">&#39;/usr/share/ansible/plugins/modules&#39;</span><span class="o">]</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  ansible python module <span class="nv">location</span> <span class="o">=</span> /usr/lib/python3.10/site-packages/ansible
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  ansible collection <span class="nv">location</span> <span class="o">=</span> /home/vagrant/.ansible/collections:/usr/share/ansible/collections
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  executable <span class="nv">location</span> <span class="o">=</span> /usr/bin/ansible
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>  python <span class="nv">version</span> <span class="o">=</span> <span class="m">3</span>.10.8 <span class="o">(</span>main, Nov  <span class="m">1</span> <span class="m">2022</span>, <span class="m">14</span>:18:21<span class="o">)</span> <span class="o">[</span>GCC <span class="m">12</span>.2.0<span class="o">]</span> <span class="o">(</span>/usr/bin/python<span class="o">)</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  jinja <span class="nv">version</span> <span class="o">=</span> <span class="m">3</span>.1.2
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>  <span class="nv">libyaml</span> <span class="o">=</span> True
-</code></pre></div>
-<p>Ele nos disse que está na versão <code>3.10.8</code></p>
-<h3 id="instalacao-de-um-editor-de-textos">Instalação de um editor de textos</h3>
-<p>Recomendo fortemente que instale um editor de textos. Para facilitar a manutenção do sistema. Você pode usar o que quiser, porém, usarei o <code>nano</code> nesse tutorial. E para começarmos com pé direito no ansible, vamos fazer essa instalação usando-o e já partirmos para o nosso primeiro comando:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ansible localhost -a <span class="s2">&quot;sudo pacman -S nano --noconfirm&quot;</span>
-</code></pre></div>
-<p>E iremos receber esse resultado:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>WARNING<span class="o">]</span>: No inventory was parsed, only implicit localhost is available
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>localhost <span class="p">|</span> CHANGED <span class="p">|</span> <span class="nv">rc</span><span class="o">=</span><span class="m">0</span> &gt;&gt;
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>resolving dependencies...
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>looking <span class="k">for</span> conflicting packages...
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Packages <span class="o">(</span><span class="m">1</span><span class="o">)</span> nano-6.4-1
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>Total Installed Size:  <span class="m">2</span>.49 MiB
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>:: Proceed with installation? <span class="o">[</span>Y/n<span class="o">]</span> 
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>checking keyring...
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>checking package integrity...
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>loading package files...
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>checking <span class="k">for</span> file conflicts...
-<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>checking available disk space...
-<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>:: Processing package changes...
-<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>installing nano...
-<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>:: Running post-transaction hooks...
-<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="o">(</span><span class="m">1</span>/1<span class="o">)</span> Arming ConditionNeedsUpdate...
-</code></pre></div>
-<p>O que significa que conseguimos fazer uma instalação na máquina local usando ansible. Isso é de mais.</p>
-<h4 id="entendendo-esse-comando">Entendendo esse comando</h4>
-<p>Precisamos entender o básico do comando que executamos com ansible agora:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ansible localhost -a <span class="s2">&quot;sudo pacman -S nano --noconfirm&quot;</span>
-</code></pre></div>
-<p>Podemos dividi-lo em quatro partes:</p>
-<ul>
-<li>ansible: chama o ansible</li>
-<li>localhost: diz que a ação será executada no localhost</li>
-<li>-a: Argumentos que passaremos para o comando</li>
-<li>"sudo pacman -S nano --noconfirm": Os argumentos do comando</li>
-</ul>
-<p>Quando só dizemos o nome do host <code>localhost</code> e colocamos os argumentos <code>-a</code> significa que ansible executará os argumentos como um comando de shell. Nesse caso <code>"sudo pacman -S nano --noconfirm"</code> é um comando de shell que serve para instalar o <code>nano</code>.</p>
+<h1 id="entendo-a-estrutura-do-ansible">Entendo a estrutura do ansible</h1>
+<p>TODO: Criar uma intro bonita e explicar diversas coisas legais</p>
 <h3 id="arquivo-de-inventario">Arquivo de inventário</h3>
 <p>Por padrão o arquivo de inventário das máquinas ficam no <code>/etc/ansible/hosts</code>. Vamos criar esse arquivo agora.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo nano /etc/ansible/hosts
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo nano /etc/ansible/hosts
 </code></pre></div>
 É nesse arquivo que colocamos os endereços dos nós que serão controlados pelo ansible. O arquivo tem o seguinte formato:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>[&lt;nome_do_grupo&gt;]
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>&lt;endereço_da_maquina&gt;  &lt;opções&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[&lt;nome_do_grupo&gt;]
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>&lt;endereço_da_maquina&gt;  &lt;opções&gt;
 </code></pre></div>
 <p>Por exemplo, vamos cadastrar nossa outra vm <code>arch</code> que será controlado pelo <code>main</code>. Para isso, precisamos iniciar essa máquina virtual. Antes disso, temos que sair do ssh em <code>main</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">exit</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">logout</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">exit</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">logout</span>
 </code></pre></div>
 <p>Agora voltamos a maquina principal. A máquina onde as máquinas virtuais foram instaladas. Para super o <code>arch</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>vagrant up arch
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>vagrant up arch
 </code></pre></div>
 <p>Com isso, agora devemos ter duas máquinas no nosso virtual box:</p>
 <p><img alt="" src="../images/virtualbox_03.png" /></p>
 <p>Com nossa vm já de pé, podemos enviar um comando para o vagrant nos dizer o endereço ip da máquina <code>arch</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>vagrant ssh arch -c <span class="s2">&quot;ip addr&quot;</span>
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="m">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    link/loopback <span class="m">00</span>:00:00:00:00:00 brd <span class="m">00</span>:00:00:00:00:00
-<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    inet <span class="m">127</span>.0.0.1/8 scope host lo
-<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>       valid_lft forever preferred_lft forever
-<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    inet6 ::1/128 scope host 
-<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>       valid_lft forever preferred_lft forever
-<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="m">2</span>: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc fq_codel state UP group default qlen <span class="m">1000</span>
-<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    link/ether <span class="m">08</span>:00:27:fa:60:9b brd ff:ff:ff:ff:ff:ff
-<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    altname enp0s3
-<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    inet <span class="m">10</span>.0.2.15/24 metric <span class="m">1024</span> brd <span class="m">10</span>.0.2.255 scope global dynamic eth0
-<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>       valid_lft 86241sec preferred_lft 86241sec
-<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>    inet6 fe80::a00:27ff:fefa:609b/64 scope link 
-<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>       valid_lft forever preferred_lft forever
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>vagrant ssh arch -c <span class="s2">&quot;ip addr&quot;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="m">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    link/loopback <span class="m">00</span>:00:00:00:00:00 brd <span class="m">00</span>:00:00:00:00:00
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    inet <span class="m">127</span>.0.0.1/8 scope host lo
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>       valid_lft forever preferred_lft forever
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    inet6 ::1/128 scope host 
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>       valid_lft forever preferred_lft forever
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="m">2</span>: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc fq_codel state UP group default qlen <span class="m">1000</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    link/ether <span class="m">08</span>:00:27:fa:60:9b brd ff:ff:ff:ff:ff:ff
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    altname enp0s3
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    inet <span class="m">10</span>.0.2.15/24 metric <span class="m">1024</span> brd <span class="m">10</span>.0.2.255 scope global dynamic eth0
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>       valid_lft 86241sec preferred_lft 86241sec
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    inet6 fe80::a00:27ff:fefa:609b/64 scope link 
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>       valid_lft forever preferred_lft forever
 </code></pre></div>
 <p>Podemos ver que o IP associado a <code>arch</code> é <code>10.0.2.15</code>. Que é o endereço que colocaremos no nosso inventário.</p>
 <p>Agora vamos voltar a nossa máquina <code>main</code> via ssh:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>vagrant ssh main
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>vagrant ssh main
 </code></pre></div>
 <p>E vamos alterar nosso arquivo <code>/etc/ansible/hosts</code> dessa forma e com o comando <code>sudo nano /etc/ansible/hosts</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>[arch]
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>10.0.2.15
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>[arch]
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>10.0.2.15
 </code></pre></div>
 <p>Dessa forma dissemos ao ansible que existe um grupo chamado <code>arch</code>, uma dessas máquinas tem o ip <code>10.0.2.15</code>. Assim, podemos enviar comandos para o grupo <code>arch</code>.</p>
 <h3 id="primeiro-comando-remoto">Primeiro comando remoto</h3>
 <p>E podemos checar enviando um <code>ping</code> para a vm <code>arch</code> usando o seguinte comando <code>ansible arch -m ping</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>ansible arch -m ping
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>The authenticity of host <span class="s1">&#39;10.0.2.15 (10.0.2.15)&#39;</span> can<span class="s1">&#39;t be established.</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="s1">ED25519 key fingerprint is SHA256:FyOy2yTlOHSLJXVF+lmYjPywdfmQprApMWrsQ7KxUlI.</span>
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="s1">This host key is known by the following other names/addresses:</span>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="s1">    ~/.ssh/known_hosts:1: localhost</span>
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span>
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="s1">10.0.2.15 | UNREACHABLE! =&gt; {</span>
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="s1">    &quot;changed&quot;: false,</span>
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="s1">    &quot;msg&quot;: &quot;Failed to connect to the host via ssh: Warning: Permanently added &#39;</span><span class="m">10</span>.0.2.15<span class="err">&#39;</span> <span class="o">(</span>ED25519<span class="o">)</span> to the list of known hosts.<span class="se">\r\n</span>vagrant@10.0.2.15: Permission denied <span class="o">(</span>publickey,password<span class="o">)</span>.<span class="s2">&quot;,</span>
-<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="s2">    &quot;</span>unreachable<span class="s2">&quot;: true</span>
-<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="s2">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ansible arch -m ping
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>The authenticity of host <span class="s1">&#39;10.0.2.15 (10.0.2.15)&#39;</span> can<span class="s1">&#39;t be established.</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s1">ED25519 key fingerprint is SHA256:FyOy2yTlOHSLJXVF+lmYjPywdfmQprApMWrsQ7KxUlI.</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s1">This host key is known by the following other names/addresses:</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="s1">    ~/.ssh/known_hosts:1: localhost</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="s1">10.0.2.15 | UNREACHABLE! =&gt; {</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="s1">    &quot;changed&quot;: false,</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="s1">    &quot;msg&quot;: &quot;Failed to connect to the host via ssh: Warning: Permanently added &#39;</span><span class="m">10</span>.0.2.15<span class="err">&#39;</span> <span class="o">(</span>ED25519<span class="o">)</span> to the list of known hosts.<span class="se">\r\n</span>vagrant@10.0.2.15: Permission denied <span class="o">(</span>publickey,password<span class="o">)</span>.<span class="s2">&quot;,</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="s2">    &quot;</span>unreachable<span class="s2">&quot;: true</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="s2">}</span>
 </code></pre></div>
 <p>Um erro ocorreu por conta da segurança. O SSH da vm <code>arch</code> não permitiu que o ansible fizesse a conexão. Para isso precisamos trocar chaves entre os hosts para que aconteça de maneira segura.</p>
 <h2 id="troca-de-chaves-ssh">Troca de chaves SSH</h2>
 <p>Vamos voltar ao shell e digitar os seguintes comandos:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ssh-keygen  <span class="c1"># para gerar uma chave ssh para nossa vm `main`</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>ssh-copy-id vagrant@10.0.2.15  <span class="c1"># Para copiar a chave de `main` para `arch`</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ssh-keygen  <span class="c1"># para gerar uma chave ssh para nossa vm `main`</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ssh-copy-id vagrant@10.0.2.15  <span class="c1"># Para copiar a chave de `main` para `arch`</span>
 </code></pre></div>
 <p>Se executarmos o ping novamente obteremos sucesso:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ansible arch -m ping
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="m">10</span>.0.2.15 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="s2">&quot;ansible_facts&quot;</span>: <span class="o">{</span>
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>        <span class="s2">&quot;discovered_interpreter_python&quot;</span>: <span class="s2">&quot;/usr/bin/python3.10&quot;</span>
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="o">}</span>,
-<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>    <span class="s2">&quot;changed&quot;</span>: false,
-<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>    <span class="s2">&quot;ping&quot;</span>: <span class="s2">&quot;pong&quot;</span>
-<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="o">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ansible arch -m ping
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="m">10</span>.0.2.15 <span class="p">|</span> <span class="nv">SUCCESS</span> <span class="o">=</span>&gt; <span class="o">{</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="s2">&quot;ansible_facts&quot;</span>: <span class="o">{</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        <span class="s2">&quot;discovered_interpreter_python&quot;</span>: <span class="s2">&quot;/usr/bin/python3.10&quot;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="o">}</span>,
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="s2">&quot;changed&quot;</span>: false,
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="s2">&quot;ping&quot;</span>: <span class="s2">&quot;pong&quot;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="o">}</span>
 </code></pre></div>
 <p>Isso significa que a comunicação com os dois nós está acontecendo de maneira correta. Mas, faltou entender o que o comando <code>ansible arch -m ping</code> significa:</p>
 <ul>
@@ -628,7 +500,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
       
         
-        <a href="../02_o_basico_necessario_sobre_vagrant/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Básico necessário sobre Vagrant" rel="prev">
+        <a href="../03_ansible_basico/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Ansible básico" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -637,26 +509,11 @@
               <span class="md-footer__direction">
                 Anterior
               </span>
-              Básico necessário sobre Vagrant
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../04_ansible_basico/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Ansible básico" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Próximo
-              </span>
               Ansible básico
             </div>
           </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
         </a>
+      
       
     </nav>
   
