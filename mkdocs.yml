@@ -10,6 +10,9 @@ theme:
   icon:
     repo: fontawesome/brands/git-alt
 
+extra_css:
+  - stylesheets/extra.css
+
 markdown_extensions:
   - pymdownx.critic
   - pymdownx.highlight:
