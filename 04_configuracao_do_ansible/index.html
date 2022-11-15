@@ -13,7 +13,7 @@
     
     
       
-        <title>Entendo a estrutura do ansible - Anbsible lab</title>
+        <title>Entendendo a estrutura do ansible - Anbsible lab</title>
       
     
     
@@ -36,6 +36,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -62,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#entendo-a-estrutura-do-ansible" class="md-skip">
+        <a href="#entendendo-a-estrutura-do-ansible" class="md-skip">
           Ir para o conteúdo
         </a>
       
@@ -95,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Entendo a estrutura do ansible
+              Entendendo a estrutura do ansible
             
           </span>
         </div>
@@ -275,12 +277,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Entendo a estrutura do ansible
+          Entendendo a estrutura do ansible
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Entendo a estrutura do ansible
+        Entendendo a estrutura do ansible
       </a>
       
         
@@ -299,16 +301,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#arquitetura-de-uso-do-ansible" class="md-nav__link">
+    Arquitetura de uso do ansible
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquitetura de uso do ansible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#arquivo-de-inventario" class="md-nav__link">
     Arquivo de inventário
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#primeiro-comando-remoto" class="md-nav__link">
     Primeiro comando remoto
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -354,16 +369,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#arquitetura-de-uso-do-ansible" class="md-nav__link">
+    Arquitetura de uso do ansible
+  </a>
+  
+    <nav class="md-nav" aria-label="Arquitetura de uso do ansible">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#arquivo-de-inventario" class="md-nav__link">
     Arquivo de inventário
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#primeiro-comando-remoto" class="md-nav__link">
     Primeiro comando remoto
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -394,8 +422,13 @@
   </a>
 
 
-<h1 id="entendo-a-estrutura-do-ansible">Entendo a estrutura do ansible</h1>
-<p>TODO: Criar uma intro bonita e explicar diversas coisas legais</p>
+<h1 id="entendendo-a-estrutura-do-ansible">Entendendo a estrutura do ansible</h1>
+<p>Embora até o momento executamos o ansible somente em uma máquina local. E confesso que já pode ser bastante útil para padronizar suas configurações após uma formatação, por exemplo. O Ansible brilha quando estamos falando de rede.</p>
+<h2 id="arquitetura-de-uso-do-ansible">Arquitetura de uso do ansible</h2>
+<p>O Ansible distingue as máquinas em duas categorias. O nó de controle, onde o ansible está instalado e os nós controlados. Que máquinas em que o ansible pode se comunicar via SSH e executar os comandos:</p>
+<p><img alt="" class="center shadow-png" src="../images/ansible_arch.png" /></p>
+<p>Dessa forma podemos partir do nó de <mark class="critic">Controle</mark> e enviar rotinas de automação para todos os nós <mark class="critic">Controlados</mark>.</p>
+<p>Para isso o ansible conta com um arquivo de inventário. Um lugar onde todas as máquinas que serão controladas pelo controlador devem ser registradas.</p>
 <h3 id="arquivo-de-inventario">Arquivo de inventário</h3>
 <p>Por padrão o arquivo de inventário das máquinas ficam no <code>/etc/ansible/hosts</code>. Vamos criar esse arquivo agora.</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo nano /etc/ansible/hosts

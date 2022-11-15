@@ -37,6 +37,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -375,7 +377,7 @@
   
     <li class="md-nav__item">
       <a href="../04_configuracao_do_ansible/" class="md-nav__link">
-        Entendo a estrutura do ansible
+        Entendendo a estrutura do ansible
       </a>
     </li>
   
@@ -506,7 +508,9 @@
 <p><a href="https://www.ansible.com/">Ansible</a> é um grupo de ferramentas de código aberto construídas em python. O objetivo do Ansible é automatizar tarefas de diversas naturezas. Foi originalmente escrito por Michael DeHaan em 2012 e foi comprado pela Red Hat em 2015.</p>
 <div class="admonition tipo">
 <p class="admonition-title">curiosidade</p>
-<p>A palavra Ansible foi cunhada por <code>Ursula K. Le Guin</code> no livro <code>O mundo de rocannon</code></p>
+<p>A palavra Ansible foi cunhada por <code>Ursula K. Le Guin</code> no livro <code>O mundo de Rocannon</code></p>
+<p><img alt="" src="../images/ursula.jpg" width="100" /></p>
+<p>No livro existem diversos mundos e viajantes navegam na velocidade da luz. Ansible é um dispositivo que de comunicação de comunicação instantânea pelo universo.</p>
 </div>
 <h2 id="automacoes">Automações</h2>
 <p>Quando falamos sobre Ansible, estamos falando sobre qualquer tipo de automação em máquinas. Alguns exemplos comuns são:</p>
@@ -534,7 +538,7 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>vagrant ssh main  <span class="c1"># Acessar o console da máquina controladora via ssh</span>
 </code></pre></div>
 <p>E isso deve retornar o console dá maquina controladora no usuário <code>vagrant</code>:</p>
-<p><img alt="" src="../images/console.png" /></p>
+<p><img alt="" src="../images/console.png" width="500" /></p>
 <p>O ansible tem seus pacotes nos repositórios de quase todas as distribuições linux. Então você pode instalar no seu sistema como quiser.</p>
 <blockquote>
 <p>Caso tenha dúvidas, o <a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">link da documentação</a></p>
@@ -566,9 +570,9 @@
 </code></pre></div>
 <p>Ele nos disse que está na versão <code>3.10.8</code></p>
 <h2 id="um-pouco-de-ansible-na-pratica">Um pouco de ansible na prática</h2>
-<p>O ansible foi pensado para que pudéssemos automatizar uma tarefa de qualquer natureza. para isso basta ter o ansible instalado na sua máquina e chamá-lo via linha de comando.</p>
+<p>O ansible foi pensado para que pudéssemos automatizar uma tarefa de qualquer natureza. Para isso basta ter o ansible instalado na sua máquina e chamá-lo via linha de comando.</p>
 <h3 id="instalacao-de-um-pacote">Instalação de um pacote</h3>
-<p>Por exemplo, vamos supor que no nosso ambiente é imprescindível que o editor de texto <a href="https://www.gnu.org/software/emacs/">GNU/Emacs</a> (para mim costuma ser). Então podemos usar o ansible para instalar o Emacs no nosso computador pessoal:</p>
+<p>Por exemplo, vamos supor que no nosso ambiente é imprescindível que o editor de texto <a href="https://www.gnu.org/software/emacs/">GNU/Emacs</a> esteja instalado (para mim costuma ser). Então podemos usar o ansible para instalar o Emacs no nosso computador pessoal:</p>
 <div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ansible localhost -m package -a <span class="s2">&quot;name=emacs state=present&quot;</span> -b
 </code></pre></div>
 <p>Com esse simples comando, temos o GNU/Emacs instalado nesse computador. Mas, o que realmente aconteceu aqui?</p>
@@ -606,7 +610,7 @@
 </tr>
 <tr>
 <td>-b</td>
-<td>Diz ao Ansible que é para chamar o usuário <code>root</code></td>
+<td>Diz ao Ansible que o comando será executado como <code>root</code></td>
 </tr>
 </tbody>
 </table>
@@ -614,10 +618,10 @@
 <p>Podemos checar no terminal:</p>
 <div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>emacs
 </code></pre></div>
-<p><img alt="" src="../images/emacs_00.png" /></p>
+<p><img alt="" src="../images/emacs_00.png" width="500" /></p>
 <div class="admonition error">
 <p class="admonition-title">Caso tenha ficado preso</p>
-<p>Para sair do emacs tecle Alt+x e em seguida digite kill-emacs e você terá saído do emacs <img alt="❤" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2764.svg" title=":heart:" /></p>
+<p>Para sair do emacs tecle Alt+x e em seguida digite <code>kill-emacs</code> e você terá saído do emacs <img alt="❤" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2764.svg" title=":heart:" /></p>
 </div>
 <h3 id="configuracao-do-pacote">Configuração do pacote</h3>
 <p>Embora o GNU/Emacs esteja instalado no meu sistema. Ele ainda não foi configurado da maneira que eu gostaria. Não tem as minhas cores, os meus atalhos e para isso precisamos baixar meu arquivo de configuração que está no <a href="https://github.com/dunossauro/dotfiles">github.com/dunossauro/dotfiles</a>.</p>
@@ -658,10 +662,10 @@ Após isso, podemos abrir o emacs novamente:</p>
 <p>Pode demorar um pouco para as configurações serem baixadas e instaladas da internet.</p>
 </blockquote>
 <p>E temos o emacs com as minhas configurações:</p>
-<p><img alt="" src="../images/emacs_01.png" /></p>
+<p><img alt="" src="../images/emacs_01.png" width="500" /></p>
 <div class="admonition error">
 <p class="admonition-title">Caso tenha ficado preso OUTRA VEZ</p>
-<p>Para sair do emacs tecle Alt+x e em seguida digite kill-emacs e você terá saído do emacs <img alt="❤" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2764.svg" title=":heart:" /></p>
+<p>Para sair do emacs tecle Alt+x e em seguida digite <code>kill-emacs</code> e você terá saído do emacs <img alt="❤" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2764.svg" title=":heart:" /></p>
 </div>
 
 
@@ -701,13 +705,13 @@ Após isso, podemos abrir o emacs novamente:</p>
       
       
         
-        <a href="../04_configuracao_do_ansible/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Entendo a estrutura do ansible" rel="next">
+        <a href="../04_configuracao_do_ansible/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Entendendo a estrutura do ansible" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Próximo
               </span>
-              Entendo a estrutura do ansible
+              Entendendo a estrutura do ansible
             </div>
           </div>
           <div class="md-footer__button md-icon">
