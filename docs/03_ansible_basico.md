@@ -39,6 +39,65 @@ Para que isso ocorra na nuvem, por exemplo, alguém deve ter provisionado um sis
 
 É nesse contexto que o Ansible entra. Pegamos um sistema operacional limpo e iniciamos as nossas configurações e instalações para que nossa aplicação possa ser executada nesse servidor.
 
+## Instalação do ansible
+
+Agora que temos duas máquinas virtuais criadas. Podemos começar a instalação do ansible. A primeira coisa que devemos fazer é acessar a máquina controladora. Para isso podemos usar o `vagrant` para nos ajudar:
+
+```bash
+vagrant up main   # Iniciar a máquina controladora
+vagrant ssh main  # Acessar o console da máquina controladora via ssh
+```
+
+E isso deve retornar o console dá maquina controladora no usuário `vagrant`:
+
+![](./images/console.png)
+
+O ansible tem seus pacotes nos repositórios de quase todas as distribuições linux. Então você pode instalar no seu sistema como quiser.
+
+> Caso tenha dúvidas, o [link da documentação](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+
+Formas de instalar em diversos sistemas.
+
+```bash
+sudo pacman -S ansible     # Arch
+sudo apt install ansible   # Ubuntu
+sudo dnf ansible           # Familia Redhat
+```
+
+O ansible também pode ser instalado via `pip`, porém a instalação é bastante trabalhosa.
+
+
+Como eu escolhi que a máquina `main` fosse um archlinux, vamos seguir a configuração com ele. O primeiro passo que devemos fazer é atualizar a máquina para garantir que tudo funcione como o esperado:
+
+```bash
+sudo pacman -Syu  # Atualiza o sistema
+```
+
+Caso a senha senha perguntada. A senha padrão criada pelas máquinas virtuais do vagrant é `vagrant`.
+
+Agora podemos rodar o comando para instalar o ansible:
+
+```bash
+sudo pacman -S ansible
+```
+
+Se tudo ocorrer como o esperado, podemos perguntar a versão do ansible ao sistema:
+
+```bash
+[vagrant@archlinux ~]$ ansible --version
+ansible [core 2.14.0]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/vagrant/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3.10/site-packages/ansible
+  ansible collection location = /home/vagrant/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.10.8 (main, Nov  1 2022, 14:18:21) [GCC 12.2.0] (/usr/bin/python)
+  jinja version = 3.1.2
+  libyaml = True
+```
+
+Ele nos disse que está na versão `3.10.8`
+
 ## Um pouco de ansible na prática
 
 O ansible foi pensado para que pudéssemos automatizar uma tarefa de qualquer natureza. para isso basta ter o ansible instalado na sua máquina e chamá-lo via linha de comando.
