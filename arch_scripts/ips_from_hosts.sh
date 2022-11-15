@@ -6,7 +6,7 @@ rm -rf ~/.ssh/known_hosts
 
 for ip in $ips
 do
-    ssh-copy-id vagrant@$ip
+    sshpass -p vagrant ssh-copy-id vagrant@$ip
 done
 
 ansible linux -m ping

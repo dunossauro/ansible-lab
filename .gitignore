@@ -1,5 +1,6 @@
 # stuff
 .vagrant/
+ansible_hosts
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

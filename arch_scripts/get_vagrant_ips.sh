@@ -3,13 +3,13 @@ machines=('arch' 'ubuntu' 'centos')
 
 ips=()
 
-echo 'Seu inventário (/etc/ansible/hosts)'
+echo '# Seu inventario (/etc/ansible/hosts)'
 
 for machine in "${machines[@]}"
 do
     ip=$(vagrant ssh $machine -c "ip -4 -brief address show" | awk '{print $3}'| cut -d'/' -f 1 | tail -n 1)
     echo [$machine]
-    echo $ip
+    echo $ip ansible_user=vagrant
     echo
     ips+=($ip)
 done
