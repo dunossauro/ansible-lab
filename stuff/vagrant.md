@@ -7,7 +7,7 @@
 
 ---
 
-## Configurando seu laboratório
+## Instalação do Virtualbox e do Vagrant
 
 Ansiedade já bateu, né? Vamos construindo uma passinho de cada vez.
 
