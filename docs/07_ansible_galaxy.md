@@ -14,7 +14,7 @@ Uma coisa que gosto bastante no meu ambiente pessoal é de instalar diversas ver
 
 Para isso, podemos contar com o Galaxy. Uma pessoa da comunidade criou um pacote para gerenciar o [pyenv](https://galaxy.ansible.com/staticdev/pyenv).
 
-Para instalar esse módulo temos que o usar o comando `ansible-galaxy`:
+Para instalar essa role temos que o usar o comando `ansible-galaxy`:
 
 ```bash title="$ Execução no terminal"
 ansible-galaxy install staticdev.pyenv
@@ -33,8 +33,56 @@ Starting galaxy role install process
 
 ## Usando o módulo
 
-TODO
+Agora que temos a role do pyenv podemos incorporar ela em nossos playbooks. Vamos reescrever as tasks que instalam e configuram o pyenv. Pois tudo aqui é feito de forma automatizada:
 
-## requirements de módulos
+```yaml title="play_tasks.yaml"
+---
+- name: Configura o ambiente de desenvolvimento
+  hosts: linux
+  gather_facts: true
 
-TODO
+
+  tasks:
+    - name: Dependências de desenvolvimento
+      become: true
+      import_tasks: tasks/dev_env.yml
+
+  roles:
+    - role: staticdev.pyenv
+      pyenv_env: user
+      pyenv_global:
+        - 3.11.0
+      pyenv_python_versions:
+        - 3.11.0
+```
+
+### Role vs Task vs Collection!
+
+TODO!
+
+## requirements de Collections e Rules
+
+Também podemos centralizar um arquivo com todas as nossas dependências. Para que seja mais simples o processo de instalação dos pacotes de terceiros do Galaxy. Vou chamar esse arquivo de `requirements.yml`.
+
+Nele vamos instalar um gerenciador de pacotes para o arch poder baixar pacotes do [repositório AUR](https://aur.archlinux.org/). Que vem em uma coleção chamada `kewlfft.aur` e também vamos deixar a role do pyenv para ficar num arquivo único e centralizado:
+
+```yaml title="requirements.yml"
+collections:
+  - name: kewlfft.aur
+roles:
+  - name: staticdev.pyenv
+```
+
+Agora com esse arquivo podemos instalar todas as collections de uma vez:
+
+```bash tile="$ Execução no terminal"
+ansible-galaxy collection install -r requirements.yml
+```
+
+E também podemos instalar todas as roles de uma vez só:
+
+```bash tile="$ Execução no terminal"
+ansible-galaxy role install -r requirements.yml
+```
+
+Dessa forma ficando mais simples de compartilhar nosso ambiente Ansible com outras pessoas :heart:

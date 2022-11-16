@@ -9,8 +9,10 @@
       become: true
       import_tasks: tasks/dev_env.yml
 
-    - name: Pyenv install
-      import_tasks: tasks/pyenv.yml
-
-    - name: Install python 3.11
-      import_tasks: tasks/py_311.yml
+  roles:
+    - role: staticdev.pyenv
+      pyenv_env: user
+      pyenv_global:
+        - 3.11.0
+      pyenv_python_versions:
+        - 3.11.0
