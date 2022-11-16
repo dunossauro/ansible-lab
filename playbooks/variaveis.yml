@@ -1,0 +1,2 @@
+---
+pipx: "{{ 'pipx' if ansible_distribution == 'Ubuntu' else 'python-pipx'}}"

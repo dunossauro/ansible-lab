@@ -96,7 +96,7 @@ ansible-playbook web_server.yml
 Você deve ver uma grande resposta como essa:
 
 ```bash title="resposta do terminal"
-ansible-playbook playbooks/web_server.yml
+ansible-playbook web_server.yml
 
 PLAY [Instalação do nginx] *****************************************************
 
@@ -285,24 +285,212 @@ Agora que sabemos que é o Ubuntu Focal, podemos voltar ao repositório. O pacot
 
 ### A clausula `when`
 
+Como disse, as variáveis do setup podem ser invocadas dentro do playbook. Dessa forma podemos criar validações condicionais no nosso playbook. Vamos criar uma restrição para que a task seja executada somente no arch linux:
 
-## Variáveis
+```yaml title="pipx_httpie.yml" linenums="1"
+---
+- name: Instalação do pipx e httpie
+  hosts: linux  # vale lembrar aqui que um dos linux é o arch e o outro o ubuntu
 
-### Uso de variáveis
+  tasks:
+    - name: Instalação do pipx {++no Arch++}
+      become: yes
+      package:
+        name: python-pipx
+        state: present
+      {++when++}: {++ansible_distribution == Archlinux'++}
+```
 
-Para isso, podemos trocar o nome do pacote do pipx no playbook para uma variável:
+> As linhas destacadas mostra somente as alterações que fizemos no playbook.
 
-```yaml title="pipx_httpie.yml" linenums="6"
+Dessa forma, a task `Instalação do pipx no Arch` só será executada quando a distribuição for `Archlinux`. Vamos testar:
+
+```bash title="$ Execução no terminal"
+ansible-playbook pipx_httpie.yml
+```
+
+```bash title="Resultado do shell"
+
+PLAY [Instalação do pipx e httpie] ********************************************************
+
+TASK [Gathering Facts] ********************************************************************
+ok: [10.0.2.15]
+ok: [10.0.2.16]
+
+TASK [Instalação do pipx no Arch] *********************************************************
+{==skipping: [10.0.2.15]==}
+ok: [10.0.2.16]
+
+PLAY RECAP ********************************************************************************
+10.0.2.16  : ok=2  changed=0  unreachable=0  failed=0  skipped=0  rescued=0  ignored=0 
+10.0.2.15  : ok=1  changed=0  unreachable=0  failed=0  {==skipped=1==}  rescued=0  ignored=0
+```
+
+Com isso, podemos ver o status `skipped`. Isso quer dizer que o passo de instalar no arch, quando passou pela instalação no ubuntu "pulou" esse passo. Sabendo disso, podemos criar uma nova task específica para o ubuntu que pule no arch também:
+
+```yaml title="pipx_httpie.yml" linenums="13"
+    - name: Instalação do pipx no Ubuntu
+      become: yes
+      package:
+        name: pipx
+        state: present
+      when: ansible_distribution == 'Ubuntu'
+```
+
+Dessa forma, quando executarmos o playbook teremos certeza que a execução vai acontecer nos dois nós. Mesmo que em tasks diferentes.
+
+```bash title="$ Execução no terminal e a parte importante do resultado"
+ansible-playbook pipx_httpie.yml
+
+TASK [Instalação do pipx no Arch] *********************************************************
+skipping: [10.0.2.15]
+ok: [10.0.2.16]
+
+TASK [Instalação do pipx no Ubuntu] *******************************************************
+skipping: [10.0.2.16]
+ok: [10.0.2.15]
+```
+
+Desta forma não precisamos mais nos preocupar com os pacotes específicos de cada sistema, podemos criar uma task para cada sistema. Em casos extremos isso pode ser necessário. Mas será que não existe uma forma mais simples de resolver esse problema?
+
+## Expressões e variáveis
+
+Quando chamamos o setup, vimos que o ansible consegue carregar diversas variáveis durante a execução. Mas será que nesse caso não conseguiríamos criar uma variável nossa? Aí poderíamos validar antes e evitar de escrever duas tasks.
+
+### Expressões
+
+O Ansible usa um motor de templates chamado [Jinja](https://palletsprojects.com/p/jinja/). O jinja fornece uma forma de chamar expressões de código Python dentro de templates. Assim, quando o ansible executa um playbook ele também avalia e executa as expressões do jinja dentro do código.
+
+As expressões no jinja são feitas usando duas chaves delimitador `{{ minha_expressão }}`. E dentre dessa expressão, qualquer código python pode ser inserido. Por exemplo, podemos fazer um `if` para resolver nosso caso e ter uma única task. Por exemplo:
+
+```yaml title="pipx_httpie.yml" linenums="5"
+  tasks:
     - name: Instalação do pipx
       become: yes
       package:
-        name: "{{ pipx }}"
+        name: {++"{{ 'pipx' if ansible_distribution == 'Ubuntu' else 'python-pipx'}}"++}
         state: present
 ```
 
-E dessa forma podemos invocar o playbook passando uma variável para a chave `"{{ pipx }}"`:
+!!! note "Nota sobre expressões no Asnbile"
+	Embora para o jinja somente precise ser usado `{{ expressão }}`. O Ansible exige que esses blocos estejam também entre aspas. Ficando `'{{ expressão }}'`.
+	
+Desta forma acabamos resolvendo o problema que tínhamos em ter duas tasks para executar a mesma tarefa em sistemas diferentes. Vamos ver o resultado:
+
+```bash title="$ Execução no terminal e a parte importante do resultado"
+ansible-playbook pipx_httpie.yml
+
+TASK [Instalação do pipx no Arch] *********************************************************
+ok: [10.0.2.15]
+ok: [10.0.2.16]
+```
+
+Assim podemos ser mais eficientes em criar regras. Já o que template pode estender código python.
+
+### As variáveis no ansible
+
+Da mesma forma que podemos criar expressões complexas no jinja. Também podemos chamar somente variáveis. Por exemplo `"{{ variavel }}"`. Assim podemos declarar as expressões em um lugar específico do playbook para deixar mais limpo ou passar as mesmas via linha de comando.
+
+### Variáveis no playbook
+
+Para isso, podemos trocar o nome do pacote do pipx no playbook para uma variável:
+
+```yaml title="pipx_httpie.yml" linenums="1"
+---
+- name: Instalação do pipx e httpie
+  hosts: linux
+
+  {++vars++}:
+    {++pipx++}: {++"{{ 'pipx' if ansible_distribution == 'Ubuntu' else 'python-pipx'}}"++}
+
+  tasks:
+    - name: Instalação do pipx
+      become: yes
+      package:
+        name: {++'{{ pipx }}'++}
+        state: present
+```
+
+Assim temos um playbook mais limpo. Pois todo o código complicado do jinja fica em um lugar específico e no topo do arquivo para ficar fácil a consulta.
+
+> Não vou executar esse playbook agora, pois teremos o mesmo resultado da execução anterior.
+
+### Variáveis via linha de comando
+
+Outra funcionalidade importante do ansible é conseguir sobrescrever as variáveis de um playbook usando a linha de comando como base. Chamar via linha de comando tem uma ordem de precedência maior que as variáveis definidas no playbook. Então, quando o ansible for chamado as variáveis definidas no campo `vars` serão substituídas pelas variáveis que forem passadas na linha de comando:
+
+```bash title="$ Execução no terminal e a parte importante do resultado"
+ansible-playbook pipx_httpie.yml --extra-vars "pipx=pipx"
+
+TASK [Instalação do pipx] *****************************************************************
+ok: [10.0.2.15]
+fatal: [10.0.2.16]: FAILED! => {=={"changed": false, "cmd": ["/usr/bin/pacman", "--upgrade", "--print-format", "%n", "pipx"], "msg": "Failed to list package pipx", "rc": 1, "stderr": "error: 'pipx': could not find or read package\n", "stderr_lines": ["error: 'pipx': could not find or read package"], "stdout": "loading packages...\n", "stdout_lines": ["loading packages..."]}==}
+```
+
+Como era de se esperar, o pacote `pipx` não existe no arch, seu nome é `python-pipx` por conta disso, o comando não foi executado com sucesso. Nosso objetivo, porém, era explorar a chamada de variáveis via linha de comando.
+
+### Arquivos de variáveis
+
+Uma forma de evitar expressões do jinja e também chamar variáveis por linha de comando é criar um arquivo só para as variáveis. Dessa forma, caso tenha alguma variável que não possa ser exposta, como endereço de um banco de dados. Esse valores ficam de fora da configuração.
 
 
-```bash title="$ Execução no terminal"
-ansible-playbook playbooks/pipx_httpie.yml --extra-vars "pipx=pipx"
+```yaml title="variaveis.yml" linenums="1"
+---
+pipx: "{{ 'pipx' if ansible_distribution == 'Ubuntu' else 'python-pipx'}}"
+```
+
+Dessa forma podemos limpar o nosso arquivo `pipx_httpie.yml`:
+
+```yaml title="pipx_httpie.yml" linenums="1" hl_lines="9"
+---
+- name: Instalação do pipx e httpie
+  hosts: linux
+
+  tasks:
+    - name: Instalação do pipx
+      become: yes
+      package:
+        name: '{{ pipx }}'
+        state: present
+```
+
+E quando formos executar o playbook, só precisamos passar o arquivo de configuração para as variáveis:
+
+```bash title="$ Execução no terminal e a parte importante do resultado"
+ansible-playbook pipx_httpie.yml -e @variaveis.yml
+
+TASK [Instalação do pipx] *****************************************************************
+ok: [10.0.2.15]
+ok: [10.0.2.16]
+```
+
+Assim demos uma limpada no nosso arquivo de playbook e claro, podemos definir diversas outras variáveis no arquivo. Mas, você pode tentar depois :heart:
+
+
+### Arquivos de variáveis por grupo
+
+Uma outra coisa que pode facilitar na hora de usar as variáveis é criar variáveis específicas para grupos. O ansible tem um caminho específico para onde esses arquivos de variáveis devem ser colocados: `/etc/ansible/group_vars/`.
+
+Para resolver isso, vamos criar um grupo de variáveis para o ubuntu:
+
+```yaml title="/etc/ansible/group_vars/ubuntu.yml" linenums="1"
+---
+pipx: pipx
+```
+
+e um arquivo para o arch:
+```yaml title="/etc/ansible/group_vars/arch.yml" linenums="1"
+---
+pipx: python-pipx
+```
+
+Dessa forma, quando formos executar o playbook não precisamos mais especificar as variáveis comuns. Cada sistema tem sua versão de `pipx` de acordo com os grupos do inventário:
+
+
+```bash title="$ Execução no terminal e a parte importante do resultado"
+ansible-playbook pipx_httpie.yml
+
+TASK [Instalação do pipx] *****************************************************************
+ok: [10.0.2.15]
+ok: [10.0.2.16]
 ```
