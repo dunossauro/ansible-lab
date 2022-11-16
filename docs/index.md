@@ -13,3 +13,4 @@ Para não depender de serviços externos, vamos usar máquinas virtuais com [vir
 - [03 - Ansible básico](/03_ansible_basico)
 - [04 - Entendendo a estrutura do Ansible](/04_configuracao_do_ansible)
 - [05 - Playbooks](/05_playbooks)
+- [06 - Taks](/06_tasks)
