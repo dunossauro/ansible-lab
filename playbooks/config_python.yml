@@ -3,20 +3,54 @@
   hosts: linux
 
   tasks:
-    - name: install pyenv (Arch)
+    - name: Install git
       become: yes
       package:
+        name: git
         state: present
-        name: pyenv
-      when: ansible_distribution == 'Archlinux'
 
-    - name: Clone Pyenv (Ubuntu)
+    - name: Clone Pyenv
       git:
         repo: https://github.com/pyenv/pyenv.git
         dest: ~/.pyenv
-      when: ansible_distribution == 'Ubuntu'
 
-    - name: config pyenv
+    - name: Install build dependencies (ubuntu)
+      when: ansible_distribution == 'Ubuntu'
+      become: yes
+      apt:
+        update_cache: yes
+        pkg:
+          - make
+          - build-essential
+          - libssl-dev
+          - zlib1g-dev
+          - libbz2-dev
+          - libreadline-dev
+          - libsqlite3-dev
+          - wget
+          - curl
+          - llvm
+          - libncursesw5-dev
+          - xz-utils
+          - tk-dev
+          - libxml2-dev
+          - libxmlsec1-dev
+          - libffi-dev
+          - liblzma-dev
+
+    - name: Install build dependencies (arch)
+      when: ansible_distribution == 'Archlinux'
+      become: yes
+      pacman:
+        update_cache: yes
+        name:
+          - base-devel
+          - openssl
+          - zlib
+          - xz
+          - tk
+
+    - name: Config pyenv
       blockinfile:
         dest: ~/.bashrc
         block: |
@@ -35,11 +69,10 @@
 
     - block:
         - name: install python3.11
-          shell: pyenv install -s 3.11:latest
+          shell: ~/.pyenv/bin/pyenv install -s 3.11:latest
           register: pyenv_result
       rescue:
         - name: Debug pyenv fail
           debug:
             msg: "{{pyenv_result.stderr.split('\n') }}"
           when: pyenv_result.failed
-
