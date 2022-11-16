@@ -105,39 +105,6 @@
     
     
     
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Pesquisar">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Inicializando a pesquisa
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
     
       <div class="md-header__source">
         <a href="https://github.com/dunossauro/ansible-lab" title="Ir ao repositório" class="md-source" data-md-component="source">
@@ -206,7 +173,22 @@
   
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
-        Laboratório para Live de Python sobre Ansible :snake:
+        Tutorial introdutório de Ansible :snake:
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_jaba/" class="md-nav__link">
+        Jabá
       </a>
     </li>
   
@@ -304,10 +286,92 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Tasks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Tasks
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#uma-task-qualquer" class="md-nav__link">
+    Uma task qualquer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#register" class="md-nav__link">
+    Register
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debug-de-tasks" class="md-nav__link">
+    Debug de tasks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agrupamento-de-tasks" class="md-nav__link">
+    Agrupamento de tasks
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_ansible_galaxy/" class="md-nav__link">
+        Ansible Galaxy
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../referencias/" class="md-nav__link">
+        Referencias
+      </a>
     </li>
   
 
@@ -332,6 +396,42 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#uma-task-qualquer" class="md-nav__link">
+    Uma task qualquer
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#register" class="md-nav__link">
+    Register
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debug-de-tasks" class="md-nav__link">
+    Debug de tasks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agrupamento-de-tasks" class="md-nav__link">
+    Agrupamento de tasks
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -351,6 +451,181 @@
 
 
 <h1 id="tasks">Tasks</h1>
+<p>Embora tenhamos usados tasks em praticamente tudo até aqui. Acredito que valha um momento específico para falar sobre elas. Pois nem sempre as coisas dão certo e as vezes precisamos debugar as tarefas no Ansible. Então nessa parte vamos falar um pouco sobre tasks, um pouco sobre debug e um pouco sobre agrupamento de tasks.</p>
+<h2 id="uma-task-qualquer">Uma task qualquer</h2>
+<p>Para exemplificar uma task, quero fazer com vocês a instalação do pyenv. Costuma dar bastante problema pois o SSH usado pelo Ansible não consegue reconhecer o <code>.bashrc</code></p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config_python.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nn">---</span><span class="w"></span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Configuração do ambiente python</span><span class="w"></span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span><span class="w"></span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">install pyenv</span><span class="w"></span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">      </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">      </span><span class="nt">become_method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sudo</span><span class="w"></span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">      </span><span class="nt">package</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span><span class="w"></span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyenv</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>Executando esse playbook temos erros, pois o ubuntu não tem esse pacote. Então teremos que instalar o pyenv na mão no ubuntu:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config_python.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">      </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ansible_distribution == &#39;Archlinux&#39;</span><span class="w"></span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">   </span><span class="w w-Error"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Clone Pyenv (Ubuntu)</span><span class="w"></span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">      </span><span class="nt">git</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">        </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pyenv/pyenv.git</span><span class="w"></span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">        </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/.pyenv</span><span class="w"></span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">      </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ansible_distribution == &#39;Ubuntu&#39;</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>Porém, a configuração do pyenv depende de que o arquivo <code>./bashrc</code> seja modificado para que o pyenv funcione de fato. Então agora vamos aprender mais um módulo. O módulo <a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/blockinfile_module.html">blockinfile</a>. Ele permite que adicionemos um cloco de texto em um arquivo qualquer:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config_python.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">config pyenv</span><span class="w"></span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">      </span><span class="nt">blockinfile</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">        </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/.bashrc</span><span class="w"></span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">        </span><span class="nt">block</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="w">          </span><span class="no">echo &#39;export PATH=&quot;$HOME/.pyenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc</span><span class="w"></span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">          </span><span class="no">echo &#39;eval &quot;$(pyenv init -)&quot;&#39; &gt;&gt;~/.bashrc</span><span class="w"></span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">          </span><span class="no">echo &#39;eval &quot;$(pyenv virtualenv-init -)&quot;&#39; &gt;&gt; ~/.bashrc</span><span class="w"></span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">          </span><span class="no">echo &#39;PATH=&quot;$HOME/.local/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<h2 id="register">Register</h2>
+<p>Vamos supor que queremos checar o que está escrito dentro do arquivo <code>.bashrc</code> para saber se ele está escrito da maneira correta. Para isso vamos criar mais uma task. Para isso vamos usar o módulo <code>shell</code> e também a funcionalidade de registro em variáveis do ansible:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config_python.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span>
+<span class="normal"><a href="#__codelineno-3-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-28" name="__codelineno-3-28"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Show bashrc</span><span class="w"></span>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a><span class="w">      </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cat ~/.bashrc</span><span class="w"></span>
+<a id="__codelineno-3-30" name="__codelineno-3-30"></a><span class="w">      </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bashrc</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>Dessa forma, por termos chamado <code>register</code> o ansible vai armazenar o resultado da tarefa <code>Show bashrc</code> na variável <code>bashrc</code>. E podemos acessar ela usando o módulo de <code>debug</code>:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config_python.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span>
+<span class="normal"><a href="#__codelineno-4-34">34</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-32" name="__codelineno-4-32"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Checking bashrc</span><span class="w"></span>
+<a id="__codelineno-4-33" name="__codelineno-4-33"></a><span class="w">      </span><span class="nt">debug</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-4-34" name="__codelineno-4-34"></a><span class="w">        </span><span class="nt">msg</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">bashrc.stdout.split(&#39;\n&#39;)</span><span class="nv"> </span><span class="s">}}&quot;</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>Quando o playbook for executado, nos mostrará de maneira formatada o <code>stdout</code> da tarefa <code>Show bashrc</code>:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal e a parte importante do resultado</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ansible-playbook config_python.yml
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>TASK <span class="o">[</span>Show bashrc<span class="o">]</span> *******************************************************************************
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>changed: <span class="o">[</span>IP<span class="o">]</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>TASK <span class="o">[</span>Checking bashrc<span class="o">]</span> ********************************************************************
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>ok: <span class="o">[</span>IP<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">{</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="s2">&quot;msg&quot;</span>: <span class="o">[</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>        <span class="s2">&quot;#&quot;</span>,
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>        <span class="s2">&quot;# ~/.bashrc&quot;</span>,
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>        <span class="s2">&quot;#&quot;</span>,
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>        <span class="s2">&quot;&quot;</span>,
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>        <span class="s2">&quot;# If not running interactively, don&#39;t do anything&quot;</span>,
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>        <span class="s2">&quot;[[ </span><span class="nv">$-</span><span class="s2"> != *i* ]] &amp;&amp; return&quot;</span>,
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>        <span class="s2">&quot;&quot;</span>,
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>        <span class="s2">&quot;alias ls=&#39;ls --color=auto&#39;&quot;</span>,
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>        <span class="s2">&quot;PS1=&#39;[\\u@\\h \\W]\\</span>$<span class="s2"> &#39;&quot;</span>,
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>        <span class="s2">&quot;# BEGIN ANSIBLE MANAGED BLOCK&quot;</span>,
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>        <span class="s2">&quot;echo &#39;export PATH=\&quot;</span><span class="nv">$HOME</span><span class="s2">/.pyenv/bin:</span><span class="nv">$PATH</span><span class="s2">\&quot;&#39; &gt;&gt; ~/.bashrc&quot;</span>,
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>        <span class="s2">&quot;echo &#39;eval \&quot;</span><span class="k">$(</span>pyenv init -<span class="k">)</span><span class="s2">\&quot;&#39; &gt;&gt;~/.bashrc&quot;</span>,
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>        <span class="s2">&quot;echo &#39;eval \&quot;</span><span class="k">$(</span>pyenv virtualenv-init -<span class="k">)</span><span class="s2">\&quot;&#39; &gt;&gt; ~/.bashrc&quot;</span>,
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>        <span class="s2">&quot;echo &#39;PATH=\&quot;</span><span class="nv">$HOME</span><span class="s2">/.local/bin:</span><span class="nv">$PATH</span><span class="s2">\&quot;&#39; &gt;&gt; ~/.bashrc&quot;</span>,
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>        <span class="s2">&quot;# END ANSIBLE MANAGED BLOCK&quot;</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    <span class="o">]</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="o">}</span>
+</code></pre></div>
+<p>O que significa que conseguimos chamar o debug. Porém em alguns momentos as tasks podem e vão dar errado. Então precisamos entender como prosseguir, caso isso aconteça.</p>
+<h2 id="debug-de-tasks">Debug de tasks</h2>
+<p>Vamos executar uma ação que tenho certeza que vai dar erro por conta das configurações que fizemos até agora para entender como podemos checar as mensagens de erro.</p>
+<p>Em teoria, se temos o pyenv instalado, podemos pedir para que ele instale a versão <code>3.11</code> do python:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config_python.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-36">36</a></span>
+<span class="normal"><a href="#__codelineno-6-37">37</a></span>
+<span class="normal"><a href="#__codelineno-6-38">38</a></span>
+<span class="normal"><a href="#__codelineno-6-39">39</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-36" name="__codelineno-6-36"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"><mark class="critic">- block</mark></span><span class="p p-Indicator">:</span><span class="w"></span>
+<a id="__codelineno-6-37" name="__codelineno-6-37"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">install python3.11</span><span class="w"></span>
+<a id="__codelineno-6-38" name="__codelineno-6-38"></a><span class="w">          </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyenv install -s 3.11:latest</span><span class="w"></span>
+<a id="__codelineno-6-39" name="__codelineno-6-39"></a><span class="w">          </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyenv_result</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>Note que inseri um bloco no playbook chamado <code>block</code>. Ele nos ajuda a executar uma tarefa na sequência caso uma delas dê erro. E para isso vamos adicionar um parâmetro para esse bloco chamado <code>rescue</code>. Ficando com esse bloco:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config_python.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-36">36</a></span>
+<span class="normal"><a href="#__codelineno-7-37">37</a></span>
+<span class="normal"><a href="#__codelineno-7-38">38</a></span>
+<span class="normal"><a href="#__codelineno-7-39">39</a></span>
+<span class="normal"><a href="#__codelineno-7-40">40</a></span>
+<span class="normal"><a href="#__codelineno-7-41">41</a></span>
+<span class="normal"><a href="#__codelineno-7-42">42</a></span>
+<span class="normal"><a href="#__codelineno-7-43">43</a></span>
+<span class="normal"><a href="#__codelineno-7-44">44</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-36" name="__codelineno-7-36"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">block</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-7-37" name="__codelineno-7-37"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">install python3.11</span><span class="w"></span>
+<a id="__codelineno-7-38" name="__codelineno-7-38"></a><span class="w">          </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyenv install -s 3.11:latest</span><span class="w"></span>
+<a id="__codelineno-7-39" name="__codelineno-7-39"></a><span class="w">          </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyenv_result</span><span class="w"></span>
+<a id="__codelineno-7-40" name="__codelineno-7-40"></a><span class="w">      </span><span class="nt">rescue</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-7-41" name="__codelineno-7-41"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Debug pyenv fail</span><span class="w"></span>
+<a id="__codelineno-7-42" name="__codelineno-7-42"></a><span class="w">          </span><span class="nt">debug</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-7-43" name="__codelineno-7-43"></a><span class="w">            </span><span class="nt">msg</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{pyenv_result.stderr.split(&#39;\n&#39;)</span><span class="nv"> </span><span class="s">}}&quot;</span><span class="w"></span>
+<a id="__codelineno-7-44" name="__codelineno-7-44"></a><span class="w">          </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyenv_result.failed</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p><code>rescue</code> pode ser traduzido como resgatar ou salvar.</p>
+</blockquote>
+<p>Dessa forma, caso alguma de nossas instalações do python 3.11 dê erro. Ele vai nos mostrar de forma formatada e simples o que aconteceu nessa execução:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal e a parte importante do resultado</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ansible-playbook config_python.yml
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>TASK <span class="o">[</span>install python3.11<span class="o">]</span> *****************************************************************
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>fatal: <span class="o">[</span>IP UBUNTU<span class="o">]</span>: FAILED! <span class="o">=</span>&gt; <span class="o">{</span><span class="s2">&quot;changed&quot;</span>: true, <span class="s2">&quot;cmd&quot;</span>: <span class="s2">&quot;pyenv install -s 3.11:latest&quot;</span>, <span class="s2">&quot;delta&quot;</span>: <span class="s2">&quot;0:00:00.002125&quot;</span>, <span class="s2">&quot;end&quot;</span>: <span class="s2">&quot;2022-11-16 15:07:21.836204&quot;</span>, <span class="s2">&quot;msg&quot;</span>: <span class="s2">&quot;non-zero return code&quot;</span>, <span class="s2">&quot;rc&quot;</span>: <span class="m">127</span>, <span class="s2">&quot;start&quot;</span>: <span class="s2">&quot;2022-11-16 15:07:21.834079&quot;</span>, <span class="s2">&quot;stderr&quot;</span>: <span class="s2">&quot;/bin/sh: 1: pyenv: not found&quot;</span>, <span class="s2">&quot;stderr_lines&quot;</span>: <span class="o">[</span><span class="s2">&quot;/bin/sh: 1: pyenv: not found&quot;</span><span class="o">]</span>, <span class="s2">&quot;stdout&quot;</span>: <span class="s2">&quot;&quot;</span>, <span class="s2">&quot;stdout_lines&quot;</span>: <span class="o">[]}</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>fatal: <span class="o">[</span>IP ARCH<span class="o">]</span>: FAILED! <span class="o">=</span>&gt; <span class="o">{</span><span class="s2">&quot;changed&quot;</span>: true, <span class="s2">&quot;cmd&quot;</span>: <span class="s2">&quot;pyenv install -s 3.11:latest&quot;</span>, <span class="s2">&quot;delta&quot;</span>: <span class="s2">&quot;0:00:04.103687&quot;</span>, <span class="s2">&quot;end&quot;</span>: <span class="s2">&quot;2022-11-16 15:07:27.077623&quot;</span>, <span class="s2">&quot;msg&quot;</span>: <span class="s2">&quot;non-zero return code&quot;</span>, <span class="s2">&quot;rc&quot;</span>: <span class="m">1</span>, <span class="s2">&quot;start&quot;</span>: <span class="s2">&quot;2022-11-16 15:07:22.973936&quot;</span>, <span class="s2">&quot;stderr&quot;</span>: <span class="s2">&quot;Downloading Python-3.11.0.tar.xz...\n-&gt; https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tar.xz\nInstalling Python-3.11.0...\n\nBUILD FAILED (Arch Linux using python-build 20180424)\n\nInspect or clean up the working tree at /tmp/python-build.20221116150723.800\nResults logged to /tmp/python-build.20221116150723.800.log\n\nLast 10 log lines:\nchecking for pkg-config... no\nchecking for --enable-universalsdk... no\nchecking for --with-universal-archs... no\nchecking MACHDEP... \&quot;linux\&quot;\nchecking for gcc... no\nchecking for cc... no\nchecking for cl.exe... no\nconfigure: error: in `/tmp/python-build.20221116150723.800/Python-3.11.0&#39;:\nconfigure: error: no acceptable C compiler found in </span><span class="nv">$PATH</span><span class="s2">\nSee `config.log&#39; for more details&quot;</span>, <span class="s2">&quot;stderr_lines&quot;</span>: <span class="o">[</span><span class="s2">&quot;Downloading Python-3.11.0.tar.xz...&quot;</span>, <span class="s2">&quot;-&gt; https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tar.xz&quot;</span>, <span class="s2">&quot;Installing Python-3.11.0...&quot;</span>, <span class="s2">&quot;&quot;</span>, <span class="s2">&quot;BUILD FAILED (Arch Linux using python-build 20180424)&quot;</span>, <span class="s2">&quot;&quot;</span>, <span class="s2">&quot;Inspect or clean up the working tree at /tmp/python-build.20221116150723.800&quot;</span>, <span class="s2">&quot;Results logged to /tmp/python-build.20221116150723.800.log&quot;</span>, <span class="s2">&quot;&quot;</span>, <span class="s2">&quot;Last 10 log lines:&quot;</span>, <span class="s2">&quot;checking for pkg-config... no&quot;</span>, <span class="s2">&quot;checking for --enable-universalsdk... no&quot;</span>, <span class="s2">&quot;checking for --with-universal-archs... no&quot;</span>, <span class="s2">&quot;checking MACHDEP... \&quot;linux\&quot;&quot;</span>, <span class="s2">&quot;checking for gcc... no&quot;</span>, <span class="s2">&quot;checking for cc... no&quot;</span>, <span class="s2">&quot;checking for cl.exe... no&quot;</span>, <span class="s2">&quot;configure: error: in `/tmp/python-build.20221116150723.800/Python-3.11.0&#39;:&quot;</span>, <span class="s2">&quot;configure: error: no acceptable C compiler found in </span><span class="nv">$PATH</span><span class="s2">&quot;</span>, <span class="s2">&quot;See `config.log&#39; for more details&quot;</span><span class="o">]</span>, <span class="s2">&quot;stdout&quot;</span>: <span class="s2">&quot;&quot;</span>, <span class="s2">&quot;stdout_lines&quot;</span>: <span class="o">[]}</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>TASK <span class="o">[</span>Debug pyenv fail<span class="o">]</span> *******************************************************************
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>ok: <span class="o">[</span>IP ARCH<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">{</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="s2">&quot;msg&quot;</span>: <span class="o">[</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        <span class="s2">&quot;Downloading Python-3.11.0.tar.xz...&quot;</span>,
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>        <span class="s2">&quot;-&gt; https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tar.xz&quot;</span>,
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>        <span class="s2">&quot;Installing Python-3.11.0...&quot;</span>,
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>        <span class="s2">&quot;&quot;</span>,
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>        <span class="s2">&quot;BUILD FAILED (Arch Linux using python-build 20180424)&quot;</span>,
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>        <span class="s2">&quot;&quot;</span>,
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>        <span class="s2">&quot;Inspect or clean up the working tree at /tmp/python-build.20221116150723.800&quot;</span>,
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>        <span class="s2">&quot;Results logged to /tmp/python-build.20221116150723.800.log&quot;</span>,
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>        <span class="s2">&quot;&quot;</span>,
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>        <span class="s2">&quot;Last 10 log lines:&quot;</span>,
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>        <span class="s2">&quot;checking for pkg-config... no&quot;</span>,
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>        <span class="s2">&quot;checking for --enable-universalsdk... no&quot;</span>,
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>        <span class="s2">&quot;checking for --with-universal-archs... no&quot;</span>,
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>        <span class="s2">&quot;checking MACHDEP... \&quot;linux\&quot;&quot;</span>,
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>        <span class="s2">&quot;checking for gcc... no&quot;</span>,
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>        <span class="s2">&quot;checking for cc... no&quot;</span>,
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>        <span class="s2">&quot;checking for cl.exe... no&quot;</span>,
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>        <span class="s2">&quot;configure: error: in `/tmp/python-build.20221116150723.800/Python-3.11.0&#39;:&quot;</span>,
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>        <span class="s2">&quot;configure: error: no acceptable C compiler found in </span><span class="nv">$PATH</span><span class="s2">&quot;</span>,
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>        <span class="s2">&quot;See `config.log&#39; for more details&quot;</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>    <span class="o">]</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="o">}</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>ok: <span class="o">[</span>IP UBUNTU<span class="o">]</span> <span class="o">=</span>&gt; <span class="o">{</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>    <span class="s2">&quot;msg&quot;</span>: <span class="o">[</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>        <span class="s2">&quot;/bin/sh: 1: pyenv: not found&quot;</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>    <span class="o">]</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="o">}</span>
+</code></pre></div>
+<p>Com isso, conseguimos escapar do erro grande da task <code>install python3.11</code> e ficamos com um erro fácil de ser lido na task <code>Debug pyenv fail</code>.</p>
+<p>Conseguimos ver que temos dois erros diferentes. No Ubuntu não foi encontrado o executável de pyenv e no arch não deu certo pois não existe um compilador para que o python 3.11 seja compilado.</p>
+<h2 id="agrupamento-de-tasks">Agrupamento de tasks</h2>
+<p>TODO</p>
 
 
 
@@ -387,6 +662,21 @@
           </div>
         </a>
       
+      
+        
+        <a href="../07_ansible_galaxy/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Ansible Galaxy" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              Ansible Galaxy
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
       
     </nav>
   

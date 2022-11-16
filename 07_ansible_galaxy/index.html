@@ -13,7 +13,7 @@
     
     
       
-        <title>Configuração do ambiente - Anbsible lab</title>
+        <title>Ansible Galaxy - Anbsible lab</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#configuracao-do-ambiente" class="md-skip">
+        <a href="#ansible-galaxy" class="md-skip">
           Ir para o conteúdo
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Configuração do ambiente
+              Ansible Galaxy
             
           </span>
         </div>
@@ -200,59 +200,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Configuração do ambiente
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../01_configuracao_do_ambiente/" class="md-nav__link">
         Configuração do ambiente
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Índice">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Índice
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#instalacao-do-virtualbox" class="md-nav__link">
-    Instalação do virtualbox
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#instalacao-do-vagrant" class="md-nav__link">
-    Instalação do vagrant
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -338,11 +290,66 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../07_ansible_galaxy/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Ansible Galaxy
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Ansible Galaxy
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#instalando-um-modulo" class="md-nav__link">
+    Instalando um módulo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usando-o-modulo" class="md-nav__link">
+    Usando o módulo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements-de-modulos" class="md-nav__link">
+    requirements de módulos
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -389,15 +396,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#instalacao-do-virtualbox" class="md-nav__link">
-    Instalação do virtualbox
+  <a href="#instalando-um-modulo" class="md-nav__link">
+    Instalando um módulo
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#instalacao-do-vagrant" class="md-nav__link">
-    Instalação do vagrant
+  <a href="#usando-o-modulo" class="md-nav__link">
+    Usando o módulo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements-de-modulos" class="md-nav__link">
+    requirements de módulos
   </a>
   
 </li>
@@ -416,33 +430,36 @@
                 
                   
 
-  <a href="https://github.com/dunossauro/ansible-lab/tree/main/docs/01_configuracao_do_ambiente.md" title="Editar esta página" class="md-content__button md-icon">
+  <a href="https://github.com/dunossauro/ansible-lab/tree/main/docs/07_ansible_galaxy.md" title="Editar esta página" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="configuracao-do-ambiente">Configuração do ambiente</h1>
-<p>A minha ideia principal com esse tutorial é não depender de nenhum serviço de nuvem. Nem todas as pessoas podem pagar ou tem cartão de crédito para poder inserir mesmo nos planos gratuitos.</p>
-<p>Para não depender de serviços externos, vamos usar máquinas virtuais com <a href="https://www.virtualbox.org/">virtualbox</a> e vamos configurá-las usando <a href="https://www.vagrantup.com/">Vagrant</a>.</p>
-<p>Logo, a primeira coisa que precisamos fazer é configurar o nosso host para instalação das máquinas virtuais. Para isso, precisamos instalar o <code>virtualbox</code> e o <code>vagrant</code>.</p>
-<h2 id="instalacao-do-virtualbox">Instalação do virtualbox</h2>
-<p><a href="https://www.virtualbox.org/">Virtualbox</a> é um software para criação de máquinas virtuais. E ele pode ser instalado em qualquer plataforma comum do mercado. Como Windows, Linux e MacOS.</p>
+<h1 id="ansible-galaxy">Ansible Galaxy</h1>
+<p>Como vimos o nome Ansible vem da história do <code>mundo de Rocannon</code> na história de Ursula K. Le Guin. Rocannon é um antropólogo que precisa se comunicar com outros planetas usando o Ansible.</p>
+<p>O Ansible Galaxy é uma forma de compartilhar receitas com outras pessoas usando Ansible. Você pode acessar o Galaxy nesse <a href="https://galaxy.ansible.com/">link</a></p>
+<p><img alt="" src="../images/galaxy.png" /></p>
+<p>Existem diversas receitas e módulos prontos e feitos pela comunidade que podemos explorar e instalar em nosso nó controlador para automatizar tarefas de forma mais eficiente.</p>
+<h2 id="instalando-um-modulo">Instalando um módulo</h2>
+<p>Uma coisa que gosto bastante no meu ambiente pessoal é de instalar diversas versões do python. Isso me ajuda a trabalhar melhor e testar código em diversas versões do python. O Ansible, porém, não conta com um módulo nativo para lidar como o <a href="https://github.com/pyenv/pyenv">pyenv</a> que é um instalador de versões do python.</p>
+<p>Para isso, podemos contar com o Galaxy. Uma pessoa da comunidade criou um pacote para gerenciar o <a href="https://galaxy.ansible.com/staticdev/pyenv">pyenv</a>.</p>
+<p>Para instalar esse módulo temos que o usar o comando <code>ansible-galaxy</code>:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ansible-galaxy install staticdev.pyenv
+</code></pre></div>
 <blockquote>
-<p>Caso você use o windows, as instalações podem ser feitas via <a href="https://chocolatey.org/install#individual">chocolatey</a></p>
+<p><code>staticdev</code> é o nome do perfil da pessoa que criou o pacote para o galaxy</p>
 </blockquote>
-<p>Você pode fazer o <a href="https://www.virtualbox.org/wiki/Downloads">download</a> e instalar ou instalar usando o seu gerenciador de pacotes usando seu terminal preferido:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>paru -S virtualbox                <span class="c1"># Arch</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>choco install virtualbox          <span class="c1"># Windows</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo apt-get install virtualbox   <span class="c1"># Ubuntu</span>
+<div class="highlight"><span class="filename">Resposta do terminal</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Starting galaxy role install process
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>- downloading role <span class="s1">&#39;pyenv&#39;</span>, owned by staticdev
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>- downloading role from https://github.com/staticdev/ansible-role-pyenv/archive/2.6.2.tar.gz
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>- extracting staticdev.pyenv to /home/vagrant/.ansible/roles/staticdev.pyenv
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>- staticdev.pyenv <span class="o">(</span><span class="m">2</span>.6.2<span class="o">)</span> was installed successfully
 </code></pre></div>
-<h2 id="instalacao-do-vagrant">Instalação do vagrant</h2>
-<p><a href="https://www.vagrantup.com/">Vagrant</a> é um software de código aberto, escrito em <a href="https://www.ruby-lang.org/pt/">Ruby</a> para construir ambientes de desenvolvimento usando um arquivo de configuração. Que pode ser reproduzido por qualquer pessoa que tenha acesso ao arquivo.</p>
-<p>Abra seu terminal preferido e faça a instalação:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>paru -S vagrant           <span class="c1"># Arch</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>choco install vagrant     <span class="c1"># Windows</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo apt install vagrant  <span class="c1"># Ubuntu</span>
-</code></pre></div>
+<h2 id="usando-o-modulo">Usando o módulo</h2>
+<p>TODO</p>
+<h2 id="requirements-de-modulos">requirements de módulos</h2>
+<p>TODO</p>
 
 
 
@@ -465,7 +482,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
       
         
-        <a href="../00_jaba/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Jabá" rel="prev">
+        <a href="../06_tasks/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Tasks" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -474,20 +491,20 @@
               <span class="md-footer__direction">
                 Anterior
               </span>
-              Jabá
+              Tasks
             </div>
           </div>
         </a>
       
       
         
-        <a href="../02_o_basico_necessario_sobre_vagrant/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Básico necessário sobre Vagrant" rel="next">
+        <a href="../referencias/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Referencias" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Próximo
               </span>
-              Básico necessário sobre Vagrant
+              Referencias
             </div>
           </div>
           <div class="md-footer__button md-icon">
