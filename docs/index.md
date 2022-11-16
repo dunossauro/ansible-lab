@@ -1,6 +1,6 @@
 # Tutorial introdutório de Ansible :snake:
 
-[:fontawesome-brands-youtube: Vídeo](https://www.youtube.com/embed/u31qwQUeGuM){ .md-button }
+[:fontawesome-brands-youtube: Vídeo](https://youtu.be/Rf1GDT8wiFU){ .md-button }
 [:fontawesome-solid-code: Repositório](https://github.com/dunossauro/ansible-lab){ .md-button }
 
 O objetivo desse repositório é ajudar você a construir um laboratório para aprender o básico sobre Ansible.
@@ -9,7 +9,7 @@ Ele foi criado para uma [Live de Python](https://www.youtube.com/c/Dunossauro) n
 
 Caso prefira a versão em vídeo, pode assistir por aqui:
 
-![type:video](https://www.youtube.com/embed/u31qwQUeGuM)
+![type:video](https://www.youtube.com/embed/Rf1GDT8wiFU)
 
 ## Nosso roteiro
 - [00 - Jabá](/00_jaba)
