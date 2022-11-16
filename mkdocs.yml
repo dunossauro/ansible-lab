@@ -48,3 +48,6 @@ extra:
       link: https://instagram.com/dunossauro
     - icon: fontawesome/brands/tiktok
       link: https://www.tiktok.com/@dunossauro
+
+plugins:
+  - mkdocs-video

@@ -1,6 +1,11 @@
 # Configuração do ambiente
 
-A primeira coisa que precisamos fazer é configurar o nosso host para instalação das máquinas virtuais. Para isso, precisamos instalar o `virtualbox` e o `vagrant`.
+A minha ideia principal com esse tutorial é não depender de nenhum serviço de nuvem. Nem todas as pessoas podem pagar ou tem cartão de crédito para poder inserir mesmo nos planos gratuitos.
+
+Para não depender de serviços externos, vamos usar máquinas virtuais com [virtualbox](https://www.virtualbox.org/) e vamos configurá-las usando [Vagrant](https://www.vagrantup.com/).
+
+
+Logo, a primeira coisa que precisamos fazer é configurar o nosso host para instalação das máquinas virtuais. Para isso, precisamos instalar o `virtualbox` e o `vagrant`.
 
 
 ## Instalação do virtualbox
