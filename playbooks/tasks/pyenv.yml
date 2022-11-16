@@ -1,0 +1,13 @@
+- name: Clone Pyenv
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    dest: ~/.pyenv
+
+- name: Config pyenv
+  blockinfile:
+    dest: ~/.bashrc
+    block: |
+      echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+      echo 'eval "$(pyenv init -)"' >>~/.bashrc
+      echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+      echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc

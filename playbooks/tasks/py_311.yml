@@ -1,0 +1,9 @@
+- block:
+  - name: install python3.11
+    shell: ~/.pyenv/bin/pyenv install -s 3.11:latest
+    register: pyenv_result
+  rescue:
+    - name: Debug pyenv fail
+      debug:
+        msg: "{{pyenv_result.stderr.split('\n') }}"
+      when: pyenv_result.failed

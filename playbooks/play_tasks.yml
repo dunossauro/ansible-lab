@@ -1,14 +1,16 @@
 ---
-- name: Instalar nginx
-  become: yes
+- name: Configura o ambiente de desenvolvimento
   hosts: linux
   gather_facts: true
 
-  tasks:
-    - name: Install and start NGINX
-      become: true
-      import_tasks: tasks/nginx.yml
 
-    - name: Dev env
+  tasks:
+    - name: Dependências de desenvolvimento
       become: true
-      import_tasks: tasks/dev.yml
+      import_tasks: tasks/dev_env.yml
+
+    - name: Pyenv install
+      import_tasks: tasks/pyenv.yml
+
+    - name: Install python 3.11
+      import_tasks: tasks/py_311.yml

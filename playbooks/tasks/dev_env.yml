@@ -1,0 +1,41 @@
+- name: Install git
+  become: yes
+  package:
+    name: git
+    state: present
+
+- name: Install build dependencies (ubuntu)
+  when: ansible_distribution == 'Ubuntu'
+  become: yes
+  apt:
+    update_cache: yes
+    pkg:
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - llvm
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libxml2-dev
+      - libxmlsec1-dev
+      - libffi-dev
+      - liblzma-dev
+
+- name: Install build dependencies (arch)
+  when: ansible_distribution == 'Archlinux'
+  become: yes
+  pacman:
+    update_cache: yes
+    name:
+      - base-devel
+      - openssl
+      - zlib
+      - xz
+      - tk

@@ -226,7 +226,152 @@ Aproveitando que vamos fazer tasks condicionais. Vou aproveitar para usar os ger
 
 > Por contar com a instalação de muitos pacotes, pode demorar um pouco
 
+Você pode checar o arquivo todo [aqui](https://github.com/dunossauro/ansible-lab/blob/main/playbooks/config_python.yml)
+
+
+```
+TASK [Install build dependencies (ubuntu)] ************************************************
+skipping: [IP ARCH]
+changed: [IP UBUNTU]
+
+TASK [Install build dependencies (arch)] **************************************************
+skipping: [IP UBUNTU]
+changed: [IP ARCH]
+
+TASK [install python3.11] *****************************************************************
+fatal: [IP ARCH]: FAILED! => {"changed": true, "cmd": "~/.pyenv/bin/pyenv install -s 3.11:latest", "delta": "0:00:03.715686", "end": "2022-11-16 16:39:52.892123", "msg": "non-zero return code", "rc": 1, "start": "2022-11-16 16:39:49.176437", "stderr": "Downloading Python-3.11.0.tar.xz...\n-> https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tar.xz\n/home/vagrant/.pyenv/plugins/python-build/bin/python-build: line 245: pushd: write error: No space left on device\nInstalling Python-3.11.0...\n\nBUILD FAILED (Arch Linux using python-build 2.3.6-13-g4c261e6e)\n\nInspect or clean up the working tree at /tmp/python-build.20221116163949.4095\nResults logged to /tmp/python-build.20221116163949.4095.log\n\nLast 10 log lines:\ntar: Python-3.11.0/Lib/test/test___future__.py: Cannot write: No space left on device\ntar: Python-3.11.0/Lib/test/test_genericpath.py: Cannot write: No space left on device\ntar: Python-3.11.0/Lib/test/ssltests.py: Cannot write: No space left on device\ntar: Python-3.11.0/Lib/test/test_random.py: Cannot write: No space left on device\ntar: Python-3.11.0/Lib/test/test_signal.py: Cannot write: No space left on device\ntar: Python-3.11.0/Lib/test/bisect_cmd.py: Cannot write: No space left on device\ntar: Python-3.11.0/Lib/test/test_sysconfig.py: Cannot write: No space left on device\ntar: Python-3.11.0/Lib/test/bad_coding2.py: Cannot write: No space left on device\ntar: Python-3.11.0/Lib/test/test_codecmaps_kr.py: Cannot write: No space left on device\ntar: Pyt", "stderr_lines": ["Downloading Python-3.11.0.tar.xz...", "-> https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tar.xz", "/home/vagrant/.pyenv/plugins/python-build/bin/python-build: line 245: pushd: write error: No space left on device", "Installing Python-3.11.0...", "", "BUILD FAILED (Arch Linux using python-build 2.3.6-13-g4c261e6e)", "", "Inspect or clean up the working tree at /tmp/python-build.20221116163949.4095", "Results logged to /tmp/python-build.20221116163949.4095.log", "", "Last 10 log lines:", "tar: Python-3.11.0/Lib/test/test___future__.py: Cannot write: No space left on device", "tar: Python-3.11.0/Lib/test/test_genericpath.py: Cannot write: No space left on device", "tar: Python-3.11.0/Lib/test/ssltests.py: Cannot write: No space left on device", "tar: Python-3.11.0/Lib/test/test_random.py: Cannot write: No space left on device", "tar: Python-3.11.0/Lib/test/test_signal.py: Cannot write: No space left on device", "tar: Python-3.11.0/Lib/test/bisect_cmd.py: Cannot write: No space left on device", "tar: Python-3.11.0/Lib/test/test_sysconfig.py: Cannot write: No space left on device", "tar: Python-3.11.0/Lib/test/bad_coding2.py: Cannot write: No space left on device", "tar: Python-3.11.0/Lib/test/test_codecmaps_kr.py: Cannot write: No space left on device", "tar: Pyt"], "stdout": "", "stdout_lines": []}
+changed: [IP UBUNTU]
+
+TASK [Debug pyenv fail] *******************************************************************
+ok: [IP ARCH] => {
+    "msg": [
+        "Downloading Python-3.11.0.tar.xz...",
+        "-> https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tar.xz",
+        "/home/vagrant/.pyenv/plugins/python-build/bin/python-build: line 245: pushd: write error: No space left on device",
+        "Installing Python-3.11.0...",
+        "",
+        "BUILD FAILED (Arch Linux using python-build 2.3.6-13-g4c261e6e)",
+        "",
+        "Inspect or clean up the working tree at /tmp/python-build.20221116163949.4095",
+        "Results logged to /tmp/python-build.20221116163949.4095.log",
+        "",
+        "Last 10 log lines:",
+        "tar: Python-3.11.0/Lib/test/test___future__.py: Cannot write: No space left on device",
+        "tar: Python-3.11.0/Lib/test/test_genericpath.py: Cannot write: No space left on device",
+        "tar: Python-3.11.0/Lib/test/ssltests.py: Cannot write: No space left on device",
+        "tar: Python-3.11.0/Lib/test/test_random.py: Cannot write: No space left on device",
+        "tar: Python-3.11.0/Lib/test/test_signal.py: Cannot write: No space left on device",
+        "tar: Python-3.11.0/Lib/test/bisect_cmd.py: Cannot write: No space left on device",
+        "tar: Python-3.11.0/Lib/test/test_sysconfig.py: Cannot write: No space left on device",
+        "tar: Python-3.11.0/Lib/test/bad_coding2.py: Cannot write: No space left on device",
+        "tar: Python-3.11.0/Lib/test/test_codecmaps_kr.py: Cannot write: No space left on device",
+        "tar: Pyt"
+    ]
+}
+```
+
+Temos um erro por não ter espaço em disco para compilar o 3.11 no arch. Para resolver essa questão [clique aqui]()
 
 ## Agrupamento de tasks
 
-TODO
+Agora que fizemos muitas tasks para uma instalação relativamente simples. Uma coisa que podemos fazer para organizar tudo é dividir as tasks em arquivos menores e usar o módulo [import_task](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/import_tasks_module.html).
+
+Assim podemos quebrar nosso arquivão para a configuração do pyenv em arquivos bem menores. Vamos criar um novo playbook chamado `play_tasks.yaml` e separar por blocos:
+
+```yaml title="play_tasks.yaml"
+---
+- name: Configura o ambiente de desenvolvimento
+  hosts: linux
+  gather_facts: true
+
+	- name: Dependências de desenvolvimento
+      become: true
+      import_tasks: tasks/dev_env.yml
+
+    - name: Pyenv install
+      import_tasks: tasks/pyenv.yml
+
+	- name: Install python 3.11
+      import_tasks: tasks/py_311.yml
+```
+
+E com isso podemos quebrar nosso grande playbook em arquivos de task:
+
+> Para ver [todos os arquivos](https://github.com/dunossauro/ansible-lab/tree/main/playbooks/tasks)
+
+=== "tasks/dev_env.yml"
+	```yaml
+	- name: Install git
+      become: yes
+	  package:
+		name: git
+	  state: present
+
+	- name: Install build dependencies (ubuntu)
+      when: ansible_distribution == 'Ubuntu'
+      become: yes
+	  apt:
+        update_cache: yes
+        pkg:
+          - make
+          - build-essential
+		  - libssl-dev
+		  - zlib1g-dev
+		  - libbz2-dev
+		  - libreadline-dev
+		  - libsqlite3-dev
+		  - wget
+		  - curl
+		  - llvm
+		  - libncursesw5-dev
+		  - xz-utils
+		  - tk-dev
+		  - libxml2-dev
+		  - libxmlsec1-dev
+		  - libffi-dev
+		  - liblzma-dev
+
+	- name: Install build dependencies (arch)
+      when: ansible_distribution == 'Archlinux'
+	  become: yes
+	  pacman:
+        update_cache: yes
+		name:
+		  - base-devel
+		  - openssl
+		  - zlib
+		  - xz
+		  - tk
+	```
+
+=== "tasks/pyenv.yml"
+	```yaml
+	- name: Clone Pyenv
+      git:
+        repo: https://github.com/pyenv/pyenv.git
+        dest: ~/.pyenv
+
+    - name: Config pyenv
+      blockinfile:
+        dest: ~/.bashrc
+        block: |
+          echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+          echo 'eval "$(pyenv init -)"' >>~/.bashrc
+		  echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+		  echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+	```
+
+=== "tasks/py_311.yml"
+	```yaml
+	- block:
+	  - name: install python3.11
+		shell: ~/.pyenv/bin/pyenv install -s 3.11:latest
+		register: pyenv_result
+	rescue:
+	  - name: Debug pyenv fail
+	    debug:
+		  msg: "{{pyenv_result.stderr.split('\n') }}"
+        when: pyenv_result.failed
+	```
+
+E com isso temos um entendimento um pouco mais profundo de como lidar com tasks.
