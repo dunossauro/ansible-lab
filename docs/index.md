@@ -12,7 +12,7 @@ Caso prefira a versão em vídeo, pode assistir por aqui:
 ![type:video](https://www.youtube.com/embed/u31qwQUeGuM)
 
 ## Nosso roteiro
-- [00 - Jaba](/00_jaba)
+- [00 - Jabá](/00_jaba)
 - [01 - Configuração do ambiente](/01_configuracao_do_ambiente)
 - [02 - O básico necessário sobre Vagrant](/02_o_basico_necessario_sobre_vagrant)
 - [03 - Ansible básico](/03_ansible_basico)

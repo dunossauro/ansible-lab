@@ -47,7 +47,7 @@ Para que isso ocorra na nuvem, por exemplo, alguém deve ter provisionado um sis
 
 Agora que temos duas máquinas virtuais criadas. Podemos começar a instalação do ansible. A primeira coisa que devemos fazer é acessar a máquina controladora. Para isso podemos usar o `vagrant` para nos ajudar:
 
-```bash
+```bash title="$ Execução no terminal"
 vagrant up main   # Iniciar a máquina controladora
 vagrant ssh main  # Acessar o console da máquina controladora via ssh
 ```
@@ -62,7 +62,7 @@ O ansible tem seus pacotes nos repositórios de quase todas as distribuições l
 
 Formas de instalar em diversos sistemas.
 
-```bash
+```bash title="$ Execução no terminal"
 sudo pacman -S ansible     # Arch
 sudo apt install ansible   # Ubuntu
 sudo dnf ansible           # Familia Redhat
@@ -81,13 +81,13 @@ Caso a senha senha perguntada. A senha padrão criada pelas máquinas virtuais d
 
 Agora podemos rodar o comando para instalar o ansible:
 
-```bash
+```bash title="$ Execução no terminal"
 sudo pacman -S ansible
 ```
 
 Se tudo ocorrer como o esperado, podemos perguntar a versão do ansible ao sistema:
 
-```bash
+```bash title="$ Execução no terminal"
 [vagrant@archlinux ~]$ ansible --version
 ansible [core 2.14.0]
   config file = /etc/ansible/ansible.cfg

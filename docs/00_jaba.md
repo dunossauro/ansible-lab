@@ -1,4 +1,4 @@
-# Jaba
+# Jabá
 
 Como todo início de live que não tem slides eu esqueço de fazer o Jaba. Todo esse projeto só existe porque é financiado por pessoas de bom coração nas companhas de financiamento coletivo.
 
