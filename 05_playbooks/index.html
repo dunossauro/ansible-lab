@@ -362,16 +362,51 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#variaveis" class="md-nav__link">
-    Variáveis
+  <a href="#expressoes-e-variaveis" class="md-nav__link">
+    Expressões e variáveis
   </a>
   
-    <nav class="md-nav" aria-label="Variáveis">
+    <nav class="md-nav" aria-label="Expressões e variáveis">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#uso-de-variaveis" class="md-nav__link">
-    Uso de variáveis
+  <a href="#expressoes" class="md-nav__link">
+    Expressões
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#as-variaveis-no-ansible" class="md-nav__link">
+    As variáveis no ansible
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variaveis-no-playbook" class="md-nav__link">
+    Variáveis no playbook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variaveis-via-linha-de-comando" class="md-nav__link">
+    Variáveis via linha de comando
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivos-de-variaveis" class="md-nav__link">
+    Arquivos de variáveis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivos-de-variaveis-por-grupo" class="md-nav__link">
+    Arquivos de variáveis por grupo
   </a>
   
 </li>
@@ -385,6 +420,21 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_tasks/" class="md-nav__link">
+        Tasks
+      </a>
     </li>
   
 
@@ -464,16 +514,51 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#variaveis" class="md-nav__link">
-    Variáveis
+  <a href="#expressoes-e-variaveis" class="md-nav__link">
+    Expressões e variáveis
   </a>
   
-    <nav class="md-nav" aria-label="Variáveis">
+    <nav class="md-nav" aria-label="Expressões e variáveis">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#uso-de-variaveis" class="md-nav__link">
-    Uso de variáveis
+  <a href="#expressoes" class="md-nav__link">
+    Expressões
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#as-variaveis-no-ansible" class="md-nav__link">
+    As variáveis no ansible
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variaveis-no-playbook" class="md-nav__link">
+    Variáveis no playbook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variaveis-via-linha-de-comando" class="md-nav__link">
+    Variáveis via linha de comando
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivos-de-variaveis" class="md-nav__link">
+    Arquivos de variáveis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquivos-de-variaveis-por-grupo" class="md-nav__link">
+    Arquivos de variáveis por grupo
   </a>
   
 </li>
@@ -644,7 +729,7 @@
 <div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ansible-playbook web_server.yml
 </code></pre></div>
 <p>Você deve ver uma grande resposta como essa:</p>
-<div class="highlight"><span class="filename">resposta do terminal</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ansible-playbook playbooks/web_server.yml
+<div class="highlight"><span class="filename">resposta do terminal</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ansible-playbook web_server.yml
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>PLAY <span class="o">[</span>Instalação <span class="k">do</span> nginx<span class="o">]</span> *****************************************************
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
@@ -832,21 +917,199 @@ O status <code>changed</code> apareceu. Significa que o resultado desse comando 
 </code></pre></div>
 <p>Agora que sabemos que é o Ubuntu Focal, podemos voltar ao repositório. O pacote existe, porém, com outro nome <a href="https://packages.ubuntu.com/focal/python/pipx">pipx</a>.</p>
 <h3 id="a-clausula-when">A clausula <code>when</code></h3>
-<h2 id="variaveis">Variáveis</h2>
-<h3 id="uso-de-variaveis">Uso de variáveis</h3>
-<p>Para isso, podemos trocar o nome do pacote do pipx no playbook para uma variável:</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pipx_httpie.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<p>Como disse, as variáveis do setup podem ser invocadas dentro do playbook. Dessa forma podemos criar validações condicionais no nosso playbook. Vamos criar uma restrição para que a task seja executada somente no arch linux:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pipx_httpie.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
 <span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
 <span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-15-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalação do pipx</span><span class="w"></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="nn">---</span><span class="w"></span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalação do pipx e httpie</span><span class="w"></span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span><span class="w">  </span><span class="c1"># vale lembrar aqui que um dos linux é o arch e o outro o ubuntu</span><span class="w"></span>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalação do pipx <ins class="critic">no Arch</ins></span><span class="w"></span>
 <a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">      </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
 <a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="w">      </span><span class="nt">package</span><span class="p">:</span><span class="w"></span>
-<a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">pipx</span><span class="nv"> </span><span class="s">}}&quot;</span><span class="w"></span>
+<a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python-pipx</span><span class="w"></span>
 <a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span><span class="w"></span>
+<a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="w">      </span><span class="l l-Scalar l-Scalar-Plain"><ins class="critic">when</ins></span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain"><ins class="critic">ansible_distribution == Archlinux&#39;</ins></span><span class="w"></span>
 </code></pre></div></td></tr></table></div>
-<p>E dessa forma podemos invocar o playbook passando uma variável para a chave <code>"{{ pipx }}"</code>:</p>
-<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ansible-playbook playbooks/pipx_httpie.yml --extra-vars <span class="s2">&quot;pipx=pipx&quot;</span>
+<blockquote>
+<p>As linhas destacadas mostra somente as alterações que fizemos no playbook.</p>
+</blockquote>
+<p>Dessa forma, a task <code>Instalação do pipx no Arch</code> só será executada quando a distribuição for <code>Archlinux</code>. Vamos testar:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ansible-playbook pipx_httpie.yml
+</code></pre></div>
+<div class="highlight"><span class="filename">Resultado do shell</span><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>PLAY <span class="o">[</span>Instalação <span class="k">do</span> pipx e httpie<span class="o">]</span> ********************************************************
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>TASK <span class="o">[</span>Gathering Facts<span class="o">]</span> ********************************************************************
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>ok: <span class="o">[</span><span class="m">10</span>.0.2.15<span class="o">]</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>ok: <span class="o">[</span><span class="m">10</span>.0.2.16<span class="o">]</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>TASK <span class="o">[</span>Instalação <span class="k">do</span> pipx no Arch<span class="o">]</span> *********************************************************
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><mark class="critic">skipping: <span class="o">[</span><span class="m">10</span>.0.2.15<span class="o">]</span></mark>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>ok: <span class="o">[</span><span class="m">10</span>.0.2.16<span class="o">]</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>PLAY RECAP ********************************************************************************
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="m">10</span>.0.2.16  : <span class="nv">ok</span><span class="o">=</span><span class="m">2</span>  <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>  <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>  <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>  <span class="nv">skipped</span><span class="o">=</span><span class="m">0</span>  <span class="nv">rescued</span><span class="o">=</span><span class="m">0</span>  <span class="nv">ignored</span><span class="o">=</span><span class="m">0</span> 
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="m">10</span>.0.2.15  : <span class="nv">ok</span><span class="o">=</span><span class="m">1</span>  <span class="nv">changed</span><span class="o">=</span><span class="m">0</span>  <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>  <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>  <mark class="critic">skipped<span class="o">=</span><span class="m">1</span></mark>  <span class="nv">rescued</span><span class="o">=</span><span class="m">0</span>  <span class="nv">ignored</span><span class="o">=</span><span class="m">0</span>
+</code></pre></div>
+<p>Com isso, podemos ver o status <code>skipped</code>. Isso quer dizer que o passo de instalar no arch, quando passou pela instalação no ubuntu "pulou" esse passo. Sabendo disso, podemos criar uma nova task específica para o ubuntu que pule no arch também:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pipx_httpie.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-13">13</a></span>
+<span class="normal"><a href="#__codelineno-18-14">14</a></span>
+<span class="normal"><a href="#__codelineno-18-15">15</a></span>
+<span class="normal"><a href="#__codelineno-18-16">16</a></span>
+<span class="normal"><a href="#__codelineno-18-17">17</a></span>
+<span class="normal"><a href="#__codelineno-18-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-13" name="__codelineno-18-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalação do pipx no Ubuntu</span><span class="w"></span>
+<a id="__codelineno-18-14" name="__codelineno-18-14"></a><span class="w">      </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
+<a id="__codelineno-18-15" name="__codelineno-18-15"></a><span class="w">      </span><span class="nt">package</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-18-16" name="__codelineno-18-16"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pipx</span><span class="w"></span>
+<a id="__codelineno-18-17" name="__codelineno-18-17"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span><span class="w"></span>
+<a id="__codelineno-18-18" name="__codelineno-18-18"></a><span class="w">      </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ansible_distribution == &#39;Ubuntu&#39;</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>Dessa forma, quando executarmos o playbook teremos certeza que a execução vai acontecer nos dois nós. Mesmo que em tasks diferentes.</p>
+<div class="highlight"><span class="filename">$ Execução no terminal e a parte importante do resultado</span><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>ansible-playbook pipx_httpie.yml
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>TASK <span class="o">[</span>Instalação <span class="k">do</span> pipx no Arch<span class="o">]</span> *********************************************************
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>skipping: <span class="o">[</span><span class="m">10</span>.0.2.15<span class="o">]</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>ok: <span class="o">[</span><span class="m">10</span>.0.2.16<span class="o">]</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>TASK <span class="o">[</span>Instalação <span class="k">do</span> pipx no Ubuntu<span class="o">]</span> *******************************************************
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>skipping: <span class="o">[</span><span class="m">10</span>.0.2.16<span class="o">]</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>ok: <span class="o">[</span><span class="m">10</span>.0.2.15<span class="o">]</span>
+</code></pre></div>
+<p>Desta forma não precisamos mais nos preocupar com os pacotes específicos de cada sistema, podemos criar uma task para cada sistema. Em casos extremos isso pode ser necessário. Mas será que não existe uma forma mais simples de resolver esse problema?</p>
+<h2 id="expressoes-e-variaveis">Expressões e variáveis</h2>
+<p>Quando chamamos o setup, vimos que o ansible consegue carregar diversas variáveis durante a execução. Mas será que nesse caso não conseguiríamos criar uma variável nossa? Aí poderíamos validar antes e evitar de escrever duas tasks.</p>
+<h3 id="expressoes">Expressões</h3>
+<p>O Ansible usa um motor de templates chamado <a href="https://palletsprojects.com/p/jinja/">Jinja</a>. O jinja fornece uma forma de chamar expressões de código Python dentro de templates. Assim, quando o ansible executa um playbook ele também avalia e executa as expressões do jinja dentro do código.</p>
+<p>As expressões no jinja são feitas usando duas chaves delimitador <code>{{ minha_expressão }}</code>. E dentre dessa expressão, qualquer código python pode ser inserido. Por exemplo, podemos fazer um <code>if</code> para resolver nosso caso e ter uma única task. Por exemplo:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pipx_httpie.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-20-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-20-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-20-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-20-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-20-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalação do pipx</span><span class="w"></span>
+<a id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="w">      </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
+<a id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="w">      </span><span class="nt">package</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain"><ins class="critic">&quot;{{ &#39;pipx&#39; if ansible_distribution == &#39;Ubuntu&#39; else &#39;python-pipx&#39;}}&quot;</ins></span><span class="w"></span>
+<a id="__codelineno-20-10" name="__codelineno-20-10"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">Nota sobre expressões no Asnbile</p>
+<p>Embora para o jinja somente precise ser usado <code>{{ expressão }}</code>. O Ansible exige que esses blocos estejam também entre aspas. Ficando <code>'{{ expressão }}'</code>.</p>
+</div>
+<p>Desta forma acabamos resolvendo o problema que tínhamos em ter duas tasks para executar a mesma tarefa em sistemas diferentes. Vamos ver o resultado:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal e a parte importante do resultado</span><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>ansible-playbook pipx_httpie.yml
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>TASK <span class="o">[</span>Instalação <span class="k">do</span> pipx no Arch<span class="o">]</span> *********************************************************
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>ok: <span class="o">[</span><span class="m">10</span>.0.2.15<span class="o">]</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>ok: <span class="o">[</span><span class="m">10</span>.0.2.16<span class="o">]</span>
+</code></pre></div>
+<p>Assim podemos ser mais eficientes em criar regras. Já o que template pode estender código python.</p>
+<h3 id="as-variaveis-no-ansible">As variáveis no ansible</h3>
+<p>Da mesma forma que podemos criar expressões complexas no jinja. Também podemos chamar somente variáveis. Por exemplo <code>"{{ variavel }}"</code>. Assim podemos declarar as expressões em um lugar específico do playbook para deixar mais limpo ou passar as mesmas via linha de comando.</p>
+<h3 id="variaveis-no-playbook">Variáveis no playbook</h3>
+<p>Para isso, podemos trocar o nome do pacote do pipx no playbook para uma variável:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pipx_httpie.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-22-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-22-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-22-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-22-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-22-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-22-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-22-10">10</a></span>
+<span class="normal"><a href="#__codelineno-22-11">11</a></span>
+<span class="normal"><a href="#__codelineno-22-12">12</a></span>
+<span class="normal"><a href="#__codelineno-22-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="nn">---</span><span class="w"></span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalação do pipx e httpie</span><span class="w"></span>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span><span class="w"></span>
+<a id="__codelineno-22-4" name="__codelineno-22-4"></a>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain"><ins class="critic">vars</ins></span><span class="p p-Indicator">:</span><span class="w"></span>
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="w">    </span><span class="l l-Scalar l-Scalar-Plain"><ins class="critic">pipx</ins></span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain"><ins class="critic">&quot;{{ &#39;pipx&#39; if ansible_distribution == &#39;Ubuntu&#39; else &#39;python-pipx&#39;}}&quot;</ins></span><span class="w"></span>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a>
+<a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-22-9" name="__codelineno-22-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalação do pipx</span><span class="w"></span>
+<a id="__codelineno-22-10" name="__codelineno-22-10"></a><span class="w">      </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
+<a id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="w">      </span><span class="nt">package</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-22-12" name="__codelineno-22-12"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain"><ins class="critic">&#39;{{ pipx }}&#39;</ins></span><span class="w"></span>
+<a id="__codelineno-22-13" name="__codelineno-22-13"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>Assim temos um playbook mais limpo. Pois todo o código complicado do jinja fica em um lugar específico e no topo do arquivo para ficar fácil a consulta.</p>
+<blockquote>
+<p>Não vou executar esse playbook agora, pois teremos o mesmo resultado da execução anterior.</p>
+</blockquote>
+<h3 id="variaveis-via-linha-de-comando">Variáveis via linha de comando</h3>
+<p>Outra funcionalidade importante do ansible é conseguir sobrescrever as variáveis de um playbook usando a linha de comando como base. Chamar via linha de comando tem uma ordem de precedência maior que as variáveis definidas no playbook. Então, quando o ansible for chamado as variáveis definidas no campo <code>vars</code> serão substituídas pelas variáveis que forem passadas na linha de comando:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal e a parte importante do resultado</span><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>ansible-playbook pipx_httpie.yml --extra-vars <span class="s2">&quot;pipx=pipx&quot;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>TASK <span class="o">[</span>Instalação <span class="k">do</span> pipx<span class="o">]</span> *****************************************************************
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>ok: <span class="o">[</span><span class="m">10</span>.0.2.15<span class="o">]</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>fatal: <span class="o">[</span><span class="m">10</span>.0.2.16<span class="o">]</span>: FAILED! <span class="o">=</span>&gt; <mark class="critic"><span class="o">{</span><span class="s2">&quot;changed&quot;</span>: false, <span class="s2">&quot;cmd&quot;</span>: <span class="o">[</span><span class="s2">&quot;/usr/bin/pacman&quot;</span>, <span class="s2">&quot;--upgrade&quot;</span>, <span class="s2">&quot;--print-format&quot;</span>, <span class="s2">&quot;%n&quot;</span>, <span class="s2">&quot;pipx&quot;</span><span class="o">]</span>, <span class="s2">&quot;msg&quot;</span>: <span class="s2">&quot;Failed to list package pipx&quot;</span>, <span class="s2">&quot;rc&quot;</span>: <span class="m">1</span>, <span class="s2">&quot;stderr&quot;</span>: <span class="s2">&quot;error: &#39;pipx&#39;: could not find or read package\n&quot;</span>, <span class="s2">&quot;stderr_lines&quot;</span>: <span class="o">[</span><span class="s2">&quot;error: &#39;pipx&#39;: could not find or read package&quot;</span><span class="o">]</span>, <span class="s2">&quot;stdout&quot;</span>: <span class="s2">&quot;loading packages...\n&quot;</span>, <span class="s2">&quot;stdout_lines&quot;</span>: <span class="o">[</span><span class="s2">&quot;loading packages...&quot;</span><span class="o">]}</span></mark>
+</code></pre></div>
+<p>Como era de se esperar, o pacote <code>pipx</code> não existe no arch, seu nome é <code>python-pipx</code> por conta disso, o comando não foi executado com sucesso. Nosso objetivo, porém, era explorar a chamada de variáveis via linha de comando.</p>
+<h3 id="arquivos-de-variaveis">Arquivos de variáveis</h3>
+<p>Uma forma de evitar expressões do jinja e também chamar variáveis por linha de comando é criar um arquivo só para as variáveis. Dessa forma, caso tenha alguma variável que não possa ser exposta, como endereço de um banco de dados. Esse valores ficam de fora da configuração.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">variaveis.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="nn">---</span><span class="w"></span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="nt">pipx</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">&#39;pipx&#39;</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">ansible_distribution</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">&#39;Ubuntu&#39;</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="s">&#39;python-pipx&#39;}}&quot;</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>Dessa forma podemos limpar o nosso arquivo <code>pipx_httpie.yml</code>:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pipx_httpie.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-25-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-25-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-25-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-25-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-25-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-25-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-25-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-25-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-25-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="nn">---</span><span class="w"></span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalação do pipx e httpie</span><span class="w"></span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span><span class="w"></span>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalação do pipx</span><span class="w"></span>
+<a id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="w">      </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
+<a id="__codelineno-25-8" name="__codelineno-25-8"></a><span class="w">      </span><span class="nt">package</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-25-9" name="__codelineno-25-9"></a><span class="hll"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;{{</span><span class="nv"> </span><span class="s">pipx</span><span class="nv"> </span><span class="s">}}&#39;</span><span class="w"></span>
+</span><a id="__codelineno-25-10" name="__codelineno-25-10"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>E quando formos executar o playbook, só precisamos passar o arquivo de configuração para as variáveis:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal e a parte importante do resultado</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>ansible-playbook pipx_httpie.yml -e @variaveis.yml
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>TASK <span class="o">[</span>Instalação <span class="k">do</span> pipx<span class="o">]</span> *****************************************************************
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>ok: <span class="o">[</span><span class="m">10</span>.0.2.15<span class="o">]</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>ok: <span class="o">[</span><span class="m">10</span>.0.2.16<span class="o">]</span>
+</code></pre></div>
+<p>Assim demos uma limpada no nosso arquivo de playbook e claro, podemos definir diversas outras variáveis no arquivo. Mas, você pode tentar depois <img alt="❤" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2764.svg" title=":heart:" /></p>
+<h3 id="arquivos-de-variaveis-por-grupo">Arquivos de variáveis por grupo</h3>
+<p>Uma outra coisa que pode facilitar na hora de usar as variáveis é criar variáveis específicas para grupos. O ansible tem um caminho específico para onde esses arquivos de variáveis devem ser colocados: <code>/etc/ansible/group_vars/</code>.</p>
+<p>Para resolver isso, vamos criar um grupo de variáveis para o ubuntu:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">/etc/ansible/group_vars/ubuntu.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
+<span class="normal"><a href="#__codelineno-27-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="nn">---</span><span class="w"></span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="nt">pipx</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pipx</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>e um arquivo para o arch:
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">/etc/ansible/group_vars/arch.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="nn">---</span><span class="w"></span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="nt">pipx</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python-pipx</span><span class="w"></span>
+</code></pre></div></td></tr></table></div></p>
+<p>Dessa forma, quando formos executar o playbook não precisamos mais especificar as variáveis comuns. Cada sistema tem sua versão de <code>pipx</code> de acordo com os grupos do inventário:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal e a parte importante do resultado</span><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>ansible-playbook pipx_httpie.yml
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>TASK <span class="o">[</span>Instalação <span class="k">do</span> pipx<span class="o">]</span> *****************************************************************
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>ok: <span class="o">[</span><span class="m">10</span>.0.2.15<span class="o">]</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>ok: <span class="o">[</span><span class="m">10</span>.0.2.16<span class="o">]</span>
 </code></pre></div>
 
 
@@ -884,6 +1147,21 @@ O status <code>changed</code> apareceu. Significa que o resultado desse comando 
           </div>
         </a>
       
+      
+        
+        <a href="../06_tasks/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Tasks" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              Tasks
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
