@@ -58,7 +58,10 @@ Agora que temos a role do pyenv podemos incorporar ela em nossos playbooks. Vamo
 
 ### Role vs Task vs Collection!
 
-TODO!
+- Task: Tasks são implemente tarefas, já vimos muitas por hoje
+- Role: Roles podem conter diversas tasks, arquivos, variáveis próprias e diversos outros artefatos
+- Collection: Coleções podem conter playbooks, roles, módulos e plugins
+
 
 ## requirements de Collections e Rules
 
@@ -75,13 +78,13 @@ roles:
 
 Agora com esse arquivo podemos instalar todas as collections de uma vez:
 
-```bash tile="$ Execução no terminal"
+```bash title="$ Execução no terminal"
 ansible-galaxy collection install -r requirements.yml
 ```
 
 E também podemos instalar todas as roles de uma vez só:
 
-```bash tile="$ Execução no terminal"
+```bash title="$ Execução no terminal"
 ansible-galaxy role install -r requirements.yml
 ```
 
