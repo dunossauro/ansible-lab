@@ -1,42 +1,45 @@
 ---
-- name: Configuração do app python
-  hosts: test
+- name: Configuração do ambiente python
+  hosts: linux
 
   tasks:
-    - name: install pyenv
+    - name: install pyenv (Arch)
       become: yes
-      become_method: sudo
       package:
         state: present
         name: pyenv
+      when: ansible_distribution == 'Archlinux'
+
+    - name: Clone Pyenv (Ubuntu)
+      git:
+        repo: https://github.com/pyenv/pyenv.git
+        dest: ~/.pyenv
+      when: ansible_distribution == 'Ubuntu'
 
     - name: config pyenv
       blockinfile:
         dest: ~/.bashrc
-        block: |-
+        block: |
           echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
           echo 'eval "$(pyenv init -)"' >>~/.bashrc
           echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
           echo 'PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 
-    - name: install pipx
-      become: yes
-      become_method: sudo
-      package:
-        state: present
-        name: python-pipx
+    - name: Show bashrc
+      shell: cat ~/.bashrc
+      register: bashrc
 
-    - name: install python3.10
-      shell: pyenv install -s 3.10:latest
+    - name: Checking bashrc
+      debug:
+        msg: "{{ bashrc.stdout.split('\n') }}"
 
-    - name: install python3.11
-      shell: pyenv install -s 3.11:latest
+    - block:
+        - name: install python3.11
+          shell: pyenv install -s 3.11:latest
+          register: pyenv_result
+      rescue:
+        - name: Debug pyenv fail
+          debug:
+            msg: "{{pyenv_result.stderr.split('\n') }}"
+          when: pyenv_result.failed
 
-    - name: set pyenv
-      shell: pyenv global 3.11
-
-    - name: install poetry
-      shell: pipx install poetry
-
-    - name: install httpie
-      shell: pipx install httpie
