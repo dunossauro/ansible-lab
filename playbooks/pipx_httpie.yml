@@ -1,0 +1,18 @@
+---
+- name: Instalação do pipx e httpie
+  hosts: linux  # vale lembrar aqui que um dos linux é o arch e o outro o ubuntu
+  
+  tasks:
+    - name: Instalação do pipx no Ubuntu
+      become: yes
+      package:
+        name: pipx
+        state: present
+      when: ansible_distribution == 'Ubuntu'
+
+    - name: Instalação do pipx no Arch
+      become: yes
+      package:
+        name: pipx
+        state: present
+      when: ansible_distribution == 'Archlinux'

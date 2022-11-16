@@ -188,3 +188,121 @@ O status `changed` apareceu. Significa que o resultado desse comando foi diferen
 Provavelmente a resposta do ansible foi diferente pois o clone não foi feito, o diretório já existia e o move também já tinha sido feito antes.
 
 ## Condicionais
+
+Vamos recapitular mais uma coisa que já instalamos no nosso ambiente. O `pipx` e o `httpie`. Não são pacotes tão relevantes para o andamento do tutorial, mas precisamos aprender coisas legais com ansible antes de fazer coisas realmente úteis.
+
+O pacote do `pipx` existe no repositório do `archlinux` como já vimos. O pacote se chama `python-pipx`. Vamos iniciar um playbook para essa instalação e ver os problemas que vamos encontrar no caminho:
+
+```yaml title="pipx_httpie.yml" linenums="1"
+---
+- name: Instalação do pipx e httpie
+  hosts: linux  # vale lembrar aqui que um dos linux é o arch e o outro o ubuntu
+
+  tasks:
+    - name: Instalação do pipx
+      become: yes
+      package:
+        name: python-pipx
+        state: present
+```
+
+Vamos executar para ver o que conseguimos com isso:
+
+```bash title="$ Execução no terminal"
+ansible-playbook pipx_httpie.yml
+```
+
+Obteremos a seguinte resposta:
+
+```
+PLAY [Instalação do pipx e httpie] *********************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [10.0.2.15]
+ok: [10.0.2.16]
+
+TASK [Instalação do pipx] ******************************************************
+{==fatal: [10.0.2.15]: FAILED! => {"changed": false, "msg": "No package matching 'python-pipx' is available"}==}
+changed: [10.0.2.16]
+
+PLAY RECAP *********************************************************************
+10.0.2.15  : ok=1  changed=0  unreachable=0  failed=1  skipped=0  rescued=0  ignored=0
+10.0.2.16  : ok=2  changed=1  unreachable=0  failed=0  skipped=0  rescued=0  ignored=0
+```
+
+Repare na linha destacada. A máquina associada ao ip `10.2.2.15` não tem um pacote no repositório chamado `python-pipx`. Esse foi o motivo da falha. O pacote existe no repositório do arch, porém não existe no repositório do ubuntu.
+
+Para resolver esse problema precisamos descobrir o nome do pacote no [repositório do ubuntu](https://packages.ubuntu.com/). E para saber isso precisamos saber qual a versão do ubuntu estamos usando. Você deve se lembrar que escrever no Vagrantfile `ubuntu/focal64`. Então, sabemos que a versão é a `focal`. Porém, se não soubéssemos essa informação. Como o ansible poderia nos ajudar a descobrir?
+
+### O módulo setup
+
+O Ansible conta com um módulo chamado [setup](https://docs.ansible.com/ansible/2.7/modules/setup_module.html#setup-module). Esse módulo pode ser chamado via ad-hoc, mas também é a base para algumas variáveis nos playbooks. Primeiro vamos executar via ad-hoc:
+
+```bash title="$ Execução no terminal"
+ansible ubuntu -m setup
+```
+
+Esse comando nos retornará uma resposta MUITO extensa. Que acabei deixando em um arquivo separado. Você pode acessar [aqui](https://github.com/dunossauro/ansible-lab/blob/main/stuff/resposta_ubuntu_setup.txt). Vamos destacar somente algumas coisas que fazem sentido para nosso passo atual:
+
+```json linenums="344"
+"ansible_distribution": "Ubuntu",
+"ansible_distribution_file_parsed": true,
+"ansible_distribution_file_path": "/etc/os-release",
+"ansible_distribution_file_variety": "Debian",
+"ansible_distribution_major_version": "20",
+"ansible_distribution_release": "focal",
+"ansible_distribution_version": "20.04",
+```
+
+Podemos ver que o ansible sabe qual a distribuição que está sendo usada `Ubuntu`, qual a versão do sistema `20.04` e a release que está sendo executada `focal`. O `setup` consegue mostrar diversos outros dados. Sobre as interfaces de rede, sobre memória e etc...
+
+Aproveitando que já estamos vendo o módulo `setup`, podemos usar a função de filtro do módulo para exibir somente as informações que precisamos. Qualquer coisa que comece com `ansible_distribution`:
+
+
+```bash title="$ Execução no terminal"
+ansible ubuntu -m setup -a "filter=ansible_distribution*"
+```
+
+Que nos retornará os mesmos dados que destaquei:
+
+```
+10.0.2.15 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_distribution": "Ubuntu",
+        "ansible_distribution_file_parsed": true,
+        "ansible_distribution_file_path": "/etc/os-release",
+        "ansible_distribution_file_variety": "Debian",
+        "ansible_distribution_major_version": "20",
+        "ansible_distribution_release": "focal",
+        "ansible_distribution_version": "20.04",
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false
+}
+```
+
+Agora que sabemos que é o Ubuntu Focal, podemos voltar ao repositório. O pacote existe, porém, com outro nome [pipx](https://packages.ubuntu.com/focal/python/pipx).
+
+### A clausula `when`
+
+
+## Variáveis
+
+### Uso de variáveis
+
+Para isso, podemos trocar o nome do pacote do pipx no playbook para uma variável:
+
+```yaml title="pipx_httpie.yml" linenums="6"
+    - name: Instalação do pipx
+      become: yes
+      package:
+        name: "{{ pipx }}"
+        state: present
+```
+
+E dessa forma podemos invocar o playbook passando uma variável para a chave `"{{ pipx }}"`:
+
+
+```bash title="$ Execução no terminal"
+ansible-playbook playbooks/pipx_httpie.yml --extra-vars "pipx=pipx"
+```
