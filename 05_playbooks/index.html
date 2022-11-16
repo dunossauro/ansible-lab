@@ -339,6 +339,46 @@
     Condicionais
   </a>
   
+    <nav class="md-nav" aria-label="Condicionais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-modulo-setup" class="md-nav__link">
+    O módulo setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-clausula-when" class="md-nav__link">
+    A clausula when
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variaveis" class="md-nav__link">
+    Variáveis
+  </a>
+  
+    <nav class="md-nav" aria-label="Variáveis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-variaveis" class="md-nav__link">
+    Uso de variáveis
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -400,6 +440,46 @@
   <a href="#condicionais" class="md-nav__link">
     Condicionais
   </a>
+  
+    <nav class="md-nav" aria-label="Condicionais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-modulo-setup" class="md-nav__link">
+    O módulo setup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-clausula-when" class="md-nav__link">
+    A clausula when
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variaveis" class="md-nav__link">
+    Variáveis
+  </a>
+  
+    <nav class="md-nav" aria-label="Variáveis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uso-de-variaveis" class="md-nav__link">
+    Uso de variáveis
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -670,6 +750,104 @@
 O status <code>changed</code> apareceu. Significa que o resultado desse comando foi diferente da primeira vez que foi executado. O que quer dizer que alguma coisa mudou desde a ultima execução.</p>
 <p>Provavelmente a resposta do ansible foi diferente pois o clone não foi feito, o diretório já existia e o move também já tinha sido feito antes.</p>
 <h2 id="condicionais">Condicionais</h2>
+<p>Vamos recapitular mais uma coisa que já instalamos no nosso ambiente. O <code>pipx</code> e o <code>httpie</code>. Não são pacotes tão relevantes para o andamento do tutorial, mas precisamos aprender coisas legais com ansible antes de fazer coisas realmente úteis.</p>
+<p>O pacote do <code>pipx</code> existe no repositório do <code>archlinux</code> como já vimos. O pacote se chama <code>python-pipx</code>. Vamos iniciar um playbook para essa instalação e ver os problemas que vamos encontrar no caminho:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pipx_httpie.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nn">---</span><span class="w"></span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalação do pipx e httpie</span><span class="w"></span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linux</span><span class="w">  </span><span class="c1"># vale lembrar aqui que um dos linux é o arch e o outro o ubuntu</span><span class="w"></span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalação do pipx</span><span class="w"></span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">      </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">      </span><span class="nt">package</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python-pipx</span><span class="w"></span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>Vamos executar para ver o que conseguimos com isso:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>ansible-playbook pipx_httpie.yml
+</code></pre></div>
+<p>Obteremos a seguinte resposta:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>PLAY [Instalação do pipx e httpie] *********************************************
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>TASK [Gathering Facts] *********************************************************
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>ok: [10.0.2.15]
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>ok: [10.0.2.16]
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>TASK [Instalação do pipx] ******************************************************
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><mark class="critic">fatal: [10.0.2.15]: FAILED! =&gt; {&quot;changed&quot;: false, &quot;msg&quot;: &quot;No package matching &#39;python-pipx&#39; is available&quot;}</mark>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>changed: [10.0.2.16]
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>PLAY RECAP *********************************************************************
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>10.0.2.15  : ok=1  changed=0  unreachable=0  failed=1  skipped=0  rescued=0  ignored=0
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>10.0.2.16  : ok=2  changed=1  unreachable=0  failed=0  skipped=0  rescued=0  ignored=0
+</code></pre></div>
+<p>Repare na linha destacada. A máquina associada ao ip <code>10.2.2.15</code> não tem um pacote no repositório chamado <code>python-pipx</code>. Esse foi o motivo da falha. O pacote existe no repositório do arch, porém não existe no repositório do ubuntu.</p>
+<p>Para resolver esse problema precisamos descobrir o nome do pacote no <a href="https://packages.ubuntu.com/">repositório do ubuntu</a>. E para saber isso precisamos saber qual a versão do ubuntu estamos usando. Você deve se lembrar que escrever no Vagrantfile <code>ubuntu/focal64</code>. Então, sabemos que a versão é a <code>focal</code>. Porém, se não soubéssemos essa informação. Como o ansible poderia nos ajudar a descobrir?</p>
+<h3 id="o-modulo-setup">O módulo setup</h3>
+<p>O Ansible conta com um módulo chamado <a href="https://docs.ansible.com/ansible/2.7/modules/setup_module.html#setup-module">setup</a>. Esse módulo pode ser chamado via ad-hoc, mas também é a base para algumas variáveis nos playbooks. Primeiro vamos executar via ad-hoc:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ansible ubuntu -m setup
+</code></pre></div>
+<p>Esse comando nos retornará uma resposta MUITO extensa. Que acabei deixando em um arquivo separado. Você pode acessar <a href="https://github.com/dunossauro/ansible-lab/blob/main/stuff/resposta_ubuntu_setup.txt">aqui</a>. Vamos destacar somente algumas coisas que fazem sentido para nosso passo atual:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-344">344</a></span>
+<span class="normal"><a href="#__codelineno-12-345">345</a></span>
+<span class="normal"><a href="#__codelineno-12-346">346</a></span>
+<span class="normal"><a href="#__codelineno-12-347">347</a></span>
+<span class="normal"><a href="#__codelineno-12-348">348</a></span>
+<span class="normal"><a href="#__codelineno-12-349">349</a></span>
+<span class="normal"><a href="#__codelineno-12-350">350</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-344" name="__codelineno-12-344"></a><span class="nt">&quot;ansible_distribution&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ubuntu&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-12-345" name="__codelineno-12-345"></a><span class="nt">&quot;ansible_distribution_file_parsed&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-12-346" name="__codelineno-12-346"></a><span class="nt">&quot;ansible_distribution_file_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/etc/os-release&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-12-347" name="__codelineno-12-347"></a><span class="nt">&quot;ansible_distribution_file_variety&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Debian&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-12-348" name="__codelineno-12-348"></a><span class="nt">&quot;ansible_distribution_major_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;20&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-12-349" name="__codelineno-12-349"></a><span class="nt">&quot;ansible_distribution_release&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;focal&quot;</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-12-350" name="__codelineno-12-350"></a><span class="nt">&quot;ansible_distribution_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;20.04&quot;</span><span class="p">,</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>Podemos ver que o ansible sabe qual a distribuição que está sendo usada <code>Ubuntu</code>, qual a versão do sistema <code>20.04</code> e a release que está sendo executada <code>focal</code>. O <code>setup</code> consegue mostrar diversos outros dados. Sobre as interfaces de rede, sobre memória e etc...</p>
+<p>Aproveitando que já estamos vendo o módulo <code>setup</code>, podemos usar a função de filtro do módulo para exibir somente as informações que precisamos. Qualquer coisa que comece com <code>ansible_distribution</code>:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ansible ubuntu -m setup -a <span class="s2">&quot;filter=ansible_distribution*&quot;</span>
+</code></pre></div>
+<p>Que nos retornará os mesmos dados que destaquei:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>10.0.2.15 | SUCCESS =&gt; {
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    &quot;ansible_facts&quot;: {
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        &quot;ansible_distribution&quot;: &quot;Ubuntu&quot;,
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>        &quot;ansible_distribution_file_parsed&quot;: true,
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>        &quot;ansible_distribution_file_path&quot;: &quot;/etc/os-release&quot;,
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>        &quot;ansible_distribution_file_variety&quot;: &quot;Debian&quot;,
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>        &quot;ansible_distribution_major_version&quot;: &quot;20&quot;,
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>        &quot;ansible_distribution_release&quot;: &quot;focal&quot;,
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        &quot;ansible_distribution_version&quot;: &quot;20.04&quot;,
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>        &quot;discovered_interpreter_python&quot;: &quot;/usr/bin/python3&quot;
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    },
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>    &quot;changed&quot;: false
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>}
+</code></pre></div>
+<p>Agora que sabemos que é o Ubuntu Focal, podemos voltar ao repositório. O pacote existe, porém, com outro nome <a href="https://packages.ubuntu.com/focal/python/pipx">pipx</a>.</p>
+<h3 id="a-clausula-when">A clausula <code>when</code></h3>
+<h2 id="variaveis">Variáveis</h2>
+<h3 id="uso-de-variaveis">Uso de variáveis</h3>
+<p>Para isso, podemos trocar o nome do pacote do pipx no playbook para uma variável:</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pipx_httpie.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instalação do pipx</span><span class="w"></span>
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">      </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="w">      </span><span class="nt">package</span><span class="p">:</span><span class="w"></span>
+<a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">pipx</span><span class="nv"> </span><span class="s">}}&quot;</span><span class="w"></span>
+<a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>E dessa forma podemos invocar o playbook passando uma variável para a chave <code>"{{ pipx }}"</code>:</p>
+<div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ansible-playbook playbooks/pipx_httpie.yml --extra-vars <span class="s2">&quot;pipx=pipx&quot;</span>
+</code></pre></div>
 
 
 
