@@ -151,7 +151,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "arch" do |arch|
-    main.vm.box = "archlinux/archlinux"
+    arch.vm.box = "archlinux/archlinux"
   end
 
 end
