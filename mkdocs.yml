@@ -1,6 +1,6 @@
 site_name: Ansible lab
 repo_url: https://github.com/dunossauro/ansible-lab
-repo_name: dunossauro/curso-python-typing
+repo_name: dunossauro/ansible-lab
 docs_dir: docs
 edit_uri: tree/main/docs
 
