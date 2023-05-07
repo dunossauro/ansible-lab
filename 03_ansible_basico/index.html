@@ -565,7 +565,7 @@
 <p class="admonition-title">curiosidade</p>
 <p>A palavra Ansible foi cunhada por <code>Ursula K. Le Guin</code> no livro <code>O mundo de Rocannon</code></p>
 <p><img alt="" src="../images/ursula.jpg" width="100" /></p>
-<p>No livro existem diversos mundos e viajantes navegam na velocidade da luz. Ansible é um dispositivo que de comunicação de comunicação instantânea pelo universo.</p>
+<p>No livro existem diversos mundos e viajantes navegam na velocidade da luz. Ansible é um dispositivo que de comunicação instantânea pelo universo.</p>
 </div>
 <h2 id="automacoes">Automações</h2>
 <p>Quando falamos sobre Ansible, estamos falando sobre qualquer tipo de automação em máquinas. Alguns exemplos comuns são:</p>
@@ -576,7 +576,7 @@
 </ul>
 <p>Entre outras coisas que podemos fazer com o ferramental</p>
 <h3 id="provisionamento">Provisionamento</h3>
-<p>Provisionamento é o processo de preparar um dispositivo para que ele possa entrar em produção. Não só exatamente a respeito do hardware, mas a preparação do sistema operacional a escolha dos aplicativos instalados e etc...</p>
+<p>Provisionamento é o processo de preparar um dispositivo para que ele possa entrar em produção. Não só exatamente a respeito do hardware, mas a preparação do sistema operacional, a escolha dos aplicativos instalados e etc...</p>
 <p>Vimos nesse pequeno tutorial outra ferramenta de provisionamento, o Vagrant, que consegue montar a máquina virtual, fornecer a instalação do sistema operacional. A parte que envolve o ansible é mais referente a configuração dos pacotes instalados, a instalação dos softwares necessários para colocar uma máquina, geralmente um servidor, em funcionamento.</p>
 <h3 id="gerenciamento-de-configuracao">Gerenciamento de configuração</h3>
 <p>O gerenciamento de configuração é uma das partes do provisionamento, porém com foco e configurar as aplicações instaladas no sistema operacional para que ele se comporte como esperado em produção.</p>
@@ -607,7 +607,7 @@
 <p>Como eu escolhi que a máquina <code>main</code> fosse um archlinux, vamos seguir a configuração com ele. O primeiro passo que devemos fazer é atualizar a máquina para garantir que tudo funcione como o esperado:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo pacman -Syu  <span class="c1"># Atualiza o sistema</span>
 </code></pre></div>
-<p>Caso a senha senha perguntada. A senha padrão criada pelas máquinas virtuais do vagrant é <code>vagrant</code>.</p>
+<p>Caso a senha perguntada. A senha padrão criada pelas máquinas virtuais do vagrant é <code>vagrant</code>.</p>
 <p>Agora podemos rodar o comando para instalar o ansible:</p>
 <div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo pacman -S ansible
 </code></pre></div>
@@ -669,7 +669,7 @@
 </tr>
 </tbody>
 </table>
-<p>O módulo <a href="https://docs.ansible.com/ansible/2.9/modules/package_module.html#package-module">package</a> é um dos muitos módulos ofertados pelo Ansible. Você pode ver uma lista completa aqui nesse <a href="https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html">link</a>. O que dissemos porém é: "Modulo <code>package</code> garanta que o pacote <code>emacs</code> esteja <code>presente</code> no sistema em que for executado".</p>
+<p>O módulo <a href="https://docs.ansible.com/ansible/2.9/modules/package_module.html#package-module">package</a> é um dos muitos módulos ofertados pelo Ansible. Você pode ver uma lista completa aqui nesse <a href="https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html">link</a>. O que dissemos, porém, é: "Modulo <code>package</code> garanta que o pacote <code>emacs</code> esteja <code>presente</code> no sistema em que for executado".</p>
 <p>Podemos checar no terminal:</p>
 <div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>emacs
 </code></pre></div>

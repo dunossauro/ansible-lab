@@ -522,7 +522,7 @@ A linha destacada é referente a um box do Vagrant.</p>
 <a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>    default: /vagrant <span class="o">=</span>&gt; /home/z4r4tu5tr4/ansible_lab
 </code></pre></div>
 <p>E ele criará uma máquina virtual com archlinux no nosso virtualbox.</p>
-<p>OBS: Esse comando pode demorar um pouco pois ele vai baixar um hd virtual do archlinux e instalar no seu virtualbox.</p>
+<p>OBS: Esse comando pode demorar um pouco, pois ele vai baixar um hd virtual do archlinux e instalar no seu virtualbox.</p>
 <p><img alt="" src="../images/virtualbox_01.png" /></p>
 <p>Agora que temos uma máquina virtual podemos partir para o segundo passo. Que é criar dois nós para trabalhar com ansible.</p>
 <h2 id="destruindo-a-maquina-criada">Destruindo a máquina criada</h2>
@@ -546,7 +546,7 @@ A linha destacada é referente a um box do Vagrant.</p>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
 <a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="k">end</span>
 </code></pre></div>
-<p>Agora temos duas máquinas virtuais. Uma configurada com Archlinux e uma com Ubuntu Linux. Porém cada uma tem uma função diferente na nossa rede.</p>
+<p>Agora temos duas máquinas virtuais. Uma configurada com Archlinux e uma com Ubuntu Linux. Porém, cada uma tem uma função diferente na nossa rede.</p>
 <p>O vagrant pode subir uma única vm ou as duas de uma vez:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>vagrant up          <span class="c1"># Inicia as duas vms</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>vagrant up ubuntu   <span class="c1"># Somente a máquina ubuntu</span>

@@ -616,11 +616,11 @@
 
 
 <h1 id="playbooks">Playbooks</h1>
-<p>Tudo que executamos até agora foram comandos no terminal com ansible. Você deve estar se perguntando se não seria mais fácil criar um script com todos esses comandos, para evitar ter que digitar todas as vezes. Para isso existem os playbooks. Você cria um arquivo no formato <a href="https://yaml.org/">yaml</a> descrevendo todas as suas tarefas e executa de uma única vez.</p>
+<p>Tudo que executamos até agora foram comandos no terminal com ansible. Você deve estar se perguntando se não seria mais fácil criar um script com todos esses comandos, para evitar ter que digitar todas às vezes. Para isso existem os playbooks. Você cria um arquivo no formato <a href="https://yaml.org/">yaml</a> descrevendo todas as suas tarefas e executa de uma única vez.</p>
 <div class="admonition tip">
 <p class="admonition-title">O nome Playbook</p>
 <p>Playbook é uma palavra que se refere a scripts de teatro. Por exemplo, quando alguém entra em cena, as falas de cada personagem e etc...</p>
-<p>No mundo dos esportes playbook é usado muito no baseball e no basket. São listas de jogadas que podem ser feitas durante um jogo.</p>
+<p>No mundo dos esportes, playbook é usado muito no beisebol e no basquete. São listas de jogadas que podem ser feitas durante um jogo.</p>
 </div>
 <h2 id="arquivos-yaml">Arquivos YAML</h2>
 <p>Arquivos YAML são arquivos geralmente usados para configurações. Se pensarmos em Python, eles formam estruturas equivalentes a de dicionários. Uma comparação básica para você entender o formato:</p>
@@ -859,8 +859,8 @@
 <a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>PLAY RECAP *********************************************************************
 <a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>localhost  : <span class="nv">ok</span><span class="o">=</span><span class="m">5</span>  <mark class="critic">changed<span class="o">=</span><span class="m">2</span></mark>  <span class="nv">unreachable</span><span class="o">=</span><span class="m">0</span>  <span class="nv">failed</span><span class="o">=</span><span class="m">0</span>  <span class="nv">skipped</span><span class="o">=</span><span class="m">0</span>  <span class="nv">rescued</span><span class="o">=</span><span class="m">0</span>  <span class="nv">ignored</span><span class="o">=</span><span class="m">0</span>
 </code></pre></div>
-O status <code>changed</code> apareceu. Significa que o resultado desse comando foi diferente da primeira vez que foi executado. O que quer dizer que alguma coisa mudou desde a ultima execução.</p>
-<p>Provavelmente a resposta do ansible foi diferente pois o clone não foi feito, o diretório já existia e o move também já tinha sido feito antes.</p>
+O status <code>changed</code> apareceu. Significa que o resultado desse comando foi diferente da primeira vez que foi executado. O que quer dizer que alguma coisa mudou desde a última execução.</p>
+<p>Provavelmente a resposta do ansible foi diferente, pois o clone não foi feito, o diretório já existia e o move também já tinha sido feito antes.</p>
 <h2 id="condicionais">Condicionais</h2>
 <p>Vamos recapitular mais uma coisa que já instalamos no nosso ambiente. O <code>pipx</code> e o <code>httpie</code>. Não são pacotes tão relevantes para o andamento do tutorial, mas precisamos aprender coisas legais com ansible antes de fazer coisas realmente úteis.</p>
 <p>O pacote do <code>pipx</code> existe no repositório do <code>archlinux</code> como já vimos. O pacote se chama <code>python-pipx</code>. Vamos iniciar um playbook para essa instalação e ver os problemas que vamos encontrar no caminho:</p>
@@ -1013,7 +1013,7 @@ O status <code>changed</code> apareceu. Significa que o resultado desse comando 
 </code></pre></div>
 <p>Desta forma não precisamos mais nos preocupar com os pacotes específicos de cada sistema, podemos criar uma task para cada sistema. Em casos extremos isso pode ser necessário. Mas será que não existe uma forma mais simples de resolver esse problema?</p>
 <h2 id="expressoes-e-variaveis">Expressões e variáveis</h2>
-<p>Quando chamamos o setup, vimos que o ansible consegue carregar diversas variáveis durante a execução. Mas será que nesse caso não conseguiríamos criar uma variável nossa? Aí poderíamos validar antes e evitar de escrever duas tasks.</p>
+<p>Quando chamamos o setup, vimos que o ansible consegue carregar diversas variáveis durante a execução. Mas será que nesse caso não conseguiríamos criar uma variável nossa? Aí poderíamos validar antes e evitar escrever duas tasks.</p>
 <h3 id="expressoes">Expressões</h3>
 <p>O Ansible usa um motor de templates chamado <a href="https://palletsprojects.com/p/jinja/">Jinja</a>. O jinja fornece uma forma de chamar expressões de código Python dentro de templates. Assim, quando o ansible executa um playbook ele também avalia e executa as expressões do jinja dentro do código.</p>
 <p>As expressões no jinja são feitas usando duas chaves delimitador <code>{{ minha_expressão }}</code>. E dentre dessa expressão, qualquer código python pode ser inserido. Por exemplo, podemos fazer um <code>if</code> para resolver nosso caso e ter uma única task. Por exemplo:</p>
@@ -1042,7 +1042,7 @@ O status <code>changed</code> apareceu. Significa que o resultado desse comando 
 </code></pre></div>
 <p>Assim podemos ser mais eficientes em criar regras. Já o que template pode estender código python.</p>
 <h3 id="as-variaveis-no-ansible">As variáveis no ansible</h3>
-<p>Da mesma forma que podemos criar expressões complexas no jinja. Também podemos chamar somente variáveis. Por exemplo <code>"{{ variavel }}"</code>. Assim podemos declarar as expressões em um lugar específico do playbook para deixar mais limpo ou passar as mesmas via linha de comando.</p>
+<p>Da mesma forma que podemos criar expressões complexas no jinja. Também podemos chamar somente variáveis. Por exemplo, <code>"{{ variavel }}"</code>. Assim podemos declarar as expressões em um lugar específico do playbook para deixar mais limpo ou passar as mesmas via linha de comando.</p>
 <h3 id="variaveis-no-playbook">Variáveis no playbook</h3>
 <p>Para isso, podemos trocar o nome do pacote do pipx no playbook para uma variável:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">pipx_httpie.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
@@ -1076,7 +1076,7 @@ O status <code>changed</code> apareceu. Significa que o resultado desse comando 
 <p>Não vou executar esse playbook agora, pois teremos o mesmo resultado da execução anterior.</p>
 </blockquote>
 <h3 id="variaveis-via-linha-de-comando">Variáveis via linha de comando</h3>
-<p>Outra funcionalidade importante do ansible é conseguir sobrescrever as variáveis de um playbook usando a linha de comando como base. Chamar via linha de comando tem uma ordem de precedência maior que as variáveis definidas no playbook. Então, quando o ansible for chamado as variáveis definidas no campo <code>vars</code> serão substituídas pelas variáveis que forem passadas na linha de comando:</p>
+<p>Outra funcionalidade importante do ansible é conseguir sobrescrever as variáveis de um playbook usando a linha de comando como base. Chamar via linha de comando tem uma ordem de precedência maior que as variáveis definidas no playbook. Então, quando o ansible for chamado, as variáveis definidas no campo <code>vars</code> serão substituídas pelas variáveis que forem passadas na linha de comando:</p>
 <div class="highlight"><span class="filename">$ Execução no terminal e a parte importante do resultado</span><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>ansible-playbook pipx_httpie.yml --extra-vars <span class="s2">&quot;pipx=pipx&quot;</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>TASK <span class="o">[</span>Instalação <span class="k">do</span> pipx<span class="o">]</span> *****************************************************************
@@ -1085,7 +1085,7 @@ O status <code>changed</code> apareceu. Significa que o resultado desse comando 
 </code></pre></div>
 <p>Como era de se esperar, o pacote <code>pipx</code> não existe no arch, seu nome é <code>python-pipx</code> por conta disso, o comando não foi executado com sucesso. Nosso objetivo, porém, era explorar a chamada de variáveis via linha de comando.</p>
 <h3 id="arquivos-de-variaveis">Arquivos de variáveis</h3>
-<p>Uma forma de evitar expressões do jinja e também chamar variáveis por linha de comando é criar um arquivo só para as variáveis. Dessa forma, caso tenha alguma variável que não possa ser exposta, como endereço de um banco de dados. Esse valores ficam de fora da configuração.</p>
+<p>Uma forma de evitar expressões do jinja e também chamar variáveis por linha de comando é criar um arquivo só para as variáveis. Dessa forma, caso tenha alguma variável que não possa ser exposta, como endereço de um banco de dados. Esses valores ficam de fora da configuração.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">variaveis.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
 <span class="normal"><a href="#__codelineno-24-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="nn">---</span><span class="w"></span>
 <a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="nt">pipx</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">&#39;pipx&#39;</span><span class="nv"> </span><span class="s">if</span><span class="nv"> </span><span class="s">ansible_distribution</span><span class="nv"> </span><span class="s">==</span><span class="nv"> </span><span class="s">&#39;Ubuntu&#39;</span><span class="nv"> </span><span class="s">else</span><span class="nv"> </span><span class="s">&#39;python-pipx&#39;}}&quot;</span><span class="w"></span>
