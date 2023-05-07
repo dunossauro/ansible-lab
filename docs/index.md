@@ -5,7 +5,7 @@
 
 O objetivo desse repositório é ajudar você a construir um laboratório para aprender o básico sobre Ansible.
 
-Ele foi criado para uma [Live de Python](https://www.youtube.com/c/Dunossauro) no youtube. Mas nada impede que você siga somente pelo texto se assim achar necessário.
+Ele foi criado para uma [Live de Python](https://www.youtube.com/@Dunossauro) no Youtube. Mas nada impede que você siga somente pelo texto se assim achar necessário.
 
 Caso prefira a versão em vídeo, pode assistir por aqui:
 
@@ -28,3 +28,7 @@ O básico de Python, pois farei diversas analogias e um computador com pelo meno
 ## Navegação
 
 Você pode navegar entre as páginas desse tutorial apertando as teclas `.` para ir para próxima página e `,` para voltar para página anterior.
+
+## Caso encontre algum problema
+
+Se encontrar algum problema nesse material, como erros, sinta-se a vontade para enviar correções no [repositório do projeto](https://github.com/dunossauro/ansible-lab). Se precisar me contatar, pode me encontrar [nesse link](https://dunossauro.com){:target="_blank"}

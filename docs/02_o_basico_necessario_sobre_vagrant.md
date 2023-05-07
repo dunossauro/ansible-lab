@@ -72,7 +72,7 @@ Bringing machine 'default' up with 'virtualbox' provider...
 
 E ele criará uma máquina virtual com archlinux no nosso virtualbox.
 
-OBS: Esse comando pode demorar um pouco pois ele vai baixar um hd virtual do archlinux e instalar no seu virtualbox.
+OBS: Esse comando pode demorar um pouco, pois ele vai baixar um hd virtual do archlinux e instalar no seu virtualbox.
 
 ![](./images/virtualbox_01.png)
 
@@ -109,7 +109,7 @@ Vagrant.configure("2") do |config|
 end
 ```
 
-Agora temos duas máquinas virtuais. Uma configurada com Archlinux e uma com Ubuntu Linux. Porém cada uma tem uma função diferente na nossa rede.
+Agora temos duas máquinas virtuais. Uma configurada com Archlinux e uma com Ubuntu Linux. Porém, cada uma tem uma função diferente na nossa rede.
 
 O vagrant pode subir uma única vm ou as duas de uma vez:
 

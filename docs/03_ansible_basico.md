@@ -7,7 +7,7 @@
 	
 	![](./images/ursula.jpg){ width="100" }
 	
-	No livro existem diversos mundos e viajantes navegam na velocidade da luz. Ansible é um dispositivo que de comunicação de comunicação instantânea pelo universo.
+	No livro existem diversos mundos e viajantes navegam na velocidade da luz. Ansible é um dispositivo que de comunicação instantânea pelo universo.
 
 ## Automações
 
