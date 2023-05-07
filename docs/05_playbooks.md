@@ -1,11 +1,11 @@
 # Playbooks
 
-Tudo que executamos até agora foram comandos no terminal com ansible. Você deve estar se perguntando se não seria mais fácil criar um script com todos esses comandos, para evitar ter que digitar todas as vezes. Para isso existem os playbooks. Você cria um arquivo no formato [yaml](https://yaml.org/) descrevendo todas as suas tarefas e executa de uma única vez.
+Tudo que executamos até agora foram comandos no terminal com ansible. Você deve estar se perguntando se não seria mais fácil criar um script com todos esses comandos, para evitar ter que digitar todas às vezes. Para isso existem os playbooks. Você cria um arquivo no formato [yaml](https://yaml.org/) descrevendo todas as suas tarefas e executa de uma única vez.
 
 !!! tip "O nome Playbook"
     Playbook é uma palavra que se refere a scripts de teatro. Por exemplo, quando alguém entra em cena, as falas de cada personagem e etc...
 
-	No mundo dos esportes playbook é usado muito no baseball e no basket. São listas de jogadas que podem ser feitas durante um jogo.
+	No mundo dos esportes, playbook é usado muito no beisebol e no basquete. São listas de jogadas que podem ser feitas durante um jogo.
 
 ## Arquivos YAML
 
@@ -183,9 +183,9 @@ TASK [Movendo os arquivos de configuração do emacs] **************************
 PLAY RECAP *********************************************************************
 localhost  : ok=5  {==changed=2==}  unreachable=0  failed=0  skipped=0  rescued=0  ignored=0
 ```
-O status `changed` apareceu. Significa que o resultado desse comando foi diferente da primeira vez que foi executado. O que quer dizer que alguma coisa mudou desde a ultima execução.
+O status `changed` apareceu. Significa que o resultado desse comando foi diferente da primeira vez que foi executado. O que quer dizer que alguma coisa mudou desde a última execução.
 
-Provavelmente a resposta do ansible foi diferente pois o clone não foi feito, o diretório já existia e o move também já tinha sido feito antes.
+Provavelmente a resposta do ansible foi diferente, pois o clone não foi feito, o diretório já existia e o move também já tinha sido feito antes.
 
 ## Condicionais
 
@@ -355,7 +355,7 @@ Desta forma não precisamos mais nos preocupar com os pacotes específicos de ca
 
 ## Expressões e variáveis
 
-Quando chamamos o setup, vimos que o ansible consegue carregar diversas variáveis durante a execução. Mas será que nesse caso não conseguiríamos criar uma variável nossa? Aí poderíamos validar antes e evitar de escrever duas tasks.
+Quando chamamos o setup, vimos que o ansible consegue carregar diversas variáveis durante a execução. Mas será que nesse caso não conseguiríamos criar uma variável nossa? Aí poderíamos validar antes e evitar escrever duas tasks.
 
 ### Expressões
 
@@ -389,7 +389,7 @@ Assim podemos ser mais eficientes em criar regras. Já o que template pode esten
 
 ### As variáveis no ansible
 
-Da mesma forma que podemos criar expressões complexas no jinja. Também podemos chamar somente variáveis. Por exemplo `"{{ variavel }}"`. Assim podemos declarar as expressões em um lugar específico do playbook para deixar mais limpo ou passar as mesmas via linha de comando.
+Da mesma forma que podemos criar expressões complexas no jinja. Também podemos chamar somente variáveis. Por exemplo, `"{{ variavel }}"`. Assim podemos declarar as expressões em um lugar específico do playbook para deixar mais limpo ou passar as mesmas via linha de comando.
 
 ### Variáveis no playbook
 
@@ -417,7 +417,7 @@ Assim temos um playbook mais limpo. Pois todo o código complicado do jinja fica
 
 ### Variáveis via linha de comando
 
-Outra funcionalidade importante do ansible é conseguir sobrescrever as variáveis de um playbook usando a linha de comando como base. Chamar via linha de comando tem uma ordem de precedência maior que as variáveis definidas no playbook. Então, quando o ansible for chamado as variáveis definidas no campo `vars` serão substituídas pelas variáveis que forem passadas na linha de comando:
+Outra funcionalidade importante do ansible é conseguir sobrescrever as variáveis de um playbook usando a linha de comando como base. Chamar via linha de comando tem uma ordem de precedência maior que as variáveis definidas no playbook. Então, quando o ansible for chamado, as variáveis definidas no campo `vars` serão substituídas pelas variáveis que forem passadas na linha de comando:
 
 ```bash title="$ Execução no terminal e a parte importante do resultado"
 ansible-playbook pipx_httpie.yml --extra-vars "pipx=pipx"
@@ -431,7 +431,7 @@ Como era de se esperar, o pacote `pipx` não existe no arch, seu nome é `python
 
 ### Arquivos de variáveis
 
-Uma forma de evitar expressões do jinja e também chamar variáveis por linha de comando é criar um arquivo só para as variáveis. Dessa forma, caso tenha alguma variável que não possa ser exposta, como endereço de um banco de dados. Esse valores ficam de fora da configuração.
+Uma forma de evitar expressões do jinja e também chamar variáveis por linha de comando é criar um arquivo só para as variáveis. Dessa forma, caso tenha alguma variável que não possa ser exposta, como endereço de um banco de dados. Esses valores ficam de fora da configuração.
 
 
 ```yaml title="variaveis.yml" linenums="1"

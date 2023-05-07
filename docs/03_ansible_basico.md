@@ -21,7 +21,7 @@ Entre outras coisas que podemos fazer com o ferramental
 
 ### Provisionamento
 
-Provisionamento é o processo de preparar um dispositivo para que ele possa entrar em produção. Não só exatamente a respeito do hardware, mas a preparação do sistema operacional a escolha dos aplicativos instalados e etc...
+Provisionamento é o processo de preparar um dispositivo para que ele possa entrar em produção. Não só exatamente a respeito do hardware, mas a preparação do sistema operacional, a escolha dos aplicativos instalados e etc...
 
 Vimos nesse pequeno tutorial outra ferramenta de provisionamento, o Vagrant, que consegue montar a máquina virtual, fornecer a instalação do sistema operacional. A parte que envolve o ansible é mais referente a configuração dos pacotes instalados, a instalação dos softwares necessários para colocar uma máquina, geralmente um servidor, em funcionamento.
 
@@ -77,7 +77,7 @@ Como eu escolhi que a máquina `main` fosse um archlinux, vamos seguir a configu
 sudo pacman -Syu  # Atualiza o sistema
 ```
 
-Caso a senha senha perguntada. A senha padrão criada pelas máquinas virtuais do vagrant é `vagrant`.
+Caso a senha perguntada. A senha padrão criada pelas máquinas virtuais do vagrant é `vagrant`.
 
 Agora podemos rodar o comando para instalar o ansible:
 
@@ -127,7 +127,7 @@ Com esse simples comando, temos o GNU/Emacs instalado nesse computador. Mas, o q
 | "name=emacs state=present"  | Argumentos do módulo                                    |
 | -b                          | Diz ao Ansible que o comando será executado como `root` |
 
-O módulo [package](https://docs.ansible.com/ansible/2.9/modules/package_module.html#package-module) é um dos muitos módulos ofertados pelo Ansible. Você pode ver uma lista completa aqui nesse [link](https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html). O que dissemos porém é: "Modulo `package` garanta que o pacote `emacs` esteja `presente` no sistema em que for executado".
+O módulo [package](https://docs.ansible.com/ansible/2.9/modules/package_module.html#package-module) é um dos muitos módulos ofertados pelo Ansible. Você pode ver uma lista completa aqui nesse [link](https://docs.ansible.com/ansible/2.9/modules/list_of_all_modules.html). O que dissemos, porém, é: "Modulo `package` garanta que o pacote `emacs` esteja `presente` no sistema em que for executado".
 
 Podemos checar no terminal:
 

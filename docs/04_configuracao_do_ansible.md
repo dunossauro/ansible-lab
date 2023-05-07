@@ -36,7 +36,7 @@ Por exemplo, vamos cadastrar nossa outra vm `arch` que será controlado pelo `ma
 exit
 ```
 
-Agora voltamos a maquina principal. A máquina onde as máquinas virtuais foram instaladas. Vamos iniciar nossa outra máquina. O `ubuntu`:
+Agora voltamos a máquina principal. A máquina onde as máquinas virtuais foram instaladas. Vamos iniciar nossa outra máquina. O `ubuntu`:
 
 ```bash
 vagrant up ubuntu
@@ -244,7 +244,7 @@ ansible linux -m systemd -a "name=nginx state=started" -b
 
 E volá, instalamos o Nginx em duas máquinas e subimos o server somente usando comandos simples e sem a preocupação de ter de entender coisas específicas de sistema.
 
-Vamos ver se o serviço subiu da forma correta? Para isso vou me aproveitar do ansible para instalar o httpie no sistema para fazer essa requisição no nó controlador. Porém não quero fazer essa instalação sujando o ambiente. Então, vamos instalar o `pipx`
+Vamos ver se o serviço subiu da forma correta? Para isso vou me aproveitar do ansible para instalar o httpie no sistema para fazer essa requisição no nó controlador. Porém, não quero fazer essa instalação sujando o ambiente. Então, vamos instalar o `pipx`
 
 
 ```bash title="$ Execução no terminal"
