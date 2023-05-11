@@ -27,7 +27,7 @@ Para começar, vamos instalar o git e fazer o clone do pyenv:
         dest: ~/.pyenv
 ```
 
-Porém, a configuração do pyenv depende de que o arquivo `./bashrc` seja modificado para que o pyenv funcione de fato. Então agora vamos aprender mais um módulo. O módulo [blockinfile](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/blockinfile_module.html). Ele permite que adicionemos um cloco de texto em um arquivo qualquer:
+Porém, a configuração do pyenv depende de que o arquivo `./bashrc` seja modificado para que o pyenv funcione de fato. Então agora vamos aprender mais um módulo. O módulo [blockinfile](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/blockinfile_module.html). Ele permite que adicionemos um bloco de texto em um arquivo qualquer:
 
 ```yaml title="config_python.yml" linenums="17"
     - name: config pyenv
