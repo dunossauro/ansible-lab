@@ -24,8 +24,4 @@ Financiamento **recorrente** é a palavra que usamos para quando você deseja do
 
 Você pode nos encontrar por meio de vários canais, o geral onde conversamos e tiramos dúvidas sobre as lives e python de maneira geral é no [Telegram](hhttps://t.me/livepython).
 
-Porém você pode nos encontrar em outras redes:
-
-- [YouTube](https://www.youtube.com/dunossauro)
-- [Twitch](https://www.twitch.tv/dunossauro)
-- [Twitter](http://twitter.com/dunossauro)
+Porém você pode nos encontrar em outras redes: [https://dunossauro.com/](https://dunossauro.com/)
