@@ -500,7 +500,7 @@
 <a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">        </span><span class="nt">repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/pyenv/pyenv.git</span><span class="w"></span>
 <a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">        </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">~/.pyenv</span><span class="w"></span>
 </code></pre></div></td></tr></table></div>
-<p>Porém, a configuração do pyenv depende de que o arquivo <code>./bashrc</code> seja modificado para que o pyenv funcione de fato. Então agora vamos aprender mais um módulo. O módulo <a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/blockinfile_module.html">blockinfile</a>. Ele permite que adicionemos um cloco de texto em um arquivo qualquer:</p>
+<p>Porém, a configuração do pyenv depende de que o arquivo <code>./bashrc</code> seja modificado para que o pyenv funcione de fato. Então agora vamos aprender mais um módulo. O módulo <a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/blockinfile_module.html">blockinfile</a>. Ele permite que adicionemos um bloco de texto em um arquivo qualquer:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config_python.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-17">17</a></span>
 <span class="normal"><a href="#__codelineno-1-18">18</a></span>
 <span class="normal"><a href="#__codelineno-1-19">19</a></span>
@@ -766,7 +766,7 @@
 <a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>    ]
 <a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>}
 </code></pre></div>
-<p>Temos um erro por não ter espaço em disco para compilar o 3.11 no arch. Para resolver essa questão <a href="">clique aqui</a></p>
+<p>Temos um erro por não ter espaço em disco para compilar o 3.11 no arch. Para resolver essa questão <a href="/99_problemas_comuns">clique aqui</a></p>
 <h2 id="agrupamento-de-tasks">Agrupamento de tasks</h2>
 <p>Agora que fizemos muitas tasks para uma instalação relativamente simples. Uma coisa que podemos fazer para organizar tudo é dividir as tasks em arquivos menores e usar o módulo <a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/import_tasks_module.html">import_task</a>.</p>
 <p>Assim podemos quebrar nosso arquivão para a configuração do pyenv em arquivos bem menores. Vamos criar um novo playbook chamado <code>play_tasks.yaml</code> e separar por blocos:</p>
