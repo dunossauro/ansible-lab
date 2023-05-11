@@ -466,9 +466,9 @@
 
 
 <h1 id="tasks">Tasks</h1>
-<p>Embora tenhamos usados tasks em praticamente tudo até aqui. Acredito que valha um momento específico para falar sobre elas. Pois nem sempre as coisas dão certo e as vezes precisamos debugar as tarefas no Ansible. Então nessa parte vamos falar um pouco sobre tasks, um pouco sobre debug e um pouco sobre agrupamento de tasks.</p>
+<p>Embora tenhamos usados tasks em praticamente tudo até aqui. Acredito que valha um momento específico para falar sobre elas. Pois nem sempre as coisas dão certo e às vezes precisamos debugar as tarefas no Ansible. Então nessa parte vamos falar um pouco sobre tasks, um pouco sobre debug e um pouco sobre agrupamento de tasks.</p>
 <h2 id="uma-task-qualquer">Uma task qualquer</h2>
-<p>Para exemplificar uma task, quero fazer com vocês a instalação do pyenv. Costuma dar bastante problema pois o SSH usado pelo Ansible não consegue reconhecer o <code>.bashrc</code></p>
+<p>Para exemplificar uma task, quero fazer com vocês a instalação do pyenv. Costuma dar bastante problema, pois o SSH usado pelo Ansible não consegue reconhecer o <code>.bashrc</code></p>
 <p>Para começar, vamos instalar o git e fazer o clone do pyenv:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">config_python.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
@@ -559,7 +559,7 @@
 <a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>    <span class="o">]</span>
 <a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="o">}</span>
 </code></pre></div>
-<p>O que significa que conseguimos chamar o debug. Porém em alguns momentos as tasks podem e vão dar errado. Então precisamos entender como prosseguir, caso isso aconteça.</p>
+<p>O que significa que conseguimos chamar o debug. Porém, em alguns momentos as tasks podem e vão dar errado. Então precisamos entender como prosseguir, caso isso aconteça.</p>
 <h2 id="debug-de-tasks">Debug de tasks</h2>
 <p>Vamos executar uma ação que tenho certeza que vai dar erro por conta das configurações que fizemos até agora para entender como podemos checar as mensagens de erro.</p>
 <p>Em teoria, se temos o pyenv instalado, podemos pedir para que ele instale a versão <code>3.11</code> do python:</p>

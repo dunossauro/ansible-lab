@@ -619,7 +619,7 @@
 <p>Tudo que executamos até agora foram comandos no terminal com ansible. Você deve estar se perguntando se não seria mais fácil criar um script com todos esses comandos, para evitar ter que digitar todas às vezes. Para isso existem os playbooks. Você cria um arquivo no formato <a href="https://yaml.org/">yaml</a> descrevendo todas as suas tarefas e executa de uma única vez.</p>
 <div class="admonition tip">
 <p class="admonition-title">O nome Playbook</p>
-<p>Playbook é uma palavra que se refere a scripts de teatro. Por exemplo, quando alguém entra em cena, as falas de cada personagem e etc...</p>
+<p>Playbook é uma palavra que se refere a scripts de teatro. Por exemplo, quando alguém entra em cena, as falas de cada personagem, etc.</p>
 <p>No mundo dos esportes, playbook é usado muito no beisebol e no basquete. São listas de jogadas que podem ser feitas durante um jogo.</p>
 </div>
 <h2 id="arquivos-yaml">Arquivos YAML</h2>
@@ -923,7 +923,7 @@ O status <code>changed</code> apareceu. Significa que o resultado desse comando 
 <a id="__codelineno-12-349" name="__codelineno-12-349"></a><span class="nt">&quot;ansible_distribution_release&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;focal&quot;</span><span class="p">,</span><span class="w"></span>
 <a id="__codelineno-12-350" name="__codelineno-12-350"></a><span class="nt">&quot;ansible_distribution_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;20.04&quot;</span><span class="p">,</span><span class="w"></span>
 </code></pre></div></td></tr></table></div>
-<p>Podemos ver que o ansible sabe qual a distribuição que está sendo usada <code>Ubuntu</code>, qual a versão do sistema <code>20.04</code> e a release que está sendo executada <code>focal</code>. O <code>setup</code> consegue mostrar diversos outros dados. Sobre as interfaces de rede, sobre memória e etc...</p>
+<p>Podemos ver que o ansible sabe qual a distribuição que está sendo usada <code>Ubuntu</code>, qual a versão do sistema <code>20.04</code> e a release que está sendo executada <code>focal</code>. O <code>setup</code> consegue mostrar diversos outros dados. Sobre as interfaces de rede, sobre memória, etc.</p>
 <p>Aproveitando que já estamos vendo o módulo <code>setup</code>, podemos usar a função de filtro do módulo para exibir somente as informações que precisamos. Qualquer coisa que comece com <code>ansible_distribution</code>:</p>
 <div class="highlight"><span class="filename">$ Execução no terminal</span><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ansible ubuntu -m setup -a <span class="s2">&quot;filter=ansible_distribution*&quot;</span>
 </code></pre></div>
@@ -1120,7 +1120,7 @@ O status <code>changed</code> apareceu. Significa que o resultado desse comando 
 </code></pre></div>
 <p>Assim demos uma limpada no nosso arquivo de playbook e claro, podemos definir diversas outras variáveis no arquivo. Mas, você pode tentar depois <img alt="❤" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2764.svg" title=":heart:" /></p>
 <h3 id="arquivos-de-variaveis-por-grupo">Arquivos de variáveis por grupo</h3>
-<p>Uma outra coisa que pode facilitar na hora de usar as variáveis é criar variáveis específicas para grupos. O ansible tem um caminho específico para onde esses arquivos de variáveis devem ser colocados: <code>/etc/ansible/group_vars/</code>.</p>
+<p>Outra coisa que pode facilitar na hora de usar as variáveis é criar variáveis específicas para grupos. O ansible tem um caminho específico para onde esses arquivos de variáveis devem ser colocados: <code>/etc/ansible/group_vars/</code>.</p>
 <p>Para resolver isso, vamos criar um grupo de variáveis para o ubuntu:</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">/etc/ansible/group_vars/ubuntu.yml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
 <span class="normal"><a href="#__codelineno-27-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="nn">---</span><span class="w"></span>
@@ -1131,7 +1131,7 @@ O status <code>changed</code> apareceu. Significa que o resultado desse comando 
 <span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="nn">---</span><span class="w"></span>
 <a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="nt">pipx</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python-pipx</span><span class="w"></span>
 </code></pre></div></td></tr></table></div></p>
-<p>Dessa forma, quando formos executar o playbook não precisamos mais especificar as variáveis comuns. Cada sistema tem sua versão de <code>pipx</code> de acordo com os grupos do inventário:</p>
+<p>Dessa forma, quando formos executar o playbook não precisamos mais especificar as variáveis comuns. Cada sistema tem sua versão de <code>pipx</code> conforme os grupos do inventário:</p>
 <div class="highlight"><span class="filename">$ Execução no terminal e a parte importante do resultado</span><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>ansible-playbook pipx_httpie.yml
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>TASK <span class="o">[</span>Instalação <span class="k">do</span> pipx<span class="o">]</span> *****************************************************************
