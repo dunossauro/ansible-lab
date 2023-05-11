@@ -1,6 +1,6 @@
 # Ansible Galaxy
 
-Como vimos o nome Ansible vem da história do `mundo de Rocannon` na história de Ursula K. Le Guin. Rocannon é um antropólogo que precisa se comunicar com outros planetas usando o Ansible.
+Como vimos, o nome Ansible vem da história do `mundo de Rocannon` na história de Ursula K. Le Guin. Rocannon é um antropólogo que precisa se comunicar com outros planetas usando o Ansible.
 
 O Ansible Galaxy é uma forma de compartilhar receitas com outras pessoas usando Ansible. Você pode acessar o Galaxy nesse [link](https://galaxy.ansible.com/)
 

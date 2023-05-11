@@ -3,7 +3,7 @@
 Tudo que executamos até agora foram comandos no terminal com ansible. Você deve estar se perguntando se não seria mais fácil criar um script com todos esses comandos, para evitar ter que digitar todas às vezes. Para isso existem os playbooks. Você cria um arquivo no formato [yaml](https://yaml.org/) descrevendo todas as suas tarefas e executa de uma única vez.
 
 !!! tip "O nome Playbook"
-    Playbook é uma palavra que se refere a scripts de teatro. Por exemplo, quando alguém entra em cena, as falas de cada personagem e etc...
+    Playbook é uma palavra que se refere a scripts de teatro. Por exemplo, quando alguém entra em cena, as falas de cada personagem, etc.
 
 	No mundo dos esportes, playbook é usado muito no beisebol e no basquete. São listas de jogadas que podem ser feitas durante um jogo.
 
@@ -254,7 +254,7 @@ Esse comando nos retornará uma resposta MUITO extensa. Que acabei deixando em u
 "ansible_distribution_version": "20.04",
 ```
 
-Podemos ver que o ansible sabe qual a distribuição que está sendo usada `Ubuntu`, qual a versão do sistema `20.04` e a release que está sendo executada `focal`. O `setup` consegue mostrar diversos outros dados. Sobre as interfaces de rede, sobre memória e etc...
+Podemos ver que o ansible sabe qual a distribuição que está sendo usada `Ubuntu`, qual a versão do sistema `20.04` e a release que está sendo executada `focal`. O `setup` consegue mostrar diversos outros dados. Sobre as interfaces de rede, sobre memória, etc.
 
 Aproveitando que já estamos vendo o módulo `setup`, podemos usar a função de filtro do módulo para exibir somente as informações que precisamos. Qualquer coisa que comece com `ansible_distribution`:
 
@@ -469,7 +469,7 @@ Assim demos uma limpada no nosso arquivo de playbook e claro, podemos definir di
 
 ### Arquivos de variáveis por grupo
 
-Uma outra coisa que pode facilitar na hora de usar as variáveis é criar variáveis específicas para grupos. O ansible tem um caminho específico para onde esses arquivos de variáveis devem ser colocados: `/etc/ansible/group_vars/`.
+Outra coisa que pode facilitar na hora de usar as variáveis é criar variáveis específicas para grupos. O ansible tem um caminho específico para onde esses arquivos de variáveis devem ser colocados: `/etc/ansible/group_vars/`.
 
 Para resolver isso, vamos criar um grupo de variáveis para o ubuntu:
 
@@ -484,7 +484,7 @@ e um arquivo para o arch:
 pipx: python-pipx
 ```
 
-Dessa forma, quando formos executar o playbook não precisamos mais especificar as variáveis comuns. Cada sistema tem sua versão de `pipx` de acordo com os grupos do inventário:
+Dessa forma, quando formos executar o playbook não precisamos mais especificar as variáveis comuns. Cada sistema tem sua versão de `pipx` conforme os grupos do inventário:
 
 
 ```bash title="$ Execução no terminal e a parte importante do resultado"
