@@ -270,7 +270,7 @@ ok: [IP ARCH] => {
 }
 ```
 
-Temos um erro por não ter espaço em disco para compilar o 3.11 no arch. Para resolver essa questão [clique aqui]()
+Temos um erro por não ter espaço em disco para compilar o 3.11 no arch. Para resolver essa questão [clique aqui](/99_problemas_comuns)
 
 ## Agrupamento de tasks
 
