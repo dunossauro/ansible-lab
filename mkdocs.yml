@@ -60,4 +60,5 @@ extra:
       link: https://www.tiktok.com/@dunossauro
 
 plugins:
+  - search
   - mkdocs-video
