@@ -6,6 +6,7 @@ edit_uri: tree/main/docs
 
 theme:
   name: material
+  custom_dir: docs/overrides
   language: pt
   logo: images/ansible_logo.png
   favicon: images/ansible_logo.png
@@ -60,5 +61,9 @@ extra:
       link: https://www.tiktok.com/@dunossauro
 
 plugins:
-  - search
+  - search:
+      lang: pt
+  - git-authors:
+      show_email_address: false
+      show_line_count: true
   - mkdocs-video
